@@ -1,0 +1,22 @@
+{
+  "name": "cs546-finalproject",
+  "version": "1.0.0",
+  "description": "Proposal",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtorres3/CS546-FinalProject.git"
+  },
+  "author": "Group 9: GamerWorld",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mtorres3/CS546-FinalProject/issues"
+  },
+  "homepage": "https://github.com/mtorres3/CS546-FinalProject#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
