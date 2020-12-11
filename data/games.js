@@ -1,61 +1,52 @@
-const axios = require('axios');
+const {ObjectId} = require("mongodb");
+const collections = require("./mongoCollections");
+const games = collections.games;
 
-async function getAllGames(){
-  axios({
-    url: "https://api.igdb.com/v4/games",
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Client-ID: Client ID',
-        'Authorization: Bearer access_token',
-    },
-    data: "fields artworks,genres,keywords,name,platforms,rating,rating_count,tags;"
-  })
-    .then(response => {
-        console.log(response.data);
-        //return response.data;
-    })
-    .catch(err => {
-        console.error(err);
-    });
+async function create(name, genre, platforms, artwork, description) {
+  //If params are not provided at all, the method should throw.
+	/*if (!title || !plot || !rating || !runtime || !genre || !cast || !info) {
+        throw "You must provide all of the parameters (title, plot, rating, runtime, genre, cast, info) for your movie";
+  }
+  //If title, plot, rating, runtime and genre are not strings, the method should throw.
+	if (typeof title !== 'string' || typeof plot !== 'string' || typeof rating !== 'string' || typeof runtime !== 'string' || typeof genre !== 'string') {
+        throw "The parameters (title, plot, rating, runtime and genre) must be strings";
+  }
+  //If cast is not an array and if it does not have at least one element in it that is a valid string, or are empty strings the method should throw
+  if (!Array.isArray(cast)) {
+    throw "The cast parameter is not a valid array";
+  } 
+  //If info is not an object, the method should throw.
+  if (typeof info !== "object") {
+    throw "The info parameter is not of type object"
+  }
+  //If director is not a valid string, throw.
+  if (typeof info.director !== 'string' || info.director === undefined) {
+    throw "The director parameter is not a valid string"
+  }
+  //If yearReleased in not a 4 digit number or if it is not provided, throw.
+  if (typeof info.yearReleased !== 'number' || info.yearReleased.toString().length !== 4 || info.yearReleased === undefined) {
+    throw "The year released parameter is not a valid number"
+  }
+  const today = new Date()
+  //If yearReleased is < 1930 or > current year + 5 years, the method should throw.
+  if (info.yearReleased < 1930 || info.yearReleased > today.getFullYear()+5) {
+    throw "The year released parameter is not a number between 1930 and curr year + 5"
+  }*/
+
+  	const newGame = {
+   // _id: _id,
+    name: name,
+    genre: genre,
+    platforms: platforms,
+    artwork: artwork,
+    description: description
+    };
+
+  	const gameCollection = await games();
+    const insertInfo = await gameCollection.insertOne(newGame);
+    
+    const x = insertInfo.insertedId.toString();
+    //console.log("the type of x is: " + typeof x);
+    
+    return await get(x);
 }
-
-async function getShows(){
-  const { data } = await axios.get('http://api.tvmaze.com/shows');
-  return data // this will be the array of show objects
-}
-
-async function getAll(){
-
-  const shows = await getShows();
-  return shows;
-}
-
-
-async function getShowById(id){
-
-  if(!id || typeof id != 'number') throw 'ID cannot be empty and must be a number';
-  if(id < 0 || id > 243) throw 'ID must be between 1 and 243';
-  const shows = await getShows();
-
-  return shows[id-1];
-}
-
-
-module.exports = {getShows, getAll, getShowById, getAllGames};
-
-async function test() {
-   try {
-    let test = await getAllGames();
-     console.log(test);
-   }
-   catch(error) {
-     console.log(error);
-   }
- }
-
- async function main(){
-     await test();
- }
-
- main();
