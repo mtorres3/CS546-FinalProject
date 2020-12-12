@@ -1,5 +1,5 @@
 const {ObjectId} = require("mongodb");
-const collections = require("./mongoCollections");
+const collections = require("../config/mongoCollections");
 const games = collections.games;
 
 async function create(name, genre, platforms, artwork, description) {
@@ -14,7 +14,7 @@ async function create(name, genre, platforms, artwork, description) {
   //If cast is not an array and if it does not have at least one element in it that is a valid string, or are empty strings the method should throw
   if (!Array.isArray(cast)) {
     throw "The cast parameter is not a valid array";
-  } 
+  }
   //If info is not an object, the method should throw.
   if (typeof info !== "object") {
     throw "The info parameter is not of type object"
@@ -44,9 +44,9 @@ async function create(name, genre, platforms, artwork, description) {
 
   	const gameCollection = await games();
     const insertInfo = await gameCollection.insertOne(newGame);
-    
+
     const x = insertInfo.insertedId.toString();
     //console.log("the type of x is: " + typeof x);
-    
+
     return await get(x);
 }

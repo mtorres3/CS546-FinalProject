@@ -1,5 +1,5 @@
-const movies = require("./data/games");
-const connection = require("./data/mongoConnection");
+const games = require("./games");
+const connection = require("../config/mongoConnection");
 
 async function main() {
     try {
@@ -124,7 +124,7 @@ async function main() {
 
 
 
-    
+
 
 
 
