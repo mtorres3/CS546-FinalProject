@@ -50,3 +50,43 @@ async function create(name, genre, platforms, artwork, description) {
 
     return await get(x);
 }
+
+async function getAll(){
+
+  const movieCollection = await movies();
+
+  const allMovies = await movieCollection.find({}).toArray();
+
+  return allMovies;
+}
+
+async function get(id){
+
+  const movieCollection = await movies();
+
+  if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
+  if(!movieCollection) throw 'No movies in database'
+  if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
+
+  const movieId = await movieCollection.findOne({ _id: ObjectId(id)});
+  if (movieId === null) throw 'No movie with that id';
+
+  return movieId;
+}
+
+async function remove(id){
+
+  const movieCollection = await movies();
+
+  if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
+  if(!movieCollection) throw 'No movies in database'
+  if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
+
+  const deleted = await movieCollection.deleteOne({ _id: ObjectId(id) });
+
+  if (deleted.deletedCount === 0) throw 'Movie id could not be found'
+
+  return `${movieId} has been deleted`;
+}
+
+module.exports = {remove, get, getAll, create};
