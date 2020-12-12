@@ -73,6 +73,7 @@ body {
   }
 }
 
+/* Review Styles */
 #reviewFormDiv{
   border-radius: 3em;
   padding: 3em;
@@ -82,7 +83,6 @@ body {
   width: 50%;
   background-color: #494A4A;
   color: white;
-
 }
 
 #reviewFormTitle{
@@ -98,6 +98,73 @@ body {
 }
 
 #reviewSubmit{
+  color: #494A4A;
+  background-color: #C4C4C4;
+  border-radius: 2em;
+  font-size: 16px;
+  padding: 1em;
+  margin-top: 1em;
+  margin-left: 21em;
+}
+
+/* Profile Styles */
+#profileDiv{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 20em;
+  width: 80%;
+  background-color: #494A4A;
+  color: white;
+}
+
+#profileEditDiv{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 5em;
+  width: 50%;
+  background-color: #494A4A;
+  color: white;
+}
+
+#profileName{
+  color: white;
+}
+
+#profileEdit{
+  color: #494A4A;
+  background-color: #C4C4C4;
+  border-radius: 2em;
+  font-size: 16px;
+  padding: 0.5em;
+}
+
+.profileInfo{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+dt{
+  margin-bottom: 0.5em;
+  font-size: 24px;
+}
+
+#profileBio{
+  font-size: 20px;
+  background-color: #C4C4C4;
+  border-radius: 1em;
+}
+
+#displayName{
+  font-size: 20px;
+  background-color: #C4C4C4;
+  border-radius: 1em;
+}
+
+#profileSubmit{
   color: #494A4A;
   background-color: #C4C4C4;
   border-radius: 2em;

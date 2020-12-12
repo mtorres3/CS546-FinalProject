@@ -126,7 +126,8 @@ const metroid = {
 
 router.get("/", async(request, response) => {
   try{
-    response.render('extras/reviewForm');
+    //response.render('extras/reviewForm');
+    response.render('extras/profileEdit');
   }
   catch(e){
     response.status(404).render('extras/error')
