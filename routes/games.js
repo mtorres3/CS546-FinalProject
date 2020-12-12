@@ -3,7 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const gameData = data.games;
 
-const discoElysium = {
+/*const discoElysium = {
   name: "Disco Elysium",
   genre: ["Adventure", "Role-playing(RPG)"],
   platforms: ["Xbox One", "Playstation 4", "Mac","PC (Microsoft Windows)","Nintendo Switch"],
@@ -122,7 +122,7 @@ const metroid = {
   platforms: ["Nintendo GameCube"], 
   artwork: "/public/images/metroid_prime.jpg", 
   description: "Everyone's favorite heroine, Samus Aran, is back! Packed to the gills with exploration, creative power-ups, and wicked enemies, Metroid Prime is a first-person adventure worthy of the Metroid stamp. An action-packed adventure set in the first-person perspective, Metroid Prime takes place just after the events in the original Metroid (NES). It has lead character Samus Aran, a bounty hunter by trade, chasing down the evil Space Pirates. Their intention is to use a genetic mutagen called Phazon to create a super army and take over the universe. While the installments in the series before have never been home to deeply involving storylines, Metroid Prime breaks the shell to offer up one of the most intriguing and read-worthy sagas yet. Developed by Texas-based Retro Studios. Metroid Prime brings all of the elements of the acclaimed franchise into a massive 3D arena."
-}
+}*/
 
 router.get("/", async(request, response) => {
   try{
