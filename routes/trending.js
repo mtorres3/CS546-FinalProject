@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const userData = data.users;
+const gameData = data.games;
+const reviewData = data.reviews;
+
 
 router.get("/", async(request, response) => {
   try{
-    response.render('extras/profile');
+    response.render('extras/trending');
   }
   catch(e){
     response.status(404).render('extras/error')
