@@ -64,12 +64,12 @@ async function get(id){
 
   const gameCollection = await games();
 
-  if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
-  if(!gameCollection) throw 'No movies in database'
+  if(!id) throw 'ID cannot be empty'
+  if(!gameCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
   const gameId = await gameCollection.findOne({ _id: ObjectId(id)});
-  if (gameId === null) throw 'No movie with that id';
+  if (gameId === null) throw 'No games with that id';
 
   return gameId;
 }
@@ -78,13 +78,13 @@ async function remove(id){
 
   const gameCollection = await games();
 
-  if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
-  if(!gameCollection) throw 'No movies in database'
+  if(!id) throw 'ID cannot be empty'
+  if(!gameCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
   const deleted = await gameCollection.deleteOne({ _id: ObjectId(id) });
 
-  if (deleted.deletedCount === 0) throw 'Movie id could not be found'
+  if (deleted.deletedCount === 0) throw 'Game id could not be found'
 
   return `${deleted} has been deleted`;
 }
