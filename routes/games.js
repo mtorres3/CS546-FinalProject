@@ -6,7 +6,7 @@ const gameData = data.games;
 router.get("/", async(request, response) => {
   try{
     //response.render('extras/reviewForm');
-    response.render('extras/profile');
+    response.render('extras/dashboardMain');
   }
   catch(e){
     response.status(404).render('extras/error')
