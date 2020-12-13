@@ -12,4 +12,19 @@ router.get("/", async(request, response) => {
   }
 });
 
+router.get("/edit", async(request, response) => {
+  try{
+    response.render('extras/profileEdit');
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+});
+
+router.post('/', async(request,response) => {
+
+  //TO-DO
+  
+})
+
 module.exports = router;

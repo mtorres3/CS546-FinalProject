@@ -5,12 +5,26 @@ const userData = data.users;
 
 router.get("/", async(request, response) => {
   try{
-    response.render('extras/profile');
+    response.render('extras/reviewAll');
   }
   catch(e){
     response.status(404).render('extras/error')
   }
 });
 
-module.exports = router;
+router.get("/single", async(request, response) => {
+  try{
+    response.render('extras/reviewSingle');
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+});
 
+router.post("/", async(request, response) => {
+
+  //TO-DO
+
+});
+
+module.exports = router;
