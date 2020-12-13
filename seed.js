@@ -2,6 +2,8 @@ const games = require("./data/games");
 const connection = require("./config/mongoConnection");
 
 async function main() {
+  const db = await connection();
+  await db.dropDatabase();
     try {
         var discoElysium = await games.create("Disco Elysium",["Adventure","Role-playing(RPG)"],["Xbox One", "Playstation 4", "Mac","PC (Microsoft Windows)","Nintendo Switch"], "/public/images/disco_asylum.jpg","A CRPG in which, waking up in a hotel room a total amnesiac with highly opinionated voices in his head, a middle-aged detective on a murder case inadvertently ends up playing a part in the political dispute between a local labour union and a larger international body, all while struggling to piece together his past, diagnose the nature of the reality around him and come to terms with said reality.");
         console.log(discoElysium);
@@ -122,6 +124,7 @@ async function main() {
         console.log(e);
     }
 
-
-
+    await db.serverConfig.close();
 }
+
+main();
