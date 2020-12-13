@@ -13,6 +13,18 @@ router.get("/", async(request, response) => {
   }
 });
 
+router.get("/:id", async(request, response) => {
+  try{
+    const game = await gameData.get(request.params.id);
+    //response.render('extras/reviewForm');
+    response.render('extras/game');
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+});
+
+
 module.exports = router;
 
 /*const discoElysium = {
