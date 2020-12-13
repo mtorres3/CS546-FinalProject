@@ -13,18 +13,18 @@ router.get("/", async(request, response) => {
   }
 });
 
-router.get("/:id", async(request, response) => {
+router.get("/create", async(request, response) => {
   try{
-    response.render('extras/reviewSingle');
+    response.render('extras/reviewForm');
   }
   catch(e){
     response.status(404).render('extras/error')
   }
 });
 
-router.get("/create", async(request, response) => {
+router.get("/:id", async(request, response) => {
   try{
-    response.render('extras/reviewForm');
+    response.render('extras/reviewSingle');
   }
   catch(e){
     response.status(404).render('extras/error')
