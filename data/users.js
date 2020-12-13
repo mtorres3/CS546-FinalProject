@@ -68,12 +68,12 @@ async function get(id){
 
   const userCollection = await users();
 
-  if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
-  if(!userCollection) throw 'No movies in database'
+  if(!id) throw 'ID cannot be empty'
+  if(!userCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
   const userId = await userCollection.findOne({ _id: ObjectId(id)});
-  if (userId === null) throw 'No movie with that id';
+  if (userId === null) throw 'No game with that id';
 
   return userId;
 }
@@ -82,13 +82,13 @@ async function remove(id){
 
   const userCollection = await users();
 
-  if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
-  if(!userCollection) throw 'No movies in database'
+  if(!id) throw 'ID cannot be empty'
+  if(!userCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
   const deleted = await userCollection.deleteOne({ _id: ObjectId(id) });
 
-  if (deleted.deletedCount === 0) throw 'Movie id could not be found'
+  if (deleted.deletedCount === 0) throw 'game id could not be found'
 
   return `${deleted} has been deleted`;
 }
@@ -97,8 +97,8 @@ async function rename(id, newProfileName, newProfileBio){
 
   const userCollection = await users();
 
-  if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
-  if(!userCollection) throw 'No movies in database'
+  if(!id) throw 'ID cannot be empty'
+  if(!userCollection) throw 'No games in database'
   if(!ObjectId.isValid(id) || id.length === 12) throw 'Invalid ObjectId'
 
   const newProfile = {
