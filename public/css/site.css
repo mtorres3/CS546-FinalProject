@@ -119,6 +119,7 @@ body {
   border-radius: 3em;
   padding: 3em;
   padding-top: 2em;
+  padding-bottom: 2em;
   margin-top: 1em;
   margin-left: 5em;
   width: 15%;
@@ -130,9 +131,9 @@ body {
   display: inline-block;
   border-radius: 3em;
   padding: 3em;
-  margin-left: 5em;
+  margin-left: 1em;
   padding-bottom: 20em;
-  width: 70%;
+  width: 75%;
   background-color: #494A4A;
   color: white;
 }
@@ -153,9 +154,32 @@ body {
   border-color: black;
   border-radius: 1em;
   font-size: 16px;
-  margin-top: 4em;
+  margin-top: 2em;
   margin-left: 7.5em;
   padding: 1em 2em;
+}
+
+/* Review Single Styles */
+#reviewSingle{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 1em;
+  width: 90%;
+  background-color: #494A4A;
+  color: white;
+}
+
+#commentDiv{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 20em;
+  width: 100%;
+  background-color: #909092;
+  color: white;
 }
 
 
@@ -166,7 +190,7 @@ body {
   margin: auto;
   margin-top: 5em;
   padding-bottom: 20em;
-  width: 80%;
+  width: 90%;
   background-color: #494A4A;
   color: white;
 }
@@ -233,7 +257,7 @@ dt{
   margin: auto;
   margin-top: 5em;
   padding-bottom: 20em;
-  width: 80%;
+  width: 90%;
   background-color: #494A4A;
   color: white;
 }
@@ -245,7 +269,7 @@ dt{
   margin: auto;
   margin-top: 5em;
   padding-bottom: 20em;
-  width: 80%;
+  width: 90%;
   background-color: #494A4A;
   color: white;
 }

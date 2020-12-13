@@ -22,7 +22,7 @@ router.get("/create", async(request, response) => {
   }
 });
 
-router.get("/:id", async(request, response) => {
+router.get("/single", async(request, response) => {
   try{
     response.render('extras/reviewSingle');
   }

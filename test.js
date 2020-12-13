@@ -19,6 +19,10 @@ async function main() {
     console.log(melee._id);
     newMelee = await games.get(melee._id);
     console.log(newMelee);
+    deleteMelee = await games.remove(melee._id);
+    console.log(deleteMelee)
+    newMelee = await games.get(melee._id);
+    console.log(newMelee);
   }
   catch(e) {
     console.log(e);
