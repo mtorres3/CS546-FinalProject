@@ -53,40 +53,40 @@ async function create(name, genre, platforms, artwork, description) {
 
 async function getAll(){
 
-  const movieCollection = await movies();
+  const gameCollection = await games();
 
-  const allMovies = await movieCollection.find({}).toArray();
+  const allGames = await gameCollection.find({}).toArray();
 
-  return allMovies;
+  return allGames;
 }
 
 async function get(id){
 
-  const movieCollection = await movies();
+  const gameCollection = await games();
 
   if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
-  if(!movieCollection) throw 'No movies in database'
+  if(!gameCollection) throw 'No movies in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
-  const movieId = await movieCollection.findOne({ _id: ObjectId(id)});
-  if (movieId === null) throw 'No movie with that id';
+  const gameId = await gameCollection.findOne({ _id: ObjectId(id)});
+  if (gameId === null) throw 'No movie with that id';
 
-  return movieId;
+  return gameId;
 }
 
 async function remove(id){
 
-  const movieCollection = await movies();
+  const gameCollection = await games();
 
   if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
-  if(!movieCollection) throw 'No movies in database'
+  if(!gameCollection) throw 'No movies in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
-  const deleted = await movieCollection.deleteOne({ _id: ObjectId(id) });
+  const deleted = await gameCollection.deleteOne({ _id: ObjectId(id) });
 
   if (deleted.deletedCount === 0) throw 'Movie id could not be found'
 
-  return `${movieId} has been deleted`;
+  return `${deleted} has been deleted`;
 }
 
 module.exports = {remove, get, getAll, create};
