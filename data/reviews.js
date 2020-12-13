@@ -33,8 +33,8 @@ async function create(title, user, postContent, datePublished) {
     throw "The year released parameter is not a number between 1930 and curr year + 5"
   }*/
 
-  var likeCount = 0;
-  var dislikeCount = 0;
+  //var likeCount = 0;
+  //var dislikeCount = 0;
   let commentsArray= [];
 
   	const newReview = {
@@ -43,8 +43,8 @@ async function create(title, user, postContent, datePublished) {
     user: user,
     postContent: postContent,
     datePublished: datePublished,
-    likes: likeCount,
-    dislikes: dislikeCount,
+    likes: 0,
+    dislikes: 0,
     comments: commentsArray
     };
 
@@ -95,4 +95,16 @@ async function remove(id){
   return `${deleted} has been deleted`;
 }
 
-module.exports = {remove, get, getAll, create};
+async function clickedLike(postId){
+    let likedPost = get(postId);
+    likedPost.likes++;
+    return true;
+}
+
+async function clickedDislike(postId){
+    let dislikedPost = get(postId);
+    dislikedPost.dislikes++;
+    return true;
+}
+
+module.exports = {remove, get, getAll, create, clickedLike, clickedDislike};
