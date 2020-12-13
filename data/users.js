@@ -93,4 +93,23 @@ async function remove(id){
   return `${deleted} has been deleted`;
 }
 
+async function rename(id, newProfileName, newProfileBio){
+
+  const userCollection = await users();
+
+  if(!id || typeof id != 'string' || id.trim() === "") throw 'ID cannot be empty and must be a string'
+  if(!userCollection) throw 'No movies in database'
+  if(!ObjectId.isValid(id) || id.length === 12) throw 'Invalid ObjectId'
+
+  const newProfile = {
+    name: newProfileName,
+    bio: newProfileBio
+  };
+
+  const update = await userCollection.updateOne({ _id: ObjectId(id)},{$set: newProfile});
+  if(update.modifiedCount === 0) throw 'Could not update'
+
+  return await this.get(id);
+}
+
 module.exports = {remove, get, getAll, create};

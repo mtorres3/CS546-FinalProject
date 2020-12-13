@@ -73,7 +73,7 @@ body {
   }
 }
 
-/* Review Styles */
+/* Review Form Styles */
 #reviewFormDiv{
   border-radius: 3em;
   padding: 3em;
@@ -86,6 +86,12 @@ body {
 }
 
 #reviewFormTitle{
+  font-size: 20px;
+  background-color: #C4C4C4;
+  border-radius: 1em;
+}
+
+#gameReviewed{
   font-size: 20px;
   background-color: #C4C4C4;
   border-radius: 1em;
@@ -106,6 +112,52 @@ body {
   margin-top: 1em;
   margin-left: 21em;
 }
+
+/* Review Main Styles */
+.filter{
+  display: inline-block;
+  border-radius: 3em;
+  padding: 3em;
+  padding-top: 2em;
+  margin-top: 1em;
+  margin-left: 5em;
+  width: 15%;
+  background-color: #494A4A;
+  color: white;
+}
+
+.reviewBody{
+  display: inline-block;
+  border-radius: 3em;
+  padding: 3em;
+  margin-left: 5em;
+  padding-bottom: 20em;
+  width: 70%;
+  background-color: #494A4A;
+  color: white;
+}
+
+.filterButton{
+  color: #494A4A;
+  background-color: #C4C4C4;
+  border-radius: 1em;
+  font-size: 12px;
+  margin-top: 1em;
+  padding: 0.5em;
+}
+
+#createButton{
+  display: inline-block;
+  color: white;
+  background-color: #494A4A;
+  border-color: black;
+  border-radius: 1em;
+  font-size: 16px;
+  margin-top: 4em;
+  margin-left: 7.5em;
+  padding: 1em 2em;
+}
+
 
 /* Profile Styles */
 #profileDiv{
@@ -176,6 +228,18 @@ dt{
 
 /* Trending Styles */
 #trendingDiv{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 20em;
+  width: 80%;
+  background-color: #494A4A;
+  color: white;
+}
+
+/* Dashboard Styles */
+#dashboardDiv{
   border-radius: 3em;
   padding: 3em;
   margin: auto;
