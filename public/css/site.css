@@ -185,3 +185,15 @@ dt{
   background-color: #494A4A;
   color: white;
 }
+
+/* Dashboard Styles */
+#dashboardDiv{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 20em;
+  width: 80%;
+  background-color: #494A4A;
+  color: white;
+}
