@@ -285,3 +285,36 @@ dt{
   background-color: #494A4A;
   color: white;
 }
+
+/* Login Form Styles */
+#loginFormDiv{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 5em;
+  width: 30%;
+  background-color: #494A4A;
+  color: white;
+}
+
+#username{
+  font-size: 20px;
+  background-color: #C4C4C4;
+  border-radius: 1em;
+}
+
+#password{
+  font-size: 20px;
+  background-color: #C4C4C4;
+  border-radius: 1em;
+}
+
+#loginSubmit{
+  margin-top: 2em;
+  color: #494A4A;
+  background-color: #C4C4C4;
+  border-radius: 1em;
+  font-size: 16px;
+  padding: 0.5em;
+}

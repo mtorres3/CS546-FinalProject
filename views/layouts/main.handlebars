@@ -20,9 +20,33 @@
       <button type="submit"><i class="fa fa-search"> Search</i></button>
     </form>
   </div>
+  <button id="login">Login</button>
 </div>
 
 {{{body}}}
+
+
+<div id='loginFormDiv' hidden>
+  <h1>Login</h1>
+  <hr>
+  <br>
+  <form id='loginForm' method='POST'>
+    <div>
+    <label for='username'>Username:
+      <input type='text' id='username' placeholder=' Username'/>
+    </label>
+    </div>
+    <div>
+    <label for='password'>Password:
+      <input type='password' id='password' placeholder=' Password'/>
+    </label>
+    </div>
+    <button type='submit' id='loginSubmit'>Submit</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+       crossorigin="anonymous"></script>
 
 </body>
 </html>
