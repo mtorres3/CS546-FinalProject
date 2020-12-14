@@ -7,6 +7,7 @@ const connection = require("./config/mongoConnection");
 
 async function main() {
   const db = await connection();
+  /*
   try {
     allGames = await games.getAll();
     console.log(allGames)
@@ -25,6 +26,12 @@ async function main() {
     console.log(newMelee);
   }
   catch(e) {
+    console.log(e);
+  } */
+  try {
+    var user = await users.create("ali", "hello", "jandro", "testing");
+    console.log(user)
+  } catch(e) {
     console.log(e);
   }
   await db.serverConfig.close();

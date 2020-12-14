@@ -2,6 +2,7 @@ const {ObjectId} = require("mongodb");
 const collections = require("../config/mongoCollections");
 const users = collections.users;
 const games = require("./games");
+const bcrypt = require('bcryptjs');
 
 async function create(userName, password, gamingUser, userBio) {
   //If params are not provided at all, the method should throw.
@@ -36,11 +37,14 @@ async function create(userName, password, gamingUser, userBio) {
 
   let favoritedGames = [];
   let userPosts = [];
+  var hashPW = await bcrypt.hash(password, 10);
+  console.log(hashPW);
+
 
   	const newUser = {
    // _id: _id,
     userName: userName,
-    password: password,
+    password: hashPW,
     gamingUser: gamingUser,
     userBio: userBio,
     favoritedGames,
@@ -77,6 +81,15 @@ async function get(id){
   if (userId === null) throw 'No game with that id';
 
   return userId;
+}
+
+async function getByUser(uname) {
+  const userCollection = await users();
+  if(!uname) throw 'ID cannot be empty'
+  const user = await userCollection.findOne({ userName: uname});
+  if (user === null) throw 'No user with that id';
+
+  return user;
 }
 
 async function remove(id){
