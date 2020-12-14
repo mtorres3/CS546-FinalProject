@@ -1,6 +1,7 @@
 const {ObjectId} = require("mongodb");
 const collections = require("../config/mongoCollections");
 const users = collections.users;
+const games = require("./games");
 
 async function create(userName, password, gamingUser, userBio) {
   //If params are not provided at all, the method should throw.
@@ -112,4 +113,17 @@ async function rename(id, newProfileName, newProfileBio){
   return await this.get(id);
 }
 
-module.exports = {remove, get, getAll, create};
+async function favoritedGame(gameId, userId){
+  //let favorite = games.get(gameId);
+  let user = get(userId);
+  user.favoritedGames.push(gameId);
+  return true;
+}
+
+async function postCreated(userId, postId){
+  let user = get(userId);
+  user.userPosts.push(postId);
+  return true;
+}
+
+module.exports = {remove, get, getAll, create, favoritedGame, rename, postCreated};

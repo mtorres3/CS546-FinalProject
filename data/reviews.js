@@ -107,4 +107,16 @@ async function clickedDislike(postId){
     return true;
 }
 
-module.exports = {remove, get, getAll, create, clickedLike, clickedDislike};
+async function commentCreated(commentId, postId){
+  let reviewCommentedOn = get(postId);
+  reviewCommentedOn.comments.push(commentId);
+  return true;
+}
+
+async function sortLikes(){
+  let postsArray = getAll();
+  let sortedArray = postsArray.sort((a,b)=> a.likes-b.likes);
+  return sortedArray;
+}
+
+module.exports = {remove, get, getAll, create, clickedLike, clickedDislike, commentCreated, sortLikes};

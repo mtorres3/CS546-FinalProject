@@ -89,4 +89,9 @@ async function remove(id){
   return `${deleted} has been deleted`;
 }
 
-module.exports = {remove, get, getAll, create};
+async function search(searcTerm){
+  //get array of all games
+  //check to see if any of the games include a certain word
+}
+
+module.exports = {remove, get, getAll, create,search};
