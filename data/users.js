@@ -104,7 +104,7 @@ async function remove(id){
 
   if (deleted.deletedCount === 0) throw 'game id could not be found'
 
-  return `${deleted} has been deleted`;
+  return true;
 }
 
 async function rename(id, newProfileName, newProfileBio){
