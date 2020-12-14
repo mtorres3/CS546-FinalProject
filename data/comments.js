@@ -2,7 +2,7 @@ const {ObjectId} = require("mongodb");
 const collections = require("../config/mongoCollections");
 const comments = collections.comments;
 
-async function create(dateCreated, user, commentContent) {
+async function create(userId, commentContent) {
   //If params are not provided at all, the method should throw.
 	/*if (!title || !plot || !rating || !runtime || !genre || !cast || !info) {
         throw "You must provide all of the parameters (title, plot, rating, runtime, genre, cast, info) for your movie";
@@ -33,10 +33,22 @@ async function create(dateCreated, user, commentContent) {
     throw "The year released parameter is not a number between 1930 and curr year + 5"
   }*/
 
+  if (!userId) throw 'A user has not been provided';
+  if (!commentContent) throw 'Content has not been provided';
+
+  if (typeof userId !== 'string') throw 'userId must be a string';
+  if (typeof commentContent !== 'string') throw 'commentContent must be a string';
+
+  if (!userId.trim()) throw 'userId is an empty string';
+  if (!commentContent.trim()) throw 'commentContent is an empty string'
+
+    userId.trim();
+    commentContent.trim();
+
   	const newComment = {
    // _id: _id,
     dateCreated: dateCreated,
-    user: user,
+    user: userId,
     commentContent: commentContent
     };
 
@@ -60,9 +72,13 @@ async function getAll(){
 
 async function get(id){
 
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
+
   const commentCollection = await comments();
 
-  if(!id) throw 'ID cannot be empty'
   if(!commentCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
@@ -74,9 +90,13 @@ async function get(id){
 
 async function remove(id){
 
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
+
   const commentCollection = await comments();
 
-  if(!id) throw 'ID cannot be empty'
   if(!commentCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
@@ -84,7 +104,7 @@ async function remove(id){
 
   if (deleted.deletedCount === 0) throw 'Game id could not be found'
 
-  return `${deleted} has been deleted`;
+  return true;
 }
 
 module.exports = {remove, get, getAll, create};
