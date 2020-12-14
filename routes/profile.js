@@ -25,9 +25,10 @@ router.get("/edit", async(request, response) => {
 
 router.post('/login', async(request,response) => {
 
-  const { username, password } = req.body;
-  var user = userData.getByUser(username);
-  if (user.password) {
+  const { username, password } = request.body
+  console.log(request.body)
+  let user = await userData.getByUser(username);
+  if (user) {
       let match = await bcrypt.compare(password, user.password);
       if (match) {
         request.session.user = {username: user.userName, _id: user._id}
