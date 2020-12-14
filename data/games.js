@@ -33,6 +33,40 @@ async function create(name, genre, platforms, artwork, description) {
     throw "The year released parameter is not a number between 1930 and curr year + 5"
   }*/
 
+  if (!name) throw 'A name has not been provided';
+  if (!genre) throw 'A genre has not been provided';
+  if (!platforms) throw 'A platform has not been provided';
+  if (!artwork) throw 'Artwork has not been provided';
+  if (!description) throw 'A description has not been provided';
+
+  if (typeof name !== 'string') throw 'name must be a string';
+  if (typeof artwork !== 'string') throw 'artwork must be a string';
+  if (typeof description !== 'string') throw 'description must be a string';
+
+  if (!name.trim()) throw 'name is an empty string';
+  if (!artwork.trim()) throw 'artwork is an empty string';
+  if (!description.trim()) throw 'description is an empty string';
+
+    name.trim();
+    artwork.trim();
+    description.trim();
+
+  if (!Array.isArray(genre)) throw 'genre must be provided as an array';
+  if (!genre.length>0) throw 'genre has no inputs in it'
+    for (i=0; i<genre.length;i++){
+      if (!genre[i].trim()) throw 'one of the elements in genre is an empty string';
+      if (typeof genre[i] !== 'string') throw 'one of the elements in genre is not a string';
+      genre[i].trim();
+    }
+
+  if (!Array.isArray(platforms)) throw 'platforms must be provided as an array';
+  if (!platforms.length>0) throw 'platforms has no inputs in it'
+    for (i=0; i<platforms.length;i++){
+      if (!platforms[i].trim()) throw 'one of the elements in platforms is an empty string';
+      if (typeof platforms[i] !== 'string') throw 'one of the elements in platforms is not a string';
+      platforms[i].trim();
+    }
+
   	const newGame = {
     // _id: _id,
     name: name,
@@ -62,9 +96,13 @@ async function getAll(){
 
 async function get(id){
 
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
+
   const gameCollection = await games();
 
-  if(!id) throw 'ID cannot be empty'
   if(!gameCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
@@ -76,9 +114,13 @@ async function get(id){
 
 async function remove(id){
 
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
+
   const gameCollection = await games();
 
-  if(!id) throw 'ID cannot be empty'
   if(!gameCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
