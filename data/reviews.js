@@ -181,7 +181,7 @@ async function commentCreated(commentId, postId){
 }
 
 async function sortLikes(){
-  let postsArray = getAll();
+  let postsArray = await getAll();
   let sortedArray = postsArray.sort((a,b)=> a.likes-b.likes);
   let topThree = sortedArray.limit(3).toArray();
   return topThree;
