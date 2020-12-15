@@ -73,6 +73,10 @@ body {
   }
 }
 
+#login{
+
+}
+
 /* Review Form Styles */
 #reviewFormDiv{
   border-radius: 3em;
@@ -283,6 +287,7 @@ dt{
   max-height: 30em;
   margin-right: 3em;
   margin-left: 3.5em;
+  margin-bottom: 1.5em;
 }
 
 /* Game Styles */

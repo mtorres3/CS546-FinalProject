@@ -1,6 +1,7 @@
 (function ($) {
   var loginForm = $('#loginForm');
   var divLogin = $('#loginFormDiv');
+  var mainContent = $('#mainContent')
 
     $(document).ready(function(){
       $("#login").on("click", function(e) {
@@ -8,8 +9,10 @@
         console.log("button clicked");
         if (divLogin.is(":hidden")) {
           divLogin.show();
+          mainContent.hide();
         } else {
           divLogin.hide();
+          mainContent.show();
         }
 
       });
@@ -31,7 +34,9 @@
         contentType: "application/json; charset=utf-8",
         dataType   : "json",
         success: function(data) {
-          console.log("login sucess")
+          console.log("login success")
+          divLogin.hide();
+          mainContent.show();
         },
         error: function() {
           console.log('process error');
