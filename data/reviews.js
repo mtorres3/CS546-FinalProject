@@ -153,9 +153,13 @@ async function commentCreated(commentId, postId){
 }
 
 async function sortLikes(){
-  let postsArray = getAll();
+  let reviewCollection = await reviews();
+  let postsArray = await getAll();
+  //console.log(postsArray);
   let sortedArray = postsArray.sort((a,b)=> a.likes-b.likes);
-  let topThree = sortedArray.limit(3).toArray();
+  //console.log(sortedArray);
+  let topThree = await reviewCollection.find({}).sort((a,b)=> a.likes-b.likes).limit(3).toArray();
+  //console.log(topThree);
   return topThree;
 }
 

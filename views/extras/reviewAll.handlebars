@@ -1,6 +1,7 @@
 <main>
 
   <div>
+  <div>
   <form action='/reviews/create' method='GET'>
     <button type='submit' id='createButton'>Create Review</button>
   </form>
@@ -23,19 +24,23 @@
       <button type='submit' class='filterButton'>Filter</button>
     </form>
   </div>
-
+</div>
 
   <!-- ALL REVIEWS -->
   <div class='reviewBody'>
     <h1>Reviews</h1>
     <hr>
-    <!--
-    {{#each reviews}}
-      <a href='/trending'>{{reviews}}</a>
+    {{#each review}}
+      <a href='/trending'>
+        <h2>{{this.title}}</h2>
+        <p>By: {{this.user}}</p>
+        <br>
+        <p>{{this.gameName}}</p>
+        <p>{{this.postContent}}</p>
+        <p>{{this.datePublished}}</p>
+        <hr>
+      </a>
     {{/each}}
-  -->
-    <p>Some review</p>
-    <!-- All Reviews -->
-
   </div>
+
 </main>

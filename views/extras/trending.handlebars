@@ -1,18 +1,22 @@
 <main>
 <div id="trendingDiv">
-<h1 id="trendingName">Top Trending Games</h1>
+<h1 id="trendingName">Top Trending Reviews</h1>
 
 <br>
 <hr>
-<br>
 <dl>
   <div class='TrendingInfo'>
-  <dt>Name:</dt>
-  <dd>{{name}}</dd>
-  <dt>Artwork:</dt>
-  <dd>{{{artwork}}}</dd>
+  {{#each top}}
+    <h2>{{this.title}}</h2>
+    <p>By: {{this.user}}</p>
+    <br>
+    <p>{{this.gameName}}</p>
+    <p>{{this.postContent}}</p>
+    <p>{{this.datePublished}}</p>
+    <hr>
+  {{/each}}
   </div>
-  
+
 </dl>
 </div>
 </main>

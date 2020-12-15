@@ -119,47 +119,56 @@ body {
 
 /* Review Main Styles */
 .filter{
-  display: inline-block;
+  display: block;
+  text-align: center;
   border-radius: 3em;
   padding: 3em;
   padding-top: 2em;
   padding-bottom: 2em;
+  margin: auto;
   margin-top: 1em;
-  margin-left: 5em;
+  margin-bottom: 1em;
   width: 15%;
   background-color: #494A4A;
   color: white;
 }
 
 .reviewBody{
-  display: inline-block;
+  display: block;
   border-radius: 3em;
   padding: 3em;
-  margin-left: 1em;
+  margin: auto;
   padding-bottom: 20em;
   width: 75%;
   background-color: #494A4A;
   color: white;
 }
 
+.reviewBody a{
+  color: white;
+  text-decoration: none;
+}
+
 .filterButton{
+  display: block;
   color: #494A4A;
   background-color: #C4C4C4;
   border-radius: 1em;
   font-size: 12px;
-  margin-top: 1em;
+  margin: auto;
+  margin-top: 1.5em;
   padding: 0.5em;
 }
 
 #createButton{
-  display: inline-block;
+  display: block;
   color: white;
   background-color: #494A4A;
   border-color: black;
   border-radius: 1em;
   font-size: 16px;
+  margin: auto;
   margin-top: 2em;
-  margin-left: 7.5em;
   padding: 1em 2em;
 }
 
