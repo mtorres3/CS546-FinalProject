@@ -2,7 +2,7 @@ const {ObjectId} = require("mongodb");
 const collections = require("../config/mongoCollections");
 const reviews = collections.reviews;
 
-async function create(title, user, postContent) {
+async function create(title, gameName, user, postContent) {
   //If params are not provided at all, the method should throw.
 	/*if (!title || !plot || !rating || !runtime || !genre || !cast || !info) {
         throw "You must provide all of the parameters (title, plot, rating, runtime, genre, cast, info) for your movie";
@@ -39,20 +39,26 @@ async function create(title, user, postContent) {
 
   if (!title) throw 'A title has not been provided';
   if (!user) throw 'A user has not been provided';
-  if (!postConent) throw 'Post content has not been provided';
+  if (!gameName) throw 'A game name has not been provided';
+  if (!postContent) throw 'Post content has not been provided';
 
   if (typeof title !== 'string') throw 'title must be a string';
   if (typeof user !== 'string') throw 'user must be a string';
+  if (typeof gameName !== 'string') throw 'game name must be a string';
   if (typeof postContent !== 'string') throw 'postContent must be a string';
 
   if (!title.trim()) throw 'title is an empty string';
+  if (!gameName.trim()) throw 'game name is an empty string';
   if (!user.trim()) throw 'user is an empty string';
   if (!postContent.trim()) throw 'postContent is an empty string';
 
     title.trim();
     user.trim();
+    gameName.trim();
     postContent.trim();
 
+    let datePublished = new Date();
+/*
   if (!Array.isArray(genre)) throw 'genre must be provided as an array';
   if (!genre.length>0) throw 'genre has no inputs in it'
     for (i=0; i<genre.length;i++){
@@ -68,10 +74,11 @@ async function create(title, user, postContent) {
       if (typeof platforms[i] !== 'string') throw 'one of the elements in platforms is not a string';
       platforms[i].trim();
     }
-
+*/
   	const newReview = {
    // _id: _id,
     title: title,
+    gameName: gameName,
     user: user,
     postContent: postContent,
     datePublished: datePublished,
@@ -148,7 +155,8 @@ async function commentCreated(commentId, postId){
 async function sortLikes(){
   let postsArray = getAll();
   let sortedArray = postsArray.sort((a,b)=> a.likes-b.likes);
-  return sortedArray;
+  let topThree = sortedArray.limit(3).toArray();
+  return topThree;
 }
 
 module.exports = {remove, get, getAll, create, clickedLike, clickedDislike, commentCreated, sortLikes};

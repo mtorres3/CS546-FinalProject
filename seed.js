@@ -1,9 +1,14 @@
 const games = require("./data/games");
+const users = require("./data/users");
+const reviews = require("./data/reviews");
+const comments = require("./data/comments");
 const connection = require("./config/mongoConnection");
 
 async function main() {
   const db = await connection();
   await db.dropDatabase();
+
+    //SEED GAMES
     try {
         var discoElysium = await games.create("Disco Elysium",["Adventure","Role-playing(RPG)"],["Xbox One", "Playstation 4", "Mac","PC (Microsoft Windows)","Nintendo Switch"], "../../public/images/disco_asylum.jpg","A CRPG in which, waking up in a hotel room a total amnesiac with highly opinionated voices in his head, a middle-aged detective on a murder case inadvertently ends up playing a part in the political dispute between a local labour union and a larger international body, all while struggling to piece together his past, diagnose the nature of the reality around him and come to terms with said reality.");
         console.log(discoElysium);
@@ -122,6 +127,38 @@ async function main() {
     }
     catch(e) {
         console.log(e);
+    }
+
+    //SEED USERS
+    try {
+      var user1 = await users.create("helloKitty", "cat", "HelloKitty123", "Who even watches this show?");
+      console.log(user1)
+    }
+    catch(e) {
+      console.log(e);
+    }
+    try {
+      var user2 = await users.create("fortnite", "build", "FortniteNotGood", "Bad game.");
+      console.log(user2)
+    }
+    catch(e) {
+      console.log(e);
+    }
+
+    //SEED REVIEWS
+    try {
+      var review1 = await reviews.create("First Review", "Super Mario World", "HelloKitty123", "This is a game that does stuff");
+      console.log(review1)
+    }
+    catch(e) {
+      console.log(e);
+    }
+    try {
+      var review2 = await reviews.create("Second Review", "The Last of Us", "FortniteNotGood", "This is a game that also does stuff");
+      console.log(review2)
+    }
+    catch(e) {
+      console.log(e);
     }
 
     await db.serverConfig.close();

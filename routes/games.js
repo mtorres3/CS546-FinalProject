@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const gameData = data.games;
+const {ObjectId} = require("mongodb");
+const collections = require("../config/mongoCollections");
+const reviews = collections.reviews;
 
 router.get("/", async(request, response) => {
   try{

@@ -47,8 +47,8 @@ async function create(userName, password, gamingUser, userBio) {
     password: hashPW,
     gamingUser: gamingUser,
     userBio: userBio,
-    favoritedGames,
-    userPosts
+    favoritedGames: favoritedGames,
+    userPosts: userPosts
     };
 
   	const userCollection = await users();

@@ -1,6 +1,6 @@
 <main>
 <div id="profileDiv">
-<h1 id="profileName">Test name</h1>
+<h1 id="profileName">{{gamingUser}}</h1>
 <form action='/profile/edit'>
 <button type='submit' id="profileEdit">Edit Profile</button>
 </form>
@@ -10,15 +10,15 @@
 <dl>
   <div class='profileInfo'>
   <dt>Bio:</dt>
-  <dd>'user.bio'</dd>
+  <dd>{{bio}}</dd>
   </div>
   <div class='profileInfo'>
   <dt>Favorite Games:</dt>
-  <dd>'user.favorites'</dd>
+  <dd>{{favoritedGames}}</dd>
   </div>
   <div class='profileInfo'>
   <dt>Reviews:</dt>
-  <dd>'user.reviews'</dd>
+  <dd>{{reviews}}</dd>
   </div>
 </dl>
 </div>
