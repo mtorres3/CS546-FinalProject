@@ -3,6 +3,8 @@ const router = express.Router();
 const data = require('../data');
 const userData = data.users;
 const reviewData = data.reviews;
+const commentData = data.comments;
+
 
 
 // router.get("/", async(request, response) => {
@@ -49,7 +51,15 @@ router.post("/review", async(request, response) => {
 
 router.post("/comment", async(request, response) => {
 
-  //TO-DO
+    try{
+        //console.log(request.body)
+        let newComment = await commentData.create(request.body.commentData, request.body.userId)
+        console.log(newComment);
+        //response.redirect('/reviews');
+      }
+      catch(e){
+        response.status(404).render('extras/error')
+      }
 
 });
 
