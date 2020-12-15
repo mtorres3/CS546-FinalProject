@@ -4,15 +4,15 @@ const data = require('../data');
 const userData = data.users;
 const bcrypt = require('bcryptjs');
 
-// router.get("/", async(request, response) => {
+ //router.get("/", async(request, response) => {
 //   try{
 //     response.render('extras/profile');
-//   }
-//   catch(e){
-//     console.log(e);
-//     response.status(404).render('extras/error')
-//   }
-// });
+//  }
+//  catch(e){
+//    console.log(e);
+//   response.status(404).render('extras/error')
+//  }
+ //   });
 
 router.get("/edit", async(request, response) => {
   try{
@@ -24,19 +24,17 @@ router.get("/edit", async(request, response) => {
 });
 
 router.post('/login', async(request,response) => {
-
-  const { username, password } = request.body
   console.log(request.body)
+  const { username, password } = request.body;
   let user = await userData.getByUser(username);
   if (user) {
       let match = await bcrypt.compare(password, user.password);
       if (match) {
-        request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts}
-        let hello = user.userName;
+        request.session.user = {username: user.userName, _id: user._id}
         var msg = "login succesful!"
         console.log(msg)
         console.log(request.session.user);
-        response.status(200).render('extras/profile', request.session.user);
+        response.render('extras/profile',  {gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts});
         console.log('redirected');
       } else {
         var error2 = "Incorrect password!";
