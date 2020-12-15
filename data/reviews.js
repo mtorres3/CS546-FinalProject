@@ -191,4 +191,26 @@ async function sortLikes(){
   return topThree;
 }
 
-module.exports = {remove, get, getAll, create, clickedLike, clickedDislike, commentCreated, sortLikes};
+async function sortDate(){
+  let reviewCollection = await reviews();
+  let postsArray = await getAll();
+  //console.log(postsArray);
+  let sortedArray = postsArray.sort((a,b)=> a.likes-b.likes);
+  //console.log(sortedArray);
+  let topThree = await reviewCollection.find({}).sort((a,b)=> a.datePublished-b.datePublished).toArray();
+  //console.log(topThree);
+  return topThree;
+}
+
+async function sortUser(){
+  let reviewCollection = await reviews();
+  let postsArray = await getAll();
+  //console.log(postsArray);
+  let sortedArray = postsArray.sort((a,b)=> a.likes-b.likes);
+  //console.log(sortedArray);
+  let topThree = await reviewCollection.find({}).sort((a) => a.user).toArray();
+  //console.log(topThree);
+  return topThree;
+}
+
+module.exports = {remove, get, getAll, create, clickedLike, clickedDislike, commentCreated, sortLikes, sortDate, sortUser};
