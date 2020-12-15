@@ -274,6 +274,17 @@ dt{
   color: white;
 }
 
+.singleGame{
+  display: inline;
+}
+
+.gameName{
+  max-width: 15em;
+  max-height: 30em;
+  margin-right: 3em;
+  margin-left: 3.5em;
+}
+
 /* Game Styles */
 #gameDiv{
   border-radius: 3em;
