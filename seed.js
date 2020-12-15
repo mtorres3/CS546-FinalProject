@@ -10,7 +10,7 @@ async function main() {
 
     //SEED GAMES
     try {
-        var discoElysium = await games.create("Disco Elysium",["Adventure","Role-playing(RPG)"],["Xbox One", "Playstation 4", "Mac","PC (Microsoft Windows)","Nintendo Switch"], "../../public/images/disco_asylum.jpg","A CRPG in which, waking up in a hotel room a total amnesiac with highly opinionated voices in his head, a middle-aged detective on a murder case inadvertently ends up playing a part in the political dispute between a local labour union and a larger international body, all while struggling to piece together his past, diagnose the nature of the reality around him and come to terms with said reality.");
+        var discoElysium = await games.create("Disco Elysium",["Adventure","Role-playing(RPG)"],["Xbox One", "Playstation 4", "Mac","PC (Microsoft Windows)","Nintendo Switch"], "../../public/images/disco_elysium.jpg","A CRPG in which, waking up in a hotel room a total amnesiac with highly opinionated voices in his head, a middle-aged detective on a murder case inadvertently ends up playing a part in the political dispute between a local labour union and a larger international body, all while struggling to piece together his past, diagnose the nature of the reality around him and come to terms with said reality.");
         console.log(discoElysium);
     }
     catch(e) {
@@ -66,7 +66,7 @@ async function main() {
     }
 
     try {
-        var metalGear= await games.create("Metal Gear Solid 3: Snake Eater",["Adventure","Shooter", "Tactical"],["PlayStation 2"], "../../public/images/metal_gear_solid_3.jpg.jpg","A stealth action/survival game and prequel to Metal Gear Solid 1 (1998) and 2 (2001), MGS3 follows Naked Snake as he trudges through rain forests and swamps in order to clear the name of the American government of suspicion at detonating a nuclear missile within Soviet soil by dispatching the organization behind the act, in a story of shifting allegiances, deception, warfare, mentorship and sexuality.");
+        var metalGear= await games.create("Metal Gear Solid 3: Snake Eater",["Adventure","Shooter", "Tactical"],["PlayStation 2"], "../../public/images/metal_gear_solid_3.jpg","A stealth action/survival game and prequel to Metal Gear Solid 1 (1998) and 2 (2001), MGS3 follows Naked Snake as he trudges through rain forests and swamps in order to clear the name of the American government of suspicion at detonating a nuclear missile within Soviet soil by dispatching the organization behind the act, in a story of shifting allegiances, deception, warfare, mentorship and sexuality.");
         console.log(metalGear);
     }
     catch(e) {

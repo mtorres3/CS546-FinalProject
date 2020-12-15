@@ -131,7 +131,7 @@ async function remove(id){
   return true;
 }
 
-async function search(searcTerm){
+async function search(searchTerm){
   //get array of all games
   //check to see if any of the games include a certain word
 }

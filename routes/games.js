@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const gameData = data.games;
-const {ObjectId} = require("mongodb");
-const collections = require("../config/mongoCollections");
-const reviews = collections.reviews;
+//const {ObjectId} = require("mongodb");
+//const collections = require("../config/mongoCollections");
+//const reviews = collections.reviews;
 const reviewData = data.reviews;
 
 router.get("/", async(request, response) => {
   try{
-    //response.render('extras/reviewForm');
-    response.render('extras/dashboardMain');
+    let games = await gameData.getAll()
+    response.render('extras/dashboardMain', {game: games});
   }
   catch(e){
     response.status(404).render('extras/error')
@@ -50,14 +50,10 @@ router.get("/trending", async(request, response) => {
 
 router.get("/:id", async(request, response) => {
   try{
-    const idInfo = String(parseInt(request.params.id, 10));
-    const game = await gameData.get(idInfo);
-    const info = {
-        game: game
-    };
-    console.log(info);
+    let game = await gameData.get(request.params.id)
     //response.render('extras/reviewForm');
     //response.render('extras/game', game);
+    response.render('extras/game', {game: game})
   }
   catch(e){
     console.log(e);

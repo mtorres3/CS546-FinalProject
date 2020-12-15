@@ -7,6 +7,14 @@
 
 <dl>
   <div class='gamesInfo'>
+
+  {{#each game}}
+  <div class='singleGame'>
+    <a href='/games/{{this._id}}'>
+      <img src='{{this.artwork}}' class='gameName'/>
+    </a>
+  </div>
+  {{/each}}
 <!--
   <img src='../../public/images/chrono_trigger.jpg' onclick='/profile'/>
   <a href='/profile'>Chrono Trigger</a>
@@ -14,6 +22,7 @@
   <img src='{{{artwork}}}'>
   </div>
 -->
+<!--
   <div class='singleGame'>
     <a href='/1'>
     <img src='../../public/images/disco_elysium.jpg' class='gameName'/>
@@ -89,7 +98,7 @@
     <img src='../../public/images/metroid_prime.jpg' class='gameName'/>
     </a>
   </div>
-
+-->
 </dl>
 </div>
 </main>

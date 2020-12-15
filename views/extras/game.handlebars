@@ -1,6 +1,6 @@
 <main>
 <div id="gameDiv">
-<h1 id="gameName">{{name}}</h1>
+<h1 id="gameName">{{game.name}}</h1>
 
 <br>
 <hr>
@@ -8,16 +8,20 @@
 <dl>
   <div class='GameInfo'>
 
-      
-<dd>{{artwork}}</dd>
+
+  <img src='{{game.artwork}}' class='gameArt'></img>
+  <br>
+  <br>
   <dt>Genre:</dt>
-  <dd>{{genre}}</dd>
+  <dd>{{game.genre}}</dd>
+  <br>
   <dt>Platforms:</dt>
-  <dd>{{{platforms}}}</dd>
+  <dd>{{{game.platforms}}}</dd>
+  <br>
   <dt>Description:</dt>
-  <dd>{{{Description}}}</dd>
+  <dd>{{{game.description}}}</dd>
   </div>
-  
+
 </dl>
 </div>
 </main>

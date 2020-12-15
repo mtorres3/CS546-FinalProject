@@ -8,17 +8,17 @@
   </div>
 
   <!-- FILTER -->
-  <div class='filter'>
-    <form class='reviewFilter' method="GET">
+  <div class='filter' hidden>
+    <form class='reviewFilter' action='/reviews/sort' method="GET">
       <h2>Filter By:</h2>
       <div>
       <label for='dateFilter'>Date
-      <input type='checkbox' class='dateFilter'/>
+      <input type='checkbox' name='dateFilter' class='dateFilter'/>
       </label>
       </div>
       <div>
       <label for='userFilter'>Username
-      <input type='checkbox' class='userFilter'/>
+      <input type='checkbox' name='userFilter' class='userFilter'/>
       </label>
       </div>
       <button type='submit' class='filterButton'>Filter</button>
@@ -30,7 +30,7 @@
     <h1>Reviews</h1>
     <hr>
     {{#each review}}
-      <a href='/trending'>
+      <a href='/reviews/{{this._id}}'>
         <h2>{{this.title}}</h2>
         <p>By: {{this.user}}</p>
         <p>Game: {{this.gameName}}</p>

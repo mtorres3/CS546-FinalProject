@@ -34,7 +34,28 @@ router.get("/:id", async(request, response) => {
     response.status(404).render('extras/error')
   }
 });
+/*
+router.get('/sort', async(request, response) => {
+  try{
+    console.log(request.body);
 
+    if(request.body.dateFilter === true && request.body.userFilter === false){
+      let reviews = await reviewData.sortDate();
+    }
+    else if(request.body.dateFilter === false && request.body.userFilter === true){
+      let reviews = await reviewData.sortUser();
+    }
+    else{
+      let reviews = await reviewData.getAll();
+    }
+    
+    //response.render('extras/reviewAll', {review: reviews});
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+})
+*/
 router.post("/review", async(request, response) => {
   try{
     //console.log(request.body)
