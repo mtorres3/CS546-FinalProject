@@ -1,6 +1,7 @@
 const {ObjectId} = require("mongodb");
 const collections = require("../config/mongoCollections");
 const comments = collections.comments;
+//const reviewsData = require('./reviews');
 
 async function create(userId, commentContent) {
   //If params are not provided at all, the method should throw.
@@ -59,7 +60,7 @@ async function create(userId, commentContent) {
 
     const x = insertInfo.insertedId.toString();
     //console.log("the type of x is: " + typeof x);
-
+    reviewsData.commentCreated(commentId, postId)
     return await get(x);
 }
 

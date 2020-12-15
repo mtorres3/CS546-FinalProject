@@ -3,23 +3,20 @@
   <h1 id='reviewFormH1'>Post a Review</h1>
   <hr>
   <br>
-  <form id='reviewForm' action='/reviews' method='POST'>
+  <form id='reviewForm' action='/reviews/review' method='POST'>
     <div>
-    <label for='title'>
-      <input type='text' id='reviewFormTitle' placeholder='  Title'/>
-    </label>
+    <label for='reviewFormTitle'></label>
+      <input type='text' id='reviewFormTitle' name='reviewFormTitle' placeholder='  Title'/>
     </div>
     <br>
     <div>
-    <label for='gameReviewed'>
-      <input type='text' id='gameReviewed' placeholder='  Game Name'/>
-    </label>
+    <label for='gameReviewed'></label>
+      <input type='text' id='gameReviewed' name='gameReviewed' placeholder='  Game Name'/>
     </div>
     <br>
     <div>
-    <label for='review'>
-      <textarea id='reviewFormReview' rows='10' cols='60' placeholder=' Review'></textarea>
-    </label>
+    <label for='reviewFormReview'></label>
+      <textarea id='reviewFormReview' name='reviewFormReview' rows='10' cols='60' placeholder=' Review'></textarea>
     </div>
     <br>
     <button type='submit' id='reviewSubmit'>Submit</button>
