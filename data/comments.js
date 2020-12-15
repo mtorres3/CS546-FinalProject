@@ -45,6 +45,8 @@ async function create(userId, commentContent) {
     userId.trim();
     commentContent.trim();
 
+    let dateCreated = new Date();
+
   	const newComment = {
    // _id: _id,
     dateCreated: dateCreated,

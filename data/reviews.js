@@ -107,11 +107,12 @@ async function getAll(){
 
 async function get(id){
 
-  const reviewCollection = await reviews();
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
 
-  if(!id) throw 'ID cannot be empty'
-  if(!reviewCollection) throw 'No games in database'
-  if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
+  const reviewCollection = await reviews();
 
   const reviewId = await reviewCollection.findOne({ _id: ObjectId(id)});
   if (reviewId === null) throw 'No game with that id';
@@ -121,9 +122,13 @@ async function get(id){
 
 async function remove(id){
 
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
+
   const reviewCollection = await reviews();
 
-  if(!id) throw 'ID cannot be empty'
   if(!reviewCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
@@ -135,18 +140,41 @@ async function remove(id){
 }
 
 async function clickedLike(postId){
+
+  if (!postId) throw 'id has not been provided';
+  if (typeof postId !== 'string') throw 'id must be a string';
+  if (!postId.trim()) throw 'id is an empty string';
+  postId.trim();
+
     let likedPost = get(postId);
     likedPost.likes++;
     return true;
 }
 
 async function clickedDislike(postId){
+
+  if (!postId) throw 'id has not been provided';
+  if (typeof postId !== 'string') throw 'id must be a string';
+  if (!postId.trim()) throw 'id is an empty string';
+  postId.trim();
+
     let dislikedPost = get(postId);
     dislikedPost.dislikes++;
     return true;
 }
 
 async function commentCreated(commentId, postId){
+
+  if (!postId) throw 'postId has not been provided';
+  if (typeof postId !== 'string') throw 'postId must be a string';
+  if (!postId.trim()) throw 'postId is an empty string';
+  postId.trim();
+
+  if (!commentId) throw 'commentId has not been provided';
+  if (typeof commentId !== 'string') throw 'commentId must be a string';
+  if (!commentId.trim()) throw 'commentId is an empty string';
+  commentId.trim();
+
   let reviewCommentedOn = get(postId);
   reviewCommentedOn.comments.push(commentId);
   return true;
