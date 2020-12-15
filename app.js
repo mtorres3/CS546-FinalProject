@@ -1,22 +1,29 @@
+const express = require('express');
+const app = express();
+const static = express.static(__dirname + '/public');
+const data = require("./data");
+const session = require('express-session');
+const configRoutes = require('./routes');
+const exHandles = require('express-handlebars');
 
-  const express = require('express');
-  const app = express();
-  const static = express.static(__dirname + '/public');
-  const data = require("./data");
+app.use('/public', static);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  const configRoutes = require('./routes');
-  const exHandles = require('express-handlebars');
+app.engine('handlebars', exHandles({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
-  app.use('/public', static);
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    name: 'AuthCookie',
+    secret: 'some secret string!',
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
-  app.engine('handlebars', exHandles({ defaultLayout: 'main' }));
-  app.set('view engine', 'handlebars');
-  const session = require('express-session');
-  
-  configRoutes(app);
+configRoutes(app);
 
-  app.listen(3000, () => {
-    console.log('All routes will be running on http://localhost:3000');
-  });
+app.listen(3000, () => {
+  console.log('All routes will be running on http://localhost:3000');
+});

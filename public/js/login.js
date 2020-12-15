@@ -1,21 +1,35 @@
-const usersData = require('.../data/users')
-const collections = require(".../config/mongoCollections");
-const users = collections.users;
 (function ($) {
   var loginForm = $('#loginForm');
+  var divLogin = $('#loginFormDiv');
 
+    $(document).ready(function(){
+      $("#login").on("click", function(e) {
+        e.preventDefault();
+        console.log("button clicked");
+        if (divLogin.is(":hidden")) {
+          divLogin.show();
+        } else {
+          divLogin.hide();
+        }
+
+      });
+    });
 
     loginForm.submit(function (event) {
       event.preventDefault();
-      var user = $('#user'),
-      pw = $('#pw');
+      var user = $('#username'),
+      pw = $('#password');
+      console.log(user.val())
+      console.log(pw.val())
       $.ajax({
         url: "/profile/login",
         type:"POST",
-        data: {
+        data: JSON.stringify({
           username: user.val(),
-          password:pw.val()
-        },
+          password: pw.val()
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType   : "json",
         success: function(data) {
           console.log("login sucess")
         },
@@ -26,4 +40,4 @@ const users = collections.users;
 
     })
 
-})(window.jquery)
+})(window.jQuery);

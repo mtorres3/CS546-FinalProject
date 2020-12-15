@@ -139,4 +139,4 @@ async function postCreated(userId, postId){
   return true;
 }
 
-module.exports = {remove, get, getAll, create, favoritedGame, rename, postCreated};
+module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated};
