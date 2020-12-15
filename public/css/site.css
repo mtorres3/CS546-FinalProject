@@ -318,3 +318,15 @@ dt{
   font-size: 16px;
   padding: 0.5em;
 }
+
+/* Search Results Styles */
+#resultsDiv{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 20em;
+  width: 90%;
+  background-color: #494A4A;
+  color: white;
+}
