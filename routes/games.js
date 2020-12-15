@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const data = require('../data');
+const userData = data.users;
 const gameData = data.games;
 //const {ObjectId} = require("mongodb");
 //const collections = require("../config/mongoCollections");
 //const reviews = collections.reviews;
 const reviewData = data.reviews;
+const bcrypt = require('bcryptjs');
 
 router.get("/", async(request, response) => {
   try{
@@ -19,7 +21,7 @@ router.get("/", async(request, response) => {
 
 router.get("/profile", async(request, response) => {
   try{
-    response.render('extras/profile');
+    response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.userPosts});
   }
   catch(e){
     console.log(e);
@@ -58,6 +60,31 @@ router.get("/:id", async(request, response) => {
   catch(e){
     console.log(e);
     response.status(404).render('extras/error')
+  }
+});
+
+router.post('/login', async(request,response) => {
+  console.log(request.body)
+  const { username, password } = request.body;
+  let user = await userData.getByUser(username);
+  if (user) {
+      let match = await bcrypt.compare(password, user.password);
+      if (match) {
+        request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts}
+        var msg = "login succesful!"
+        console.log(msg)
+        console.log(request.session.user);
+        response.redirect('/profile')
+        console.log('redirected');
+      } else {
+        var error2 = "Incorrect password!";
+        console.log(error2)
+        //res.render('user/login', {error: error2});
+      }
+  } else {
+    var error1 = "Username does not exist!";
+    console.log(error3)
+    //res.render('user/login', {error: error1});
   }
 });
 

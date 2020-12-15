@@ -22,6 +22,22 @@ app.use(
   })
 );
 
+app.use('/profile', (req, res, next) => {
+  console.log(new Date().toUTCString());
+  console.log(req.method);
+  console.log(req.originalUrl);
+  if (req.session.user) {
+    console.log('(Authenticated User)')
+  } else {
+    console.log('(Non-Authenticated User)')
+  }
+  if (!req.session.user) {
+    res.render('extras/dashboardMain', {error: "You are not logged in!"});
+  }
+  next();
+
+});
+
 configRoutes(app);
 
 app.listen(3000, () => {

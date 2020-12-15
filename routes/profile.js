@@ -23,30 +23,7 @@ router.get("/edit", async(request, response) => {
   }
 });
 
-router.post('/login', async(request,response) => {
-  console.log(request.body)
-  const { username, password } = request.body;
-  let user = await userData.getByUser(username);
-  if (user) {
-      let match = await bcrypt.compare(password, user.password);
-      if (match) {
-        request.session.user = {username: user.userName, _id: user._id}
-        var msg = "login succesful!"
-        console.log(msg)
-        console.log(request.session.user);
-        response.render('extras/profile',  {gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts});
-        console.log('redirected');
-      } else {
-        var error2 = "Incorrect password!";
-        console.log(error2)
-        //res.render('user/login', {error: error2});
-      }
-  } else {
-    var error1 = "Username does not exist!";
-    console.log(error3)
-    //res.render('user/login', {error: error1});
-  }
-});
+
 
 router.post('/logout', async(request,response) => {
   request.session.destroy();

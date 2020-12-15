@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const data = require('../data');
-const userData = data.users;
 const reviewData = data.reviews;
 const commentData = data.comments;
+const userData= data.users;
 
 
 
@@ -50,7 +50,7 @@ router.get('/sort', async(request, response) => {
     else{
       let reviews = await reviewData.getAll();
     }
-    
+
     //response.render('extras/reviewAll', {review: reviews});
   }
   catch(e){
@@ -60,9 +60,13 @@ router.get('/sort', async(request, response) => {
 */
 router.post("/review", async(request, response) => {
   try{
-    //console.log(request.body)
-    let newReview = await reviewData.create(request.body.reviewFormTitle, request.body.gameReviewed, 'stanley', request.body.reviewFormReview)
+    console.log(request.body)
+    console.log(request.session.user.gamingUser)
+    let newReview = await reviewData.create(request.body.reviewFormTitle, request.body.gameReviewed, request.session.user.gamingUser, request.body.reviewFormReview)
     console.log(newReview);
+    console.log(request.session.user._id);
+    console.log(newReview._id)
+    let insertReview = await userData.postCreated(request.session.user._id, newReview._id);
     response.redirect('/reviews');
   }
   catch(e){

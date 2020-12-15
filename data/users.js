@@ -174,6 +174,7 @@ async function rename(id, newProfileName, newProfileBio){
   return await this.get(id);
 }
 
+
 async function favoritedGame(gameId, userId){
 
   if (!gameId) throw 'gameId has not been provided';
@@ -194,19 +195,16 @@ async function favoritedGame(gameId, userId){
 
 async function postCreated(userId, postId){
 
-  if (!userId) throw 'userId has not been provided';
-  if (typeof userId !== 'string') throw 'userId must be a string';
-  if (!userId.trim()) throw 'userId is an empty string';
-  userId.trim();
-
-  if (!postId) throw 'postId has not been provided';
-  if (typeof postId !== 'string') throw 'postId must be a string';
-  if (!postId.trim()) throw 'postId is an empty string';
-  postId.trim();
-
+  const userCollection = await users();
   let user = get(userId);
-  user.userPosts.push(postId);
-  return true;
+  user.userPosts.push("cat");
+  console.log(userPosts)
+  const newProfile = {
+    userPosts: user.userPosts
+  };
+  const update = await userCollection.updateOne({ _id: user._id},{$set: newProfile});
+  if (update.modifiedCount === 0) throw 'Could not update'
+
 }
 
 async function search(searchTerm){
