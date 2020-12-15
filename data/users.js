@@ -35,6 +35,26 @@ async function create(userName, password, gamingUser, userBio) {
     throw "The year released parameter is not a number between 1930 and curr year + 5"
   }*/
 
+  if (!userName) throw 'A username has not been provided';
+  if (!password) throw 'A password has not been provided';
+  if (!gamingUser) throw 'A gaming username name has not been provided';
+  if (!userBio) throw 'A bio has not been provided';
+
+  if (typeof userName !== 'string') throw 'userName must be a string';
+  if (typeof password !== 'string') throw 'password must be a string';
+  if (typeof gamingUser !== 'string') throw 'gamingUser name must be a string';
+  if (typeof userBio !== 'string') throw 'userBio must be a string';
+
+  if (!userName.trim()) throw 'userName is an empty string';
+  if (!password.trim()) throw 'password is an empty string';
+  if (!gamingUser.trim()) throw 'gamingUser is an empty string';
+  if (!userBio.trim()) throw 'userBio is an empty string';
+
+    userName.trim();
+    password.trim();
+    gamingUser.trim();
+    userBio.trim();
+
   let favoritedGames = [];
   let userPosts = [];
   var hashPW = await bcrypt.hash(password, 10);
@@ -71,9 +91,13 @@ async function getAll(){
 
 async function get(id){
 
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
+
   const userCollection = await users();
 
-  if(!id) throw 'ID cannot be empty'
   if(!userCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
@@ -84,6 +108,12 @@ async function get(id){
 }
 
 async function getByUser(uname) {
+
+  if (!uname) throw 'A username has not been provided';
+  if (typeof uname !== 'string') throw 'userName must be a string';
+  if (!uname.trim()) throw 'userName is an empty string';
+  uname.trim();
+
   const userCollection = await users();
   if(!uname) throw 'ID cannot be empty'
   const user = await userCollection.findOne({ userName: uname});
@@ -94,9 +124,13 @@ async function getByUser(uname) {
 
 async function remove(id){
 
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
+
   const userCollection = await users();
 
-  if(!id) throw 'ID cannot be empty'
   if(!userCollection) throw 'No games in database'
   if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
 
@@ -109,9 +143,23 @@ async function remove(id){
 
 async function rename(id, newProfileName, newProfileBio){
 
+  if (!id) throw 'id has not been provided';
+  if (typeof id !== 'string') throw 'id must be a string';
+  if (!id.trim()) throw 'id is an empty string';
+  id.trim();
+
+  if (!newProfileName) throw 'A new profile name has not been provided';
+  if (typeof newProfileName !== 'string') throw 'newProfileName must be a string';
+  if (!newProfileName.trim()) throw 'newProfileName is an empty string';
+  newProfileName.trim();
+
+  if (!newProfileBio) throw 'A new profile bio has not been provided';
+  if (typeof newProfileBio !== 'string') throw 'newProfileBio must be a string';
+  if (!newProfileBio.trim()) throw 'newProfileBio is an empty string';
+  newProfileBio.trim();
+
   const userCollection = await users();
 
-  if(!id) throw 'ID cannot be empty'
   if(!userCollection) throw 'No games in database'
   if(!ObjectId.isValid(id) || id.length === 12) throw 'Invalid ObjectId'
 
@@ -127,6 +175,17 @@ async function rename(id, newProfileName, newProfileBio){
 }
 
 async function favoritedGame(gameId, userId){
+
+  if (!gameId) throw 'gameId has not been provided';
+  if (typeof gameId !== 'string') throw 'gameId must be a string';
+  if (!gameId.trim()) throw 'gameId is an empty string';
+  gameId.trim();
+
+  if (!userId) throw 'userId has not been provided';
+  if (typeof userId !== 'string') throw 'userId must be a string';
+  if (!userId.trim()) throw 'userId is an empty string';
+  userId.trim();
+
   //let favorite = games.get(gameId);
   let user = get(userId);
   user.favoritedGames.push(gameId);
@@ -134,6 +193,17 @@ async function favoritedGame(gameId, userId){
 }
 
 async function postCreated(userId, postId){
+
+  if (!userId) throw 'userId has not been provided';
+  if (typeof userId !== 'string') throw 'userId must be a string';
+  if (!userId.trim()) throw 'userId is an empty string';
+  userId.trim();
+
+  if (!postId) throw 'postId has not been provided';
+  if (typeof postId !== 'string') throw 'postId must be a string';
+  if (!postId.trim()) throw 'postId is an empty string';
+  postId.trim();
+
   let user = get(userId);
   user.userPosts.push(postId);
   return true;
