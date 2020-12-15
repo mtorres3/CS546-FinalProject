@@ -2,7 +2,7 @@ const {ObjectId} = require("mongodb");
 const collections = require("../config/mongoCollections");
 const reviews = collections.reviews;
 
-async function create(title, user, postContent, datePublished) {
+async function create(title, user, postContent) {
   //If params are not provided at all, the method should throw.
 	/*if (!title || !plot || !rating || !runtime || !genre || !cast || !info) {
         throw "You must provide all of the parameters (title, plot, rating, runtime, genre, cast, info) for your movie";
@@ -36,6 +36,38 @@ async function create(title, user, postContent, datePublished) {
   //var likeCount = 0;
   //var dislikeCount = 0;
   let commentsArray= [];
+
+  if (!title) throw 'A title has not been provided';
+  if (!user) throw 'A user has not been provided';
+  if (!postConent) throw 'Post content has not been provided';
+
+  if (typeof title !== 'string') throw 'title must be a string';
+  if (typeof user !== 'string') throw 'user must be a string';
+  if (typeof postContent !== 'string') throw 'postContent must be a string';
+
+  if (!title.trim()) throw 'title is an empty string';
+  if (!user.trim()) throw 'user is an empty string';
+  if (!postContent.trim()) throw 'postContent is an empty string';
+
+    title.trim();
+    user.trim();
+    postContent.trim();
+
+  if (!Array.isArray(genre)) throw 'genre must be provided as an array';
+  if (!genre.length>0) throw 'genre has no inputs in it'
+    for (i=0; i<genre.length;i++){
+      if (!genre[i].trim()) throw 'one of the elements in genre is an empty string';
+      if (typeof genre[i] !== 'string') throw 'one of the elements in genre is not a string';
+      genre[i].trim();
+    }
+
+  if (!Array.isArray(platforms)) throw 'platforms must be provided as an array';
+  if (!platforms.length>0) throw 'platforms has no inputs in it'
+    for (i=0; i<platforms.length;i++){
+      if (!platforms[i].trim()) throw 'one of the elements in platforms is an empty string';
+      if (typeof platforms[i] !== 'string') throw 'one of the elements in platforms is not a string';
+      platforms[i].trim();
+    }
 
   	const newReview = {
    // _id: _id,

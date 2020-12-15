@@ -4,14 +4,14 @@ const data = require('../data');
 const userData = data.users;
 
 
-router.get("/", async(request, response) => {
-  try{
-    response.render('extras/reviewAll');
-  }
-  catch(e){
-    response.status(404).render('extras/error')
-  }
-});
+// router.get("/", async(request, response) => {
+//   try{
+//     response.render('extras/reviewAll');
+//   }
+//   catch(e){
+//     response.status(404).render('extras/error')
+//   }
+// });
 
 router.get("/create", async(request, response) => {
   try{

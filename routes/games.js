@@ -13,6 +13,34 @@ router.get("/", async(request, response) => {
   }
 });
 
+router.get("/profile", async(request, response) => {
+  try{
+    response.render('extras/profile');
+  }
+  catch(e){
+    console.log(e);
+    response.status(404).render('extras/error')
+  }
+});
+
+router.get("/reviews", async(request, response) => {
+  try{
+    response.render('extras/reviewAll');
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+});
+
+router.get("/trending", async(request, response) => {
+  try{
+    response.render('extras/trending');
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+});
+
 router.get("/:id", async(request, response) => {
   try{
     const game = await gameData.get(request.params.id);
