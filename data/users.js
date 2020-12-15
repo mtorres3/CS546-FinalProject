@@ -209,4 +209,23 @@ async function postCreated(userId, postId){
   return true;
 }
 
-module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated};
+async function search(searchTerm){
+  //get array of all users
+  //check to see if any of the users match the search term
+
+  let result = [];
+  let userArray = await getAll();
+
+  let userArray = [];
+  let currentUser = {};
+
+  for (i=0; i<=userArray.length; i++){
+    currentUser = userArray[i];
+    if(searchTerm == currentUser.userName){
+      result.push(currentUser.userName)
+    }
+  }
+  return result;
+}
+
+module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search};

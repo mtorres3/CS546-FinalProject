@@ -134,6 +134,24 @@ async function remove(id){
 async function search(searchTerm){
   //get array of all games
   //check to see if any of the games include a certain word
+
+  let result = [];
+  let gamesArray = await getAll();
+
+  let genreArray = [];
+  let currentGame = {};
+
+  for (i=0; i<=gamesArray.length; i++){
+    currentGame = gamesArray[i];
+    for(s=0; s<=currentGame.genre.length;s++){
+      genreArray = currentGame.genre
+      if(searchTerm == genreArray[s]){
+        result.push(currentGame.name);
+        break;
+      }
+    }
+  }
+  return result;
 }
 
 module.exports = {remove, get, getAll, create,search};
