@@ -56,7 +56,6 @@ async function create(userName, password, gamingUser, userBio) {
     userBio.trim();
 
   let favoritedGames = [];
-  let userPosts = [];
   var hashPW = await bcrypt.hash(password, 10);
   console.log(hashPW);
 
@@ -196,16 +195,19 @@ async function favoritedGame(gameId, userId){
 async function postCreated(userId, postId){
 
   const userCollection = await users();
-  let user = get(userId);
-  user.userPosts.push("cat");
-  console.log(userPosts)
-  const newProfile = {
-    userPosts: user.userPosts
+  let user = await get(userId);
+  let posts = user.userPosts;
+  posts.push(postId);
+  console.log(posts);
+  let newProfile = {
+    userPosts: posts,
   };
   const update = await userCollection.updateOne({ _id: user._id},{$set: newProfile});
-  if (update.modifiedCount === 0) throw 'Could not update'
-
+  if (!update.matchedCount && !update.modifiedCount)
+      throw 'Update failed';
 }
+
+
 
 async function search(searchTerm){
   //get array of all users
@@ -213,8 +215,11 @@ async function search(searchTerm){
 
   var result = [];
   let userArray = await getAll();
+<<<<<<< Updated upstream
 
   //let userArray = [];
+=======
+>>>>>>> Stashed changes
   let currentUser = {};
 
   for (i=0; i<=userArray.length; i++){
