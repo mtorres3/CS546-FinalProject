@@ -188,8 +188,16 @@ async function favoritedGame(gameId, userId){
   userId.trim();
 
   //let favorite = games.get(gameId);
-  let user = get(userId);
-  user.favoritedGames.push(gameId);
+  const newFavorite = {
+    favoritedGames: favoritedGames
+  };
+
+  const update = await userCollection.updateOne({$set: newFavorite});
+  if(update.modifiedCount === 0) throw 'Could not update'
+
+  /*let user = get(userId);
+  user.favoritedGames.push(gameId);*/
+  
   return true;
 }
 
