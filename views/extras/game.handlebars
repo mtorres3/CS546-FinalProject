@@ -23,10 +23,18 @@
   <br>
   <br>
   <dt>Genre:</dt>
-  <dd>{{game.genre}}</dd>
+  <ul>
+  {{#each game.genre}}
+  <li>{{this}}</li>
+  {{/each}}
+  </ul>
   <br>
   <dt>Platforms:</dt>
-  <dd>{{{game.platforms}}}</dd>
+  <ul>
+  {{#each game.platforms}}
+  <li>{{this}}</li>
+  {{/each}}
+  </ul>
   <br>
   <dt>Description:</dt>
   <dd>{{{game.description}}}</dd>
