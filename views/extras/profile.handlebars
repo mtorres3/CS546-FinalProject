@@ -22,9 +22,10 @@
   <dt>Reviews:</dt>
   {{#each reviews}}
   <dd>
-    <a href='/reviews/{{this._id}}'>
+    <a href='/reviews/{{this._id}}' class='reviewLinks'>
       <p>{{this.title}}</p>
-</dd>
+    </a>
+  </dd>
   {{/each}}
   </div>
 </dl>

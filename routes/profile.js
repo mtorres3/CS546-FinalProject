@@ -28,7 +28,10 @@ router.post('/editForm', async(request, response) => {
     //console.log(request.body);
     let rename = await userData.rename(request.session.user._id, request.body.displayName, request.body.profileBio)
     console.log(rename);
-    response.render('extras/profile', {gamingUser: rename.gamingUser, bio: rename.userBio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.userPosts, status: true})
+    request.session.user.gamingUser = rename.gamingUser;
+    request.session.user.bio = rename.userBio;
+    //response.redirect('/profile');
+    response.render('extras/profile', {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.userPosts, status: true})
   }
   catch(e){
     response.status(404).render('extras/error')

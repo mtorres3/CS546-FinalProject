@@ -147,7 +147,7 @@ async function main() {
 
     //SEED REVIEWS
     try {
-      var review1 = await reviews.create("First Review", "Super Mario World", "HelloKitty123", "This is a game that does stuff");
+      var review1 = await reviews.create("First Review", "Super Mario World", "RaeSremmurd", "This is a game that does stuff");
       console.log(review1)
     }
     catch(e) {
