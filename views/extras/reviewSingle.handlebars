@@ -17,6 +17,8 @@
       <hr>
       {{#if status}}
       <form id='commentForm' method="POST">
+      
+      <form id='commentForm' action='/reviews/comment' method="POST">
         <input type='text' id='newComment' placeholder=' New Comment'/>
         <button type='submit' id='commentSubmit'>Post</button>
       </form>
