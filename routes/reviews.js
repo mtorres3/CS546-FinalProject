@@ -7,14 +7,20 @@ const userData= data.users;
 
 
 
-// router.get("/", async(request, response) => {
-//   try{
-//     response.render('extras/reviewAll');
-//   }
-//   catch(e){
-//     response.status(404).render('extras/error')
-//   }
-// });
+router.get("/", async(request, response) => {
+  try{
+    if (!request.session.user) {
+      let reviews = await reviewData.getAll();
+      response.render('extras/reviewAll', {review: reviews, status: false});
+    } else {
+      let reviews = await reviewData.getAll();
+      response.render('extras/reviewAll', {review: reviews, status: true});
+    }
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+});
 
 
 router.get("/create", async(request, response) => {

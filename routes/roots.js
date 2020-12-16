@@ -8,17 +8,17 @@ const reviewData = data.reviews;
 router.get("/", async(request, response) => {
   try{
     if (!request.session.user) {
-      let topThree = await reviewData.sortLikes();
-      //console.log(topThree);
-      response.render('extras/trending', {top: topThree, status:false});
+      let games = await gameData.getAll()
+      response.render('extras/dashboardMain', {game: games, status:false});
     } else {
-      let topThree = await reviewData.sortLikes();
-      //console.log(topThree);
-      response.render('extras/trending', {top: topThree, status: true});
+      let games = await gameData.getAll()
+      response.render('extras/dashboardMain', {game: games, status:true});
     }
   }
   catch(e){
+    console.log(e)
     response.status(404).render('extras/error')
   }
 });
+
 module.exports = router;

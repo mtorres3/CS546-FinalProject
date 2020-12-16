@@ -5,7 +5,7 @@ const userData = data.users;
 const gameData = data.games;
 const reviewData = data.reviews;
 const bcrypt = require('bcryptjs');
-
+/*
 router.get("/", async(request, response) => {
   try{
     if (!request.session.user) {
@@ -21,7 +21,8 @@ router.get("/", async(request, response) => {
     response.status(404).render('extras/error')
   }
 });
-
+*/
+/*
 router.get("/profile", async(request, response) => {
   try{
     console.log(request.session.user.reviews)
@@ -32,7 +33,8 @@ router.get("/profile", async(request, response) => {
     response.status(404).render('extras/error')
   }
 });
-
+*/
+/*
 router.get("/reviews", async(request, response) => {
   try{
     if (!request.session.user) {
@@ -47,7 +49,8 @@ router.get("/reviews", async(request, response) => {
     response.status(404).render('extras/error')
   }
 });
-
+*/
+/*
 router.get("/trending", async(request, response) => {
   try{
     if (!request.session.user) {
@@ -64,7 +67,7 @@ router.get("/trending", async(request, response) => {
     response.status(404).render('extras/error')
   }
 });
-
+*/
 router.post('/search', async(request, response) => {
   try{
     //console.log(request.body.search)

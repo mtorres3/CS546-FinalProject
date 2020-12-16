@@ -6,6 +6,7 @@
 {{#if status}}
   <div>
   <form action='/profile/favorite' method='POST'>
+    <input type='checkbox' id='favCheckbox' name='favorited'/>
     <button type='submit' id='favButton'>Favorite</button>
   </form>
 </div> {{else}}
