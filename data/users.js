@@ -164,8 +164,8 @@ async function rename(id, newProfileName, newProfileBio){
   if(!ObjectId.isValid(id) || id.length === 12) throw 'Invalid ObjectId'
 
   const newProfile = {
-    name: newProfileName,
-    bio: newProfileBio
+    gamingUser: newProfileName,
+    userBio: newProfileBio
   };
 
   const update = await userCollection.updateOne({ _id: ObjectId(id)},{$set: newProfile});
