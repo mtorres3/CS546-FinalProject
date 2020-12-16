@@ -24,7 +24,8 @@ router.get("/", async(request, response) => {
 
 router.get("/profile", async(request, response) => {
   try{
-    response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.userPosts, status: true});
+    console.log(request.session.user.reviews)
+    response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
   }
   catch(e){
     console.log(e);

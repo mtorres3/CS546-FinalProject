@@ -38,6 +38,19 @@ router.post("/favorite", async(request, response) => {
     }
 
 });
+router.post('/editForm', async(request, response) => {
+  try{
+    //console.log(request.body);
+    let rename = await userData.rename(request.session.user._id, request.body.displayName, request.body.profileBio)
+    console.log(rename);
+    response.render('extras/profile', {gamingUser: rename.gamingUser, bio: rename.userBio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.userPosts, status: true})
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+})
+
+
 
 
 module.exports = router;

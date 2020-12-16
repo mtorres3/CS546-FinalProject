@@ -20,7 +20,12 @@
   <br>
   <div class='profileInfo'>
   <dt>Reviews:</dt>
-  <dd>{{reviews}}</dd>
+  {{#each reviews}}
+  <dd>
+    <a href='/reviews/{{this._id}}'>
+      <p>{{this.title}}</p>
+</dd>
+  {{/each}}
   </div>
 </dl>
 </div>

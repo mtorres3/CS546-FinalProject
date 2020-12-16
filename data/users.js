@@ -164,8 +164,8 @@ async function rename(id, newProfileName, newProfileBio){
   if(!ObjectId.isValid(id) || id.length === 12) throw 'Invalid ObjectId'
 
   const newProfile = {
-    name: newProfileName,
-    bio: newProfileBio
+    gamingUser: newProfileName,
+    userBio: newProfileBio
   };
 
   const update = await userCollection.updateOne({ _id: ObjectId(id)},{$set: newProfile});
@@ -193,12 +193,12 @@ async function favoritedGame(gameId, userId){
   return true;
 }
 
-async function postCreated(userId, postId){
+async function postCreated(userId, set){
 
   const userCollection = await users();
   let user = await get(userId);
   let posts = user.userPosts;
-  posts.push(postId);
+  posts.push(set);
   console.log(posts);
   let newProfile = {
     userPosts: posts,

@@ -3,16 +3,16 @@
   <h1 id="profileName">Edit Profile</h1>
   <hr>
   <br>
-  <form id='profileForm' action='/profile' method='POST'>
+  <form id='profileForm' action='/profile/editForm' method='POST'>
     <div>
     <label for='displayName'>
-      <input type='text' id='displayName'  placeholder=' Display Name'/>
+      <input type='text' id='displayName' name='displayName' placeholder=' Display Name'/>
     </label>
     </div>
     <br>
     <div>
     <label for='profileBio'>
-      <textarea id='profileBio' rows='10' cols='60' placeholder=' Bio'></textarea>
+      <textarea id='profileBio' name='profileBio' rows='10' cols='60' placeholder=' Bio'></textarea>
     </label>
     </div>
     <br>
