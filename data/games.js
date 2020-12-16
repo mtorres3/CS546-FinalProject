@@ -152,7 +152,7 @@ async function search(searchTerm){
       //console.log(currentGame.genre[s].toLowerCase());
       if(searchTerm.toLowerCase() == currentGame.genre[s].toLowerCase()){
         //console.log('====================================================');
-        result.push(currentGame.name);
+        result.push(currentGame);
         //console.log(result);
         break;
       }
