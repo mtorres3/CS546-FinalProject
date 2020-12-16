@@ -3,9 +3,6 @@ const router = express.Router();
 const data = require('../data');
 const userData = data.users;
 const gameData = data.games;
-//const {ObjectId} = require("mongodb");
-//const collections = require("../config/mongoCollections");
-//const reviews = collections.reviews;
 const reviewData = data.reviews;
 const bcrypt = require('bcryptjs');
 
@@ -49,6 +46,22 @@ router.get("/trending", async(request, response) => {
     response.status(404).render('extras/error')
   }
 });
+
+router.post('/search', async(request, response) => {
+  try{
+    //console.log(request.body.search)
+    let searchResultsGames = await gameData.search(request.body.search);
+    //console.log(searchResultsGames);
+    let searchResultsUsers = await userData.search(request.body.search);
+    response.render('extras/search', {
+      resultsGames: searchResultsGames,
+      resultsUsers: searchResultsUsers
+    })
+  }
+  catch(e){
+    response.status(404).render('extras/error')
+  }
+})
 
 router.get("/:id", async(request, response) => {
   try{

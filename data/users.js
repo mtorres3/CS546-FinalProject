@@ -211,10 +211,10 @@ async function search(searchTerm){
   //get array of all users
   //check to see if any of the users match the search term
 
-  let result = [];
+  var result = [];
   let userArray = await getAll();
 
-  let userArray = [];
+  //let userArray = [];
   let currentUser = {};
 
   for (i=0; i<=userArray.length; i++){
@@ -225,5 +225,23 @@ async function search(searchTerm){
   }
   return result;
 }
+/*
+//Potentially works
+async function getByKeyword(searchTerm){
 
+  if(!searchTerm || typeof searchTerm != 'string' || searchTerm.trim() == "") throw 'Invalid search term';
+  //const shows = await getSearch(searchTerm);
+
+  searchResults = [];
+
+  for(i = 0; i < shows.length; i++){
+    let showInfo = {
+      name: shows[i].show.name,
+      id: shows[i].show.id
+    }
+    searchResults.push(showInfo);
+  }
+  return searchResults;
+}
+*/
 module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search};
