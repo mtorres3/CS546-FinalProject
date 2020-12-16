@@ -163,21 +163,19 @@ async function clickedDislike(postId){
     return true;
 }
 
-async function commentCreated(commentId, postId){
+async function commentCreated(postId, set){
 
-  if (!postId) throw 'postId has not been provided';
-  if (typeof postId !== 'string') throw 'postId must be a string';
-  if (!postId.trim()) throw 'postId is an empty string';
-  postId.trim();
-
-  if (!commentId) throw 'commentId has not been provided';
-  if (typeof commentId !== 'string') throw 'commentId must be a string';
-  if (!commentId.trim()) throw 'commentId is an empty string';
-  commentId.trim();
-
-  let reviewCommentedOn = get(postId);
-  reviewCommentedOn.comments.push(commentId);
-  return true;
+  const reviewCollection = await reviews();
+  let review = await get(postId);
+  let comments = review.commentsArray;
+  posts.push(set);
+  console.log(comments);
+  let newReview = {
+    comments: comments,
+  };
+  const update = await reviewCollection.updateOne({ _id: review._id},{$set: newReview});
+  if (!update.matchedCount && !update.modifiedCount)
+      throw 'Update failed';
 }
 
 async function sortLikes(){

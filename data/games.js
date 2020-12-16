@@ -137,20 +137,31 @@ async function search(searchTerm){
 
   var result = [];
   let gamesArray = await getAll();
+  //console.log(gamesArray);
 
   let genreArray = [];
   let currentGame = {};
 
-  for (i=0; i<=gamesArray.length; i++){
+  for (i=0; i<gamesArray.length; i++){
     currentGame = gamesArray[i];
-    for(s=0; s<=currentGame.genre.length;s++){
-      genreArray = currentGame.genre
-      if(searchTerm == genreArray[s]){
+    //console.log(currentGame);
+    for(s=0; s<currentGame.genre.length;s++){
+      //genreArray = currentGame.genre
+      //console.log('====================================================');
+      //console.log(searchTerm.toLowerCase());
+      //console.log(currentGame.genre[s].toLowerCase());
+      if(searchTerm.toLowerCase() == currentGame.genre[s].toLowerCase()){
+        //console.log('====================================================');
         result.push(currentGame.name);
+        //console.log(result);
         break;
+      }
+     else{
+         continue;
       }
     }
   }
+  console.log(result);
   return result;
 }
 
