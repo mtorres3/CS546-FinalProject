@@ -4,10 +4,12 @@
   <hr>
   <br>
   {{#each resultsUsers}}
-    <p></p>
+    <p>{{this}}</p>
   {{/each}}
   {{#each resultsGames}}
-    <p></p>
+    <a href='/games/{{this._id}}'>
+        <h2>{{this.name}}</h2>
+      </a>
   {{/each}}
 </div>
 </main>

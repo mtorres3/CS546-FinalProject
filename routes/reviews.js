@@ -57,14 +57,15 @@ router.post("/review", async(request, response) => {
 });
 
 router.post("/comment", async(request, response) => {
-
     try{
         //console.log(request.body)
-        let newComment = await commentData.create(request.body.commentData, request.body.userId)
+        let newComment = await commentData.create(request.session.user._id, request.body.newComment, request.body.reviewId)
         console.log(newComment);
-        //response.redirect('/reviews');
+        let review = await reviewData.get(request.body.reviewId);
+        response.render('extras/reviewSingle', {review: review});
       }
       catch(e){
+        console.log(e);
         response.status(404).render('extras/error')
       }
 
@@ -80,6 +81,7 @@ router.get("/:id", async(request, response) => {
     } else {
       //console.log(request.params.id);
       let reviewSingle = await reviewData.get(request.params.id);
+      let comments = await commentData.get
       //console.log(reviewSingle);
       response.render('extras/reviewSingle', {review: reviewSingle, status: true});
     }

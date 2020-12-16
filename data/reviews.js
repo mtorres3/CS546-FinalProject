@@ -3,35 +3,6 @@ const collections = require("../config/mongoCollections");
 const reviews = collections.reviews;
 
 async function create(title, gameName, user, postContent) {
-  //If params are not provided at all, the method should throw.
-	/*if (!title || !plot || !rating || !runtime || !genre || !cast || !info) {
-        throw "You must provide all of the parameters (title, plot, rating, runtime, genre, cast, info) for your movie";
-  }
-  //If title, plot, rating, runtime and genre are not strings, the method should throw.
-	if (typeof title !== 'string' || typeof plot !== 'string' || typeof rating !== 'string' || typeof runtime !== 'string' || typeof genre !== 'string') {
-        throw "The parameters (title, plot, rating, runtime and genre) must be strings";
-  }
-  //If cast is not an array and if it does not have at least one element in it that is a valid string, or are empty strings the method should throw
-  if (!Array.isArray(cast)) {
-    throw "The cast parameter is not a valid array";
-  }
-  //If info is not an object, the method should throw.
-  if (typeof info !== "object") {
-    throw "The info parameter is not of type object"
-  }
-  //If director is not a valid string, throw.
-  if (typeof info.director !== 'string' || info.director === undefined) {
-    throw "The director parameter is not a valid string"
-  }
-  //If yearReleased in not a 4 digit number or if it is not provided, throw.
-  if (typeof info.yearReleased !== 'number' || info.yearReleased.toString().length !== 4 || info.yearReleased === undefined) {
-    throw "The year released parameter is not a valid number"
-  }
-  const today = new Date()
-  //If yearReleased is < 1930 or > current year + 5 years, the method should throw.
-  if (info.yearReleased < 1930 || info.yearReleased > today.getFullYear()+5) {
-    throw "The year released parameter is not a number between 1930 and curr year + 5"
-  }*/
 
   //var likeCount = 0;
   //var dislikeCount = 0;
@@ -163,21 +134,19 @@ async function clickedDislike(postId){
     return true;
 }
 
-async function commentCreated(commentId, postId){
+async function commentCreated(postId, set){
 
-  if (!postId) throw 'postId has not been provided';
-  if (typeof postId !== 'string') throw 'postId must be a string';
-  if (!postId.trim()) throw 'postId is an empty string';
-  postId.trim();
-
-  if (!commentId) throw 'commentId has not been provided';
-  if (typeof commentId !== 'string') throw 'commentId must be a string';
-  if (!commentId.trim()) throw 'commentId is an empty string';
-  commentId.trim();
-
-  let reviewCommentedOn = get(postId);
-  reviewCommentedOn.comments.push(commentId);
-  return true;
+  const reviewCollection = await reviews();
+  let review = await get(postId);
+  let comments = review.commentsArray;
+  posts.push(set);
+  console.log(comments);
+  let newReview = {
+    comments: comments,
+  };
+  const update = await reviewCollection.updateOne({ _id: review._id},{$set: newReview});
+  if (!update.matchedCount && !update.modifiedCount)
+      throw 'Update failed';
 }
 
 async function sortLikes(){

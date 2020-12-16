@@ -1,9 +1,10 @@
 const {ObjectId} = require("mongodb");
 const collections = require("../config/mongoCollections");
 const comments = collections.comments;
-//const reviewsData = require('./reviews');
+const reviews = collections.reviews;
+const userData = require('./users');
 
-async function create(userId, commentContent) {
+async function create(userId, commentContent, reviewId) {
   //If params are not provided at all, the method should throw.
 	/*if (!title || !plot || !rating || !runtime || !genre || !cast || !info) {
         throw "You must provide all of the parameters (title, plot, rating, runtime, genre, cast, info) for your movie";
@@ -48,19 +49,31 @@ async function create(userId, commentContent) {
 
     let dateCreated = new Date();
 
+    let username = await userData.get(userId);
+
   	const newComment = {
    // _id: _id,
     dateCreated: dateCreated,
-    user: userId,
-    commentContent: commentContent
+    commentUser: userId,
+    commentUsername: username,
+    commentContent: commentContent,
+    review: reviewId
     };
+
+    const reviewsCollection = await reviews();
+    const reviewName = await reviewsCollection.findOne({ _id: ObjectId(reviewId)});
+    //console.log(reviewName);
+    reviewName.comments.push(newComment);
+    const update = await reviewsCollection.updateOne({ _id: ObjectId(reviewId)},{$set: reviewName});
+    //reviewName.comments.push(newComment);
+    //console.log(reviewName);
 
   	const commentCollection = await comments();
     const insertInfo = await commentCollection.insertOne(newComment);
 
     const x = insertInfo.insertedId.toString();
     //console.log("the type of x is: " + typeof x);
-    reviewsData.commentCreated(commentId, postId)
+    //reviewsData.commentCreated(commentId, postId)
     return await get(x);
 }
 
