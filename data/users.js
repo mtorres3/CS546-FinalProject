@@ -215,11 +215,8 @@ async function search(searchTerm){
 
   var result = [];
   let userArray = await getAll();
-<<<<<<< Updated upstream
 
   //let userArray = [];
-=======
->>>>>>> Stashed changes
   let currentUser = {};
 
   for (i=0; i<=userArray.length; i++){
