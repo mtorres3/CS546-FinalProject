@@ -1,6 +1,16 @@
 <main>
+
 <div id="gameDiv">
 <h1 id="gameName">{{game.name}}</h1>
+
+{{#if status}}
+  <div>
+  <form action='/profile/favorite' method='POST'>
+    <button type='submit' id='favButton'>Favorite</button>
+  </form>
+</div> {{else}}
+<div></div>
+{{/if}}
 
 <br>
 <hr>

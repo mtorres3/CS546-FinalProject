@@ -23,5 +23,21 @@ router.get("/edit", async(request, response) => {
   }
 });
 
+router.post("/favorite", async(request, response) => {
+
+  try{
+      
+      //let newFav = await userData.favoritedGame(request.body.gameId, request.session.user._id)
+      console.log(request.body);
+      //console.log(newFav);
+      //response.redirect('/reviews');
+    }
+    catch(e){
+      console.log(e)
+      response.status(404).render('extras/error')
+    }
+
+});
+
 
 module.exports = router;
