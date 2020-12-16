@@ -8,17 +8,23 @@ const bcrypt = require('bcryptjs');
 
 router.get("/", async(request, response) => {
   try{
-    let games = await gameData.getAll()
-    response.render('extras/dashboardMain', {game: games});
+    if (!request.session.user) {
+      let games = await gameData.getAll()
+      response.render('extras/dashboardMain', {game: games, status:false});
+    } else {
+      let games = await gameData.getAll()
+      response.render('extras/dashboardMain', {game: games, status:true});
+    }
   }
   catch(e){
+    console.log(e)
     response.status(404).render('extras/error')
   }
 });
 
 router.get("/profile", async(request, response) => {
   try{
-    response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.userPosts});
+    response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.userPosts, status: true});
   }
   catch(e){
     console.log(e);
@@ -28,8 +34,13 @@ router.get("/profile", async(request, response) => {
 
 router.get("/reviews", async(request, response) => {
   try{
-    let reviews = await reviewData.getAll();
-    response.render('extras/reviewAll', {review: reviews});
+    if (!request.session.user) {
+      let reviews = await reviewData.getAll();
+      response.render('extras/reviewAll', {review: reviews, status: false});
+    } else {
+      let reviews = await reviewData.getAll();
+      response.render('extras/reviewAll', {review: reviews, status: true});
+    }
   }
   catch(e){
     response.status(404).render('extras/error')
@@ -38,9 +49,15 @@ router.get("/reviews", async(request, response) => {
 
 router.get("/trending", async(request, response) => {
   try{
-    let topThree = await reviewData.sortLikes();
-    //console.log(topThree);
-    response.render('extras/trending', {top: topThree});
+    if (!request.session.user) {
+      let topThree = await reviewData.sortLikes();
+      //console.log(topThree);
+      response.render('extras/trending', {top: topThree, status:false});
+    } else {
+      let topThree = await reviewData.sortLikes();
+      //console.log(topThree);
+      response.render('extras/trending', {top: topThree, status: true});
+    }
   }
   catch(e){
     response.status(404).render('extras/error')
@@ -62,20 +79,6 @@ router.post('/search', async(request, response) => {
     response.status(404).render('extras/error')
   }
 })
-
-router.get("/:id", async(request, response) => {
-  try{
-    let game = await gameData.get(request.params.id)
-    //response.render('extras/reviewForm');
-    //response.render('extras/game', game);
-    response.render('extras/game', {game: game})
-  }
-  catch(e){
-    console.log(e);
-    response.status(404).render('extras/error')
-  }
-});
-
 router.post('/login', async(request,response) => {
   console.log(request.body)
   const { username, password } = request.body;
@@ -100,6 +103,42 @@ router.post('/login', async(request,response) => {
     //res.render('user/login', {error: error1});
   }
 });
+
+router.get('/logout', async(request,response) => {
+  try {
+    request.session.destroy();
+    var msg1 = "logged out"
+    console.log(msg1);
+    let games = await gameData.getAll()
+    response.render('extras/dashboardMain', {game: games, status: false, msg: msg1});
+  } catch (e) {
+    console.log(e);
+    response.status(404).render('extras/error')
+  }
+
+});
+
+router.get("/:id", async(request, response) => {
+  try{
+    if (!request.session.user) {
+      let game = await gameData.get(request.params.id)
+      //response.render('extras/reviewForm');
+      //response.render('extras/game', game);
+      response.render('extras/game', {game: game, status: false})
+    } else {
+      let game = await gameData.get(request.params.id)
+      //response.render('extras/reviewForm');
+      //response.render('extras/game', game);
+      response.render('extras/game', {game: game, status: true})
+    }
+  }
+  catch(e){
+    console.log(e);
+    response.status(404).render('extras/error')
+  }
+});
+
+
 
 
 module.exports = router;

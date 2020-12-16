@@ -1,11 +1,13 @@
 <main>
 
-
+{{#if status}}
   <div>
   <form action='/reviews/create' method='GET'>
     <button type='submit' id='createButton'>Create Review</button>
   </form>
-  </div>
+</div> {{else}}
+<div></div>
+{{/if}}
 
   <!-- FILTER -->
   <div class='filter' hidden>

@@ -55,6 +55,7 @@ async function create(userName, password, gamingUser, userBio) {
     gamingUser.trim();
     userBio.trim();
 
+  let userPosts = [];
   let favoritedGames = [];
   var hashPW = await bcrypt.hash(password, 10);
   console.log(hashPW);

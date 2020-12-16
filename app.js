@@ -21,6 +21,42 @@ app.use(
     saveUninitialized: true
   })
 );
+app.use('/', (req, res, next) => {
+  console.log(new Date().toUTCString());
+  console.log(req.method);
+  console.log(req.originalUrl);
+  if (req.session.user) {
+    console.log('(Authenticated User)')
+  } else {
+    console.log('(Non-Authenticated User)')
+  }
+  next();
+});
+
+app.use('/review', (req, res, next) => {
+  console.log(new Date().toUTCString());
+  console.log(req.method);
+  console.log(req.originalUrl);
+  if (req.session.user) {
+    console.log('(Authenticated User)')
+  } else {
+    console.log('(Non-Authenticated User)')
+  }
+  next();
+});
+
+app.use('/trending', (req, res, next) => {
+  console.log(new Date().toUTCString());
+  console.log(req.method);
+  console.log(req.originalUrl);
+  if (req.session.user) {
+    console.log('(Authenticated User)')
+  } else {
+    console.log('(Non-Authenticated User)')
+  }
+  next();
+});
+
 
 app.use('/profile', (req, res, next) => {
   console.log(new Date().toUTCString());
