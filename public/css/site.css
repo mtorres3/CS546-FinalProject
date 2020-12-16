@@ -25,6 +25,7 @@ body {
 }
 
 .topnav a.active {
+  background-color: #222323;
   color: #AFFE4B;
   font-size: 25px;
 

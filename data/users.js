@@ -187,6 +187,8 @@ async function favoritedGame(gameId, userId){
   if (!userId.trim()) throw 'userId is an empty string';
   userId.trim();
 
+
+
   //let favorite = games.get(gameId);
   const newFavorite = {
     favoritedGames: favoritedGames
@@ -197,7 +199,7 @@ async function favoritedGame(gameId, userId){
 
   /*let user = get(userId);
   user.favoritedGames.push(gameId);*/
-  
+
   return true;
 }
 
