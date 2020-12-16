@@ -193,12 +193,12 @@ async function favoritedGame(gameId, userId){
   return true;
 }
 
-async function postCreated(userId, postId){
+async function postCreated(userId, set){
 
   const userCollection = await users();
   let user = await get(userId);
   let posts = user.userPosts;
-  posts.push(postId);
+  posts.push(set);
   console.log(posts);
   let newProfile = {
     userPosts: posts,

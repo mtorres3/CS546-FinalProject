@@ -1,39 +1,22 @@
 # CS546-FinalProject
+Github Repo: https://github.com/mtorres3/CS546-FinalProject
 
-Proposal
+To set-up our project:
+- navigate to our Github project repo
+- clone the repo onto your local machine
+- open terminal and navigate to the project clone
+- run the attached seed.js file to seed the database
+- run node app.js
+- you should now succesfully see the GamerWorld Dashboard
 
-This proposal will list the group members, give a brief description of your project idea, and all features it will include. Using a GitHub repo is required, and the URL MUST be supplied in your proposal. • Submit two feature sections: core (you must implement) and extra (implement if you have time)
-
-Members:
--Julio Lora
--Markell Tores
--Veronica Abramson
--Alejandro Brancale
-
-Description:
-In this multi-week project, we are looking to create a complete planner-based calendar with assignable tasks and collaborative features. Users will be able to create a secure login, navigate a user-friendly UI, create different types of tasks and collaborate/assign them to other web users.
-
-Core Features:
-*Note: User sign up and login, cannot be listed as a core feature nor can any of the project requirements. 
-*Be careful with what you put in here because if it is not implemented we will get points off
-
--Implement a clean calendar/planner UI
--Allow for creation of different tasks and events in a well organized manner
--Allow to share tasks and invite other users to events via email or username provided for login purposes
-
-
-Extra Features (implement if time persists):
-
--Users may create a customizable profile page for a “social media” aspect
-    -Users may upload a profile picture
-    -Users may have a bio 
-    -Users may add “friends” or “followers”
-    -Users may upload blog posts and share interesting content in the form of posts
--Implement a comment feature for other users to provide feedback on different events/tasks they were invited to
--Implement a chat or personal messaging feature between users
--Create an interactive map in which users can post events at certain locations for other users to be able to see
-    -Perhaps using a Google Maps API
-
-Github
-Using a Github repo is mandatory, all of our codebase and contributions will be logged at the following URL: https://github.com/mtorres3/CS546-FinalProject
-
+To use our project:
+- When first opening the page, you will first be able to see the navigation bar up top. It has the pages "Dashboard", "Trending", "Reviews" and "Login"
+- On the first page, you will also be able to view Dashboard. This is a browsing page which displays the artworks for all of the games that are in our databse.
+- From the dashboard, you will be able to click on any of the images. This will lead you to a detailed page of each individual game. Here you will see the game name, artwork, genre, any platforms this game could be played on and the description of the game. When logged in, on this page you will also be able to click and "favorite" any game. These games will then be displayed under the "profile" tab. Note: the favorite button will only be displayed when logged in.
+- The next tab displayed on the nav bar will be the "Trending" page. Each user on our website has the ability to post a review and have other users like/dislike it. The Trending page displays the top 3 most liked reviews in the database.
+- The next tab is the "Reviews" tab. When clicking on this, you will see all of the reviews displayed in our database. You can click on any of the reviews to be directed to a page displaying that single review. Here, you will also be able to see our comment section. Note: Anyone can view the comments, however to post a comment you will only see the "post" form if you are logged in as a user.
+- The final tab on the nav bar is "Login". This will prompt you to a Login form with a username and password. For demo purposes, we have created a dummy account with the username "helloKitty" and the password "cat". Once typed in and pressed "Submit" your console will log a "Logged in successfully" message. And you will be redirected to a new "Profile" page on the nav bar.
+- The "Profile" page will have the user name, bio, favorite games and any reviews the user posted. There is also an "edit proile" button. Here the user will be able to change their "Display Name" and "Bio".
+- As a logged in user, you can now navigate back to the "Reviews" page and click on the "Create Review" button at the top. This will lead you to a input form which will allow you to post a review to our database.
+- Additionally, as a logged in user you can click on any review in the "Reviews" page and find the "New Comment" form. This will post comments to the database for that review.
+- Finally, the nav bar displays a "Logout" button. Once logged out, the user will be redirected to the dashboard and have the ability to Login again.

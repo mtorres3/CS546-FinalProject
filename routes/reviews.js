@@ -38,9 +38,10 @@ router.post("/review", async(request, response) => {
     console.log(newReview);
     console.log(request.session.user._id);
     console.log(newReview._id)
-    let insertReview = await userData.postCreated(request.session.user._id, newReview._id);
+    let insertReview = await userData.postCreated(request.session.user._id, newReview);
     let user = await userData.get(request.session.user._id);
-    request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts}
+    console.log(user.userPosts);
+    request.session.user.reviews = user.userPosts
     response.redirect('/reviews');
   }
   catch(e){
