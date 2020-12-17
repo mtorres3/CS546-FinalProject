@@ -29,6 +29,7 @@
       <h1>Comments</h1>
       <hr>
       <form id='commentForm' action='/reviews/comment' method="POST">
+        <label for='newComment'></label>
         <input type='text' id='newComment' name='newComment' placeholder=' New Comment'/>
         <input type='text' id='reviewID' name='reviewId' value='{{review._id}}' hidden/>
         <button type='submit' id='commentSubmit'>Post</button>
