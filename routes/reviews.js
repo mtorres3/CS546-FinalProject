@@ -40,12 +40,9 @@ router.get("/create", async(request, response) => {
 
 router.post("/review", async(request, response) => {
   try{
-    //console.log(request.body)
-    //console.log(request.session.user.gamingUser)
+   
     let newReview = await reviewData.create(xss(request.body.reviewFormTitle), xss(request.body.gameReviewed), xss(request.session.user.gamingUser), xss(request.body.reviewFormReview))
-    //console.log(newReview);
-    //console.log(request.session.user._id);
-    //console.log(newReview._id)
+  
     let insertReview = await userData.postCreated(xss(request.session.user._id), xss(newReview));
     let user = await userData.get(request.session.user._id);
     //console.log(user.userPosts);
@@ -65,24 +62,18 @@ router.post("/review", async(request, response) => {
 router.post("/like", async(request, response) => {
   try{
     let review = await reviewData.get(request.body.review);
-    //console.log(request.body);
 
     if(request.body.status == '0')  {
       let unlike = await reviewData.clickedUnlike(review._id)
       let userUnlike = await userData.postUnliked(request.session.user._id, review._id)
       let user = await userData.get(request.session.user._id);
-      //console.log(user.likedPost);
       request.session.user.likedPost = user.likedPost
-      //console.log(request.session.user.likedPost)
-      //console.log("unliked")
     } else {
       let like = await reviewData.clickedLike(review._id)
       let userLike = await userData.postLiked(request.session.user._id, review._id)
       let user = await userData.get(request.session.user._id);
-      //console.log(user.likedPost);
       request.session.user.likedPost = user.likedPost
-      //console.log(request.session.user.likedPost)
-      //console.log("liked")
+
     }
   }
   catch (e) {
@@ -121,7 +112,6 @@ router.get("/:id", async(request, response) => {
       for(i=0; i < likes.length; i++) {
         if (likes[i].toString() == request.params.id.toString()) {
           let reviewSingle = await reviewData.get(request.params.id);
-          //console.log(true);
           response.render('extras/reviewSingle', {review: reviewSingle, status: true, likeStatus: true});
           return true
        }
