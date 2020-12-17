@@ -56,6 +56,36 @@ router.post("/review", async(request, response) => {
   }
 });
 
+router.post("/like", async(request, response) => {
+  try{
+    let review = await reviewData.get(request.body.review);
+    console.log(request.body);
+
+    if(request.body.status == '0')  {
+      let unlike = await reviewData.clickedUnlike(review._id)
+      let userUnlike = await userData.postUnliked(request.session.user._id, review._id)
+      let user = await userData.get(request.session.user._id);
+      console.log(user.likedPost);
+      request.session.user.likedPost = user.likedPost
+      console.log(request.session.user.likedPost)
+      console.log("unliked")
+    } else {
+      let like = await reviewData.clickedLike(review._id)
+      let userLike = await userData.postLiked(request.session.user._id, review._id)
+      let user = await userData.get(request.session.user._id);
+      console.log(user.likedPost);
+      request.session.user.likedPost = user.likedPost
+      console.log(request.session.user.likedPost)
+      console.log("liked")
+    }
+  }
+  catch (e) {
+    console.log(e);
+  }
+});
+
+
+
 router.post("/comment", async(request, response) => {
     try{
         //console.log(request.body)
@@ -79,11 +109,28 @@ router.get("/:id", async(request, response) => {
       //console.log(reviewSingle);
       response.render('extras/reviewSingle', {review: reviewSingle, status: false});
     } else {
+      let user = await userData.get(request.session.user._id);
+      console.log(user.likedPost);
+      request.session.user.likedPost = user.likedPost
+      console.log(request.session.user.likedPost)
+      let likes = request.session.user.likedPost;
+      console.log(likes[0]);
+      //console.log(likes[0].toString() === request.params.id.toString())
+      for(i=0; i < likes.length; i++) {
+        if (likes[i].toString() == request.params.id.toString()) {
+          let reviewSingle = await reviewData.get(request.params.id);
+          console.log(true);
+          response.render('extras/reviewSingle', {review: reviewSingle, status: true, likeStatus: true});
+          return true
+       }
+      }
+
       //console.log(request.params.id);
+      console.log(false);
       let reviewSingle = await reviewData.get(request.params.id);
       let comments = await commentData.get
       //console.log(reviewSingle);
-      response.render('extras/reviewSingle', {review: reviewSingle, status: true});
+      response.render('extras/reviewSingle', {review: reviewSingle, status: true, likeStatus: false});
     }
   }
   catch(e){
