@@ -229,6 +229,18 @@ body {
   color: red;
 }
 
+.errorDiv{
+  display: block;
+  background-color: #494A4A;
+  color: red;
+  font-size: 20px;
+  border-radius: 1em;
+  padding: 1em;
+  width: 35em;
+  margin-left: 5em;
+  margin-top: 2em;
+}
+
 .like-Unlike{
   color: white;
   text-decoration: none;

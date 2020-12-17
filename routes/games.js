@@ -24,20 +24,22 @@ router.post('/login', async(request,response) => {
         } else {
           var error2 = "Incorrect password!";
           console.log(error2)
-          //res.render('user/login', {error: error2});
+          let games = await gameData.getAll()
+          response.render('extras/dashboardMain', {game: games, error: error2});
         }
     } else {
       var error1 = "Username does not exist!";
-      console.log(error3)
-      //res.render('user/login', {error: error1});
+      //console.log(error3)
+      let games = await gameData.getAll()
+      response.render('extras/dashboardMain', {game: games, error: error1});
     }
   }
   catch(e) {
-    var msg1 = "Please input all of the fields to login."
+        var msg1 = "Incorrect username or password"
         console.log(msg1);
         //let review = await reviewData.get(request.body.reviewId);
-        //idk what to put here to redirect back to login
-        response.render('extras/error');
+        let games = await gameData.getAll()
+        response.render('extras/dashboardMain', {game: games, error: msg1});
   }
 });
 
