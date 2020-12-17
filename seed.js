@@ -106,14 +106,6 @@ async function main() {
     }
 
     try {
-        var zeldaOcarina = await games.create("The Legend of Zelda: Ocarina of Time",["Adventure", "Platform", "Puzzle", "Role-playing (RPG)"],["Wii U", "Virtual Console (Nintendo)", "Nintendo GameCube", "Wii", "Nintendo 64"], "../../public/images/zelda_ocarina_of_time.jpg", "A 3D reimagining of the core premise of The Legend of Zelda: A Link to the Past (1991), Ocarina of Time follows Link, the protagonist, as he picks up a sword and leaves behind his humble origins in order to trek across the land of Hyrule, venture into its treacherous dungeons and travel through time itself to fulfill his destiny as the Hero of Time by defeating his enemy Ganondorf and ridding Hyrule of evil.");
-        console.log(zeldaOcarina);
-    }
-    catch(e) {
-        console.log(e);
-    }
-
-    try {
         var silentHill = await games.create("Silent Hill 2",["Adventure", "Puzzle"],["PlayStation 2", "Xbox", "PC"], "../../public/images/silent_hill_2.jpg", "The second entry in the Silent Hill franchise, Silent Hill 2 is a narrative-focused third-person psychological horror game with exploration and puzzle-solving elements which follows James Sunderland, a man who receives a letter, seemingly sent by his three-years-deceased wife Mary, in which he is beckoned to the fog-ridden town of Silent Hill at the same time as numerous other people troubled by their past.");
         console.log(silentHill);
     }
@@ -121,45 +113,48 @@ async function main() {
         console.log(e);
     }
 
-    try {
-        var metroid = await games.create("Metroid Prime",["Adventure", "Platform", "Shooter"],["Nintendo GameCube"], "../../public/images/metroid_prime.jpg", "Everyone's favorite heroine, Samus Aran, is back! Packed to the gills with exploration, creative power-ups, and wicked enemies, Metroid Prime is a first-person adventure worthy of the Metroid stamp. An action-packed adventure set in the first-person perspective, Metroid Prime takes place just after the events in the original Metroid (NES). It has lead character Samus Aran, a bounty hunter by trade, chasing down the evil Space Pirates. Their intention is to use a genetic mutagen called Phazon to create a super army and take over the universe. While the installments in the series before have never been home to deeply involving storylines, Metroid Prime breaks the shell to offer up one of the most intriguing and read-worthy sagas yet. Developed by Texas-based Retro Studios. Metroid Prime brings all of the elements of the acclaimed franchise into a massive 3D arena.");
-        console.log(metroid);
-    }
-    catch(e) {
-        console.log(e);
-    }
-
     //SEED USERS
     try {
-      var user1 = await users.create("helloKitty", "cat", "HelloKitty123", "Who even watches this show?");
+      var user1 = await users.create("helloKitty", "cat", "HelloKitty123", "I love HelloKitty cant you tell");
       console.log(user1)
+      var review1 = await reviews.create("First Review", "Super Mario World", "HelloKitty123", "This is a great game that does not have enough cats");
+      console.log(review1);
+      let insertReview = await users.postCreated(user1._id, review1);
+      var metroid = await games.create("Metroid Prime",["Adventure", "Platform", "Shooter"],["Nintendo GameCube"], "../../public/images/metroid_prime.jpg", "Everyone's favorite heroine, Samus Aran, is back! Packed to the gills with exploration, creative power-ups, and wicked enemies, Metroid Prime is a first-person adventure worthy of the Metroid stamp. An action-packed adventure set in the first-person perspective, Metroid Prime takes place just after the events in the original Metroid (NES). It has lead character Samus Aran, a bounty hunter by trade, chasing down the evil Space Pirates. Their intention is to use a genetic mutagen called Phazon to create a super army and take over the universe. While the installments in the series before have never been home to deeply involving storylines, Metroid Prime breaks the shell to offer up one of the most intriguing and read-worthy sagas yet. Developed by Texas-based Retro Studios. Metroid Prime brings all of the elements of the acclaimed franchise into a massive 3D arena.");
+      console.log(metroid);
+      let newFav = await users.favoritedGame(metroid, user1._id)
     }
     catch(e) {
       console.log(e);
     }
     try {
-      var user2 = await users.create("fortnite", "build", "FortniteNotGood", "Bad game.");
+      var user2 = await users.create("fortniteDude", "build", "FortniteNotGood", "Bad game.");
       console.log(user2)
+      var review2 = await reviews.create("why no scary", "Silent Hill 2", "FortniteNotGood", "This game aint scary enough for scary videogames. 2 silent hills out of/10");
+      console.log(review2);
+      let insertReview = await users.postCreated(user2._id, review2);
+      var zeldaOcarina = await games.create("The Legend of Zelda: Ocarina of Time",["Adventure", "Platform", "Puzzle", "Role-playing (RPG)"],["Wii U", "Virtual Console (Nintendo)", "Nintendo GameCube", "Wii", "Nintendo 64"], "../../public/images/zelda_ocarina_of_time.jpg", "A 3D reimagining of the core premise of The Legend of Zelda: A Link to the Past (1991), Ocarina of Time follows Link, the protagonist, as he picks up a sword and leaves behind his humble origins in order to trek across the land of Hyrule, venture into its treacherous dungeons and travel through time itself to fulfill his destiny as the Hero of Time by defeating his enemy Ganondorf and ridding Hyrule of evil.");
+      console.log(zeldaOcarina);
+      let newFav = await users.favoritedGame(zeldaOcarina, user2._id)
     }
     catch(e) {
       console.log(e);
     }
 
-    //SEED REVIEWS
     try {
-      var review1 = await reviews.create("First Review", "Super Mario World", "RaeSremmurd", "This is a game that does stuff");
-      console.log(review1)
+      var user3 = await users.create("smashSteve", "smash", "steve", "I am the best gamer here");
+      console.log(user3)
+      var melee = await games.create("Super Smash Bros Melee",["Action", "Fighting", "Party"],["Nintendo GameCube"], "../../public/images/metroid_prime.jpg", "Everyone's favorite heroine, Samus Aran, is back! Packed to the gills with exploration, creative power-ups, and wicked enemies, Metroid Prime is a first-person adventure worthy of the Metroid stamp. An action-packed adventure set in the first-person perspective, Metroid Prime takes place just after the events in the original Metroid (NES). It has lead character Samus Aran, a bounty hunter by trade, chasing down the evil Space Pirates. Their intention is to use a genetic mutagen called Phazon to create a super army and take over the universe. While the installments in the series before have never been home to deeply involving storylines, Metroid Prime breaks the shell to offer up one of the most intriguing and read-worthy sagas yet. Developed by Texas-based Retro Studios. Metroid Prime brings all of the elements of the acclaimed franchise into a massive 3D arena.");
+      console.log(melee);
+      var review3 = await reviews.create("best game ever", "Super Smash Bros Melee", "steve", "this is the best game ever no contest.");
+      console.log(review3);
+      let insertReview = await users.postCreated(user3._id, review3);
+      let newFav = await users.favoritedGame(melee, user3._id)
     }
     catch(e) {
       console.log(e);
     }
-    try {
-      var review2 = await reviews.create("Second Review", "The Last of Us", "FortniteNotGood", "This is a game that also does stuff");
-      console.log(review2)
-    }
-    catch(e) {
-      console.log(e);
-    }
+
 
     await db.serverConfig.close();
 }

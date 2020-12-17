@@ -64,11 +64,6 @@ async function getAll(){
 
 async function get(id){
 
-  if (!id) throw 'id has not been provided';
-  if (typeof id !== 'string') throw 'id must be a string';
-  if (!id.trim()) throw 'id is an empty string';
-  id.trim();
-
   const userCollection = await users();
 
   if(!userCollection) throw 'No games in database'
@@ -287,6 +282,7 @@ async function search(searchTerm){
   //console.log(result);
   return resultArray;
 }
+
 
 
 module.exports = {remove, get, getByUser, getAll, create, favoritedGame, unfavoritedGame, rename, postCreated, search,searchUsers, postLiked, postUnliked};

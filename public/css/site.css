@@ -226,13 +226,13 @@ body {
 }
 
 .error{
-  color: red;
+  color: #ff9f9f;
 }
 
 .errorDiv{
   display: block;
   background-color: #494A4A;
-  color: red;
+  color: #ff9f9f;
   font-size: 20px;
   border-radius: 1em;
   padding: 1em;
