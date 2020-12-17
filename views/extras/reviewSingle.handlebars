@@ -33,12 +33,16 @@
         <input type='text' id='reviewID' name='reviewId' value='{{review._id}}' hidden/>
         <button type='submit' id='commentSubmit'>Post</button>
       </form>
+      <hr>
+      {{#each review.comments}}
+      <p>{{this.commentUsername.gamingUser}}: {{this.commentContent}}</p>
+      <p>{{this.dateCreated}}</p>
+      <hr>
+      {{/each}}</div>
       {{else}}
-      <div></div>
-      {{/if}}
+
 
       <!-- Comment content goes here -->
-      <hr>
       <div id = 'commentDivNotLoggedIn'>
         <h1>Comments</h1>
         <hr>
@@ -48,7 +52,7 @@
         <hr>
         {{/each}}
       </div>
-
+      {{/if}}
     </div>
   </div>
 </main>
