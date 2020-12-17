@@ -69,7 +69,6 @@ router.get("/trending", async(request, response) => {
 });
 */
 router.post('/login', async(request,response) => {
-<<<<<<< HEAD
   try {
     console.log(request.body)
     const { username, password } = request.body;
@@ -100,7 +99,7 @@ router.post('/login', async(request,response) => {
         //let review = await reviewData.get(request.body.reviewId);
         //idk what to put here to redirect back to login
         response.render('extras/error');
-=======
+  }
   //console.log(request.body)
   const { username, password } = request.body;
   let user = await userData.getByUser(username);
@@ -122,7 +121,6 @@ router.post('/login', async(request,response) => {
     var error1 = "Username does not exist!";
     console.log(error3)
     //res.render('user/login', {error: error1});
->>>>>>> 4ec899d0c072b7d93820d762a7562d9398ad0c68
   }
 });
 
