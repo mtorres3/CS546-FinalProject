@@ -1,108 +1,25 @@
 <main>
+  <div class='errorDiv'>
   <p>{{error}}</p>
   <p>{{msg}}</p>
+  </div>
+
   <div id='dashboardDiv'>
   <h1 id='dashH1'>Browse Games</h1>
   <hr>
   <br>
     <br>
 
-
-
 <dl>
   <div class='gamesInfo'>
 
   {{#each game}}
   <div class='singleGame'>
-    <a title= '{{this.name}}' href='/games/{{this._id}}'>
-      <img title= '{{this.name}}' alt="{{this.name}}" src='{{this.artwork}}' class='gameName'/>
+    <a href='/games/{{this._id}}'>
+      <img src='{{this.artwork}}' class='gameName'/>
     </a>
   </div>
   {{/each}}
-<!--
-  <img src='../../public/images/chrono_trigger.jpg' onclick='/profile'/>
-  <a href='/profile'>Chrono Trigger</a>
-  <dd><img src='{{{artwork}}}'></dd>
-  <img src='{{{artwork}}}'>
-  </div>
--->
-<!--
-  <div class='singleGame'>
-    <a href='/1'>
-    <img src='../../public/images/disco_elysium.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/god_of_war.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/the_last_of_us.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/the_witcher_3.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/persona_5.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/paper_mario.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/chrono_trigger.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/metal_gear_solid_3.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/the_last_of_us_2.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/super_mario_world.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/zelda_a_link_to_the_past.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/uncharted_4.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/zelda_ocarina_of_time.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/silent_hill_2.jpg' class='gameName'/>
-    </a>
-  </div>
-  <div class='singleGame'>
-    <a href='/profile'>
-    <img src='../../public/images/metroid_prime.jpg' class='gameName'/>
-    </a>
-  </div>
--->
 </dl>
 </div>
 </main>
