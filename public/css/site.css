@@ -375,6 +375,10 @@ dt{
   max-height: 30em;
 }
 
+.gameLine{
+  color: #494A4A;
+}
+
 /* Game Styles */
 #gameDiv{
   border-radius: 3em;

@@ -5,7 +5,7 @@
   <p>{{msg}}</p>
   </div>
   {{/if}}
-  
+
   <div id='dashboardDiv'>
   <h1 id='dashH1'>Browse Games</h1>
   <hr>
@@ -16,7 +16,7 @@
 
   {{#each game}}
   <div class='singleGame'>
-    <a href='/games/{{this._id}}'>
+    <a href='/games/{{this._id}}' class='gameLine'>
       <img alt= '{{this.name}}' src='{{this.artwork}}' class='gameName'/>
     </a>
   </div>
