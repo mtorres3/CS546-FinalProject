@@ -92,21 +92,42 @@ router.get("/:id", async(request, response) => {
 
 router.post('/search', async(request, response) => {
   try{
+    if (!request.session.user) {
+      let searchResultsGames = await gameData.search(xss(request.body.search));
+      //console.log(searchResultsGames);
+      let searchResultsUsers = await userData.searchUsers(xss(request.body.search));
+      let searchResultsPlatforms = await gameData.searchPlatform(xss(request.body.search));
+      if(searchResultsGames.length === 0 && searchResultsUsers.length === 0 && searchResultsPlatforms.length === 0){
+        response.render('extras/search', {error: 'No search results', status: 0})
+      }
+      else{
+        response.render('extras/search', {
+          resultsGames: searchResultsGames,
+          resultsUsers: searchResultsUsers,
+          resultsPlatforms: searchResultsPlatforms,
+          status: 0
+        })
+      }
+    } else {
+      let searchResultsGames = await gameData.search(xss(request.body.search));
+      //console.log(searchResultsGames);
+      let searchResultsUsers = await userData.searchUsers(xss(request.body.search));
+      let searchResultsPlatforms = await gameData.searchPlatform(xss(request.body.search));
+      if(searchResultsGames.length === 0 && searchResultsUsers.length === 0 && searchResultsPlatforms.length === 0){
+        response.render('extras/search', {error: 'No search results', status: 1})
+      }
+      else{
+        response.render('extras/search', {
+          resultsGames: searchResultsGames,
+          resultsUsers: searchResultsUsers,
+          resultsPlatforms: searchResultsPlatforms,
+          status: 1
+        })
+      }
+    }
+
     //console.log(request.body.search);
-    let searchResultsGames = await gameData.search(xss(request.body.search));
-    //console.log(searchResultsGames);
-    let searchResultsUsers = await userData.searchUsers(xss(request.body.search));
-    let searchResultsPlatforms = await gameData.searchPlatform(xss(request.body.search));
-    if(searchResultsGames.length === 0 && searchResultsUsers.length === 0 && searchResultsPlatforms.length === 0){
-      response.render('extras/search', {error: 'No search results'})
-    }
-    else{
-      response.render('extras/search', {
-        resultsGames: searchResultsGames,
-        resultsUsers: searchResultsUsers,
-        resultsPlatforms: searchResultsPlatforms
-      })
-    }
+
   }
   catch(e){
     console.log(e);
