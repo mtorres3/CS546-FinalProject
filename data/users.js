@@ -245,15 +245,15 @@ async function search(searchTerm){
 
   let currentUser = {};
   for (i=0; i<=userArray.length; i++){
-    console.log(result);
+    //console.log(result);
     currentUser = userArray[i];
-    console.log(currentUser);
+    //console.log(currentUser);
     //console.log(searchTerm.toLowerCase());
     //console.log(currentUser.userName.toLowerCase());
     if(searchTerm.toLowerCase() == currentUser.userName.toLowerCase()){
-      console.log('==========================================')
+      //console.log('==========================================')
       result.push(currentUser);
-      console.log(result);
+      //console.log(result);
       return result;
     }
   }
