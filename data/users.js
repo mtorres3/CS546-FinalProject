@@ -322,8 +322,5 @@ async function getByKeyword(searchTerm){
   return searchResults;
 }
 */
-<<<<<<< Updated upstream
-module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search,searchUsers};
-=======
-module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search, postLiked, postUnliked};
->>>>>>> Stashed changes
+
+module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search,searchUsers, postLiked, postUnliked};
