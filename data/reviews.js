@@ -59,11 +59,7 @@ async function getAll(){
 
 async function get(id){
   
-  if (!id) throw 'id has not been provided';
-  if (typeof id !== 'string') throw 'i must be a string';
-  if (!id.trim()) throw 'id is an empty string';
-  id.trim();
-  
+  if(!ObjectId.isValid(id)) throw 'Invalid ObjectId'
   const reviewCollection = await reviews();
 
   const reviewId = await reviewCollection.findOne({ _id: ObjectId(id)});

@@ -65,24 +65,24 @@ router.post("/review", async(request, response) => {
 router.post("/like", async(request, response) => {
   try{
     let review = await reviewData.get(request.body.review);
-    //console.log(request.body);
+    console.log(request.body);
 
     if(request.body.status == '0')  {
       let unlike = await reviewData.clickedUnlike(review._id)
       let userUnlike = await userData.postUnliked(request.session.user._id, review._id)
       let user = await userData.get(request.session.user._id);
-      //console.log(user.likedPost);
+      console.log(user.likedPost);
       request.session.user.likedPost = user.likedPost
-      //console.log(request.session.user.likedPost)
-      //console.log("unliked")
+      console.log(request.session.user.likedPost)
+      console.log("unliked")
     } else {
       let like = await reviewData.clickedLike(review._id)
       let userLike = await userData.postLiked(request.session.user._id, review._id)
       let user = await userData.get(request.session.user._id);
-      //console.log(user.likedPost);
+      console.log(user.likedPost);
       request.session.user.likedPost = user.likedPost
-      //console.log(request.session.user.likedPost)
-      //console.log("liked")
+      console.log(request.session.user.likedPost)
+      console.log("liked")
     }
   }
   catch (e) {
