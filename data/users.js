@@ -218,20 +218,33 @@ async function postCreated(userId, set){
       throw 'Update failed';
 }
 
+async function searchUsers(searchTerm){
+  var matchArray = [];
+  let userArray = await getAll();
+  let currentUser;
+
+  for (r=0; r<userArray.length;r++){
+    if(searchTerm.toLowerCase() == userArray[r].userName.toLowerCase()){
+      matchArray.push(userArray[r]);
+    }
+  }
+
+  console.log(matchArray);
+  return matchArray;
+}
+
 
 
 async function search(searchTerm){
   //get array of all users
   //check to see if any of the users match the search term
 
-  //let result = [];
+  let result = [];
   let userArray = await getAll();
   //console.log(userArray);
 
   let currentUser = {};
-  let result = [];
   for (i=0; i<=userArray.length; i++){
-    result = [];
     console.log(result);
     currentUser = userArray[i];
     console.log(currentUser);
@@ -240,11 +253,12 @@ async function search(searchTerm){
     if(searchTerm.toLowerCase() == currentUser.userName.toLowerCase()){
       console.log('==========================================')
       result.push(currentUser);
+      console.log(result);
       return result;
     }
   }
   //console.log(result);
-  return result;
+  return resultArray;
 }
 
 /*
@@ -266,4 +280,4 @@ async function getByKeyword(searchTerm){
   return searchResults;
 }
 */
-module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search};
+module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search,searchUsers};

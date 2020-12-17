@@ -161,8 +161,42 @@ async function search(searchTerm){
       }
     }
   }
-  console.log(result);
+  ///console.log(result);
   return result;
 }
 
-module.exports = {remove, get, getAll, create,search};
+async function searchPlatform(searchTerm){
+  //get array of all games
+  //check to see if any of the games include a certain word
+
+  let resultArray = [];
+  let gamesArray = await getAll();
+  //console.log(gamesArray);
+
+  //let genreArray = [];
+  let currentGame = {};
+
+  for (c=0; c<gamesArray.length; c++){
+    currentGame = gamesArray[c];
+    //console.log(currentGame);
+    for(d=0; d<currentGame.platforms.length;d++){
+      //genreArray = currentGame.genre
+      //console.log('====================================================');
+      //console.log(searchTerm.toLowerCase());
+      //console.log(currentGame.genre[s].toLowerCase());
+      if(searchTerm.toLowerCase() == currentGame.platforms[d].toLowerCase()){
+        //console.log('====================================================');
+        resultArray.push(currentGame);
+        //console.log(result);
+        break;
+      }
+     else{
+         continue;
+      }
+    }
+  }
+  console.log(resultArray);
+  return resultArray;
+}
+
+module.exports = {remove, get, getAll, create,search, searchPlatform};

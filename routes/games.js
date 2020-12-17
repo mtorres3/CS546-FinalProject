@@ -130,13 +130,15 @@ router.get("/:id", async(request, response) => {
 router.post('/search', async(request, response) => {
   try{
     //console.log(request.body.search);
-    //let searchResultsGames = await gameData.search(request.body.search);
+    let searchResultsGames = await gameData.search(request.body.search);
     //console.log(searchResultsGames);
-    let searchResultsUsers = await userData.search(request.body.search);
+    let searchResultsUsers = await userData.searchUsers(request.body.search);
+    let searchResultsPlatforms = await gameData.searchPlatform(request.body.search);
     
     response.render('extras/search', {
-      //resultsGames: searchResultsGames, 
-      resultsUsers: searchResultsUsers
+      resultsGames: searchResultsGames, 
+      resultsUsers: searchResultsUsers,
+      resultsPlatforms: searchResultsPlatforms
     })
   }
   catch(e){
