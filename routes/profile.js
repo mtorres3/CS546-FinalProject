@@ -24,6 +24,7 @@ router.get("/edit", async(request, response) => {
   catch(e){
     console.log(e);
     response.status(404).render('extras/error')
+    //response.render('extras/profile', {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
   }
 });
 
@@ -66,7 +67,8 @@ router.post('/editForm', async(request, response) => {
   }
   catch(e){
     console.log(e);
-    response.status(404).render('extras/error')
+    //response.status(404).render('extras/error')
+    response.render('extras/profile', {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
   }
 })
 
