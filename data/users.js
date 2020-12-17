@@ -224,20 +224,29 @@ async function search(searchTerm){
   //get array of all users
   //check to see if any of the users match the search term
 
-  var result = [];
+  //let result = [];
   let userArray = await getAll();
+  //console.log(userArray);
 
-  //let userArray = [];
   let currentUser = {};
-
+  let result = [];
   for (i=0; i<=userArray.length; i++){
+    result = [];
+    console.log(result);
     currentUser = userArray[i];
-    if(searchTerm == currentUser.userName){
-      result.push(currentUser.userName)
+    console.log(currentUser);
+    //console.log(searchTerm.toLowerCase());
+    //console.log(currentUser.userName.toLowerCase());
+    if(searchTerm.toLowerCase() == currentUser.userName.toLowerCase()){
+      console.log('==========================================')
+      result.push(currentUser);
+      return result;
     }
   }
+  //console.log(result);
   return result;
 }
+
 /*
 //Potentially works
 async function getByKeyword(searchTerm){

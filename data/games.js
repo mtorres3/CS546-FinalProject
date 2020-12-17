@@ -135,7 +135,7 @@ async function search(searchTerm){
   //get array of all games
   //check to see if any of the games include a certain word
 
-  var result = [];
+  let result = [];
   let gamesArray = await getAll();
   //console.log(gamesArray);
 
