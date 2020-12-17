@@ -179,24 +179,13 @@ async function rename(id, newProfileName, newProfileBio){
 
 async function favoritedGame(gameId, userId){
 
-  if (!gameId) throw 'gameId has not been provided';
-  if (typeof gameId !== 'string') throw 'gameId must be a string';
-  if (!gameId.trim()) throw 'gameId is an empty string';
-  gameId.trim();
-
-  if (!userId) throw 'userId has not been provided';
-  if (typeof userId !== 'string') throw 'userId must be a string';
-  if (!userId.trim()) throw 'userId is an empty string';
-  userId.trim();
-
-
-
-  //let favorite = games.get(gameId);
+  let user = await get(userId);
+  let favoritedGames = user.favoritedGames
+  favoritedGames.push()
   const newFavorite = {
     favoritedGames: favoritedGames
   };
-
-  const update = await userCollection.updateOne({$set: newFavorite});
+  const update = await userCollection.updateOne({ _id: user._id},{$set: newFavorite});
   if(update.modifiedCount === 0) throw 'Could not update'
 
   /*let user = get(userId);

@@ -115,6 +115,7 @@ router.get("/:id", async(request, response) => {
       //response.render('extras/game', game);
       response.render('extras/game', {game: game, status: false})
     } else {
+      let user = await userData.get(request.session.user._id);
       let game = await gameData.get(request.params.id)
       //response.render('extras/reviewForm');
       //response.render('extras/game', game);
@@ -134,9 +135,9 @@ router.post('/search', async(request, response) => {
     //console.log(searchResultsGames);
     let searchResultsUsers = await userData.searchUsers(request.body.search);
     let searchResultsPlatforms = await gameData.searchPlatform(request.body.search);
-    
+
     response.render('extras/search', {
-      resultsGames: searchResultsGames, 
+      resultsGames: searchResultsGames,
       resultsUsers: searchResultsUsers,
       resultsPlatforms: searchResultsPlatforms
     })

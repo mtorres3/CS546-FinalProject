@@ -4,12 +4,19 @@
 <h1 id="gameName">{{game.name}}</h1>
 
 {{#if status}}
+{{#if favoriteStatus}}
   <div>
   <form action='/profile/favorite' method='POST'>
-    <input type='checkbox' id='favCheckbox' name='favorited'/>
-    <button type='submit' id='favButton'>Favorite</button>
+    <button type='submit' id='favButton'>Unfavorite</button>
   </form>
 </div> {{else}}
+<form action='/profile/favorite' method='POST'>
+  <input type='text' id='favStatus' name='favStatus' value='{{favoriteStatus}}' hidden/>
+  <input type='text' id='gameId' name='gameId' value='{{game._id}}' hidden/>
+  <button type='submit' id='favButton'>Favorite</button>
+</form>
+{{/iff}}
+{{else}}
 <div></div>
 {{/if}}
 

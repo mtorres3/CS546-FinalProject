@@ -28,7 +28,7 @@ router.post("/favorite", async(request, response) => {
 
   try{
 
-      //let newFav = await userData.favoritedGame(request.body.gameId, request.session.user._id)
+      let newFav = await userData.favoritedGame(request.body.gameId, request.session.user._id)
       console.log(request.body);
       /*
       if(request.body.favorited === 'on'){

@@ -22,9 +22,6 @@
       <p id = "result">{{review.likes}}</p>
     </div>
     {{/if}}
-    {{else}}
-    <div></div>
-    {{/if}}
     <div id='commentDiv'>
       <h1>Comments</h1>
       <hr>
@@ -33,6 +30,8 @@
         <input type='text' id='reviewID' name='reviewId' value='{{review._id}}' hidden/>
         <button type='submit' id='commentSubmit'>Post</button>
       </form>
+      {{else}}
+      <div></div>
       {{/if}}
 
       <!-- Comment content goes here -->

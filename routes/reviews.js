@@ -92,7 +92,7 @@ router.post("/comment", async(request, response) => {
         let newComment = await commentData.create(request.session.user._id, request.body.newComment, request.body.reviewId)
         console.log(newComment);
         let review = await reviewData.get(request.body.reviewId);
-        response.render('extras/reviewSingle', {review: review});
+        response.render('extras/reviewSingle', {review: review, status: true});
       }
       catch(e){
         console.log(e);
