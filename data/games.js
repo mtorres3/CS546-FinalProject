@@ -104,6 +104,11 @@ async function remove(id){
 
 async function search(searchTerm){
 
+  if (!searchTerm) throw 'A term has not been provided';
+  if (typeof searchTerm !== 'string') throw 'The term must be a string';
+  if (!searchTerm.trim()) throw 'The term is an empty string';
+  searchTerm.trim();
+
   let result = [];
   let gamesArray = await getAll();
   //console.log(gamesArray);
@@ -131,6 +136,11 @@ async function search(searchTerm){
 }
 
 async function searchPlatform(searchTerm){
+
+  if (!searchTerm) throw 'A term has not been provided';
+  if (typeof searchTerm !== 'string') throw 'The term must be a string';
+  if (!searchTerm.trim()) throw 'The term is an empty string';
+  searchTerm.trim();
 
   let resultArray = [];
   let gamesArray = await getAll();
