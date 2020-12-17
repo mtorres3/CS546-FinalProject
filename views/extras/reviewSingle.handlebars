@@ -35,8 +35,10 @@
       {{/if}}
 
       <!-- Comment content goes here -->
-      <div>
-        <br>
+      <hr>
+      <div id = 'commentDivNotLoggedIn'>
+        <h1>Comments</h1>
+        <hr>
         {{#each review.comments}}
         <p>{{this.commentUsername.gamingUser}}: {{this.commentContent}}</p>
         <p>{{this.dateCreated}}</p>

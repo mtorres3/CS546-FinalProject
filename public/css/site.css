@@ -193,6 +193,17 @@ body {
   color: white;
 }
 
+#commentDivNotLoggedIn{
+  border-radius: 3em;
+  padding: 3em;
+  margin: auto;
+  margin-top: 5em;
+  padding-bottom: 20em;
+  width: 100%;
+  background-color: #909092;
+  color: white;
+}
+
 #newComment{
   display: inline;
   font-size: 20px;
