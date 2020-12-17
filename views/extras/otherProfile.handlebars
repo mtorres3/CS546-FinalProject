@@ -1,0 +1,37 @@
+<main>
+<div id="profileDiv">
+<h1 id="profileName">{{gamingUser}}</h1>
+<br>
+<hr>
+<br>
+<dl>
+  <div class='profileInfo'>
+  <dt>Bio:</dt>
+  <dd>{{bio}}</dd>
+  </div>
+  <br>
+  <div class='profileInfo'>
+  <dt>Favorite Games:</dt>
+  {{#each favoritedGames}}
+  <dd></dd>
+  <dd>
+    <a href='/games/{{this._id}}' class='reviewLinks'>
+      <p>{{this.name}}</p>
+    </a>
+  </dd>
+  {{/each}}
+  </div>
+  <br>
+  <div class='profileInfo'>
+  <dt>Reviews:</dt>
+  {{#each reviews}}
+  <dd>
+    <a href='/reviews/{{this._id}}' class='reviewLinks'>
+      <p>{{this.title}}</p>
+    </a>
+  </dd>
+  {{/each}}
+  </div>
+</dl>
+</div>
+</main>

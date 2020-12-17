@@ -5,7 +5,9 @@
   <br>
   <div class='reviewLinks'>
   {{#each resultsUsers}}
+  <a href='/profile/{{this._id}}' class='reviewLinks'>
         <h2>{{this.userName}}</h2>
+    </a>
   {{/each}}
   {{#each resultsGames}}
     <a href='/games/{{this._id}}' class='reviewLinks'>

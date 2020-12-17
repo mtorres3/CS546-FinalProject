@@ -8,9 +8,15 @@ const xss = require('xss');
 
 router.get("/", async(request, response) => {
    try{
+     if (!request.session.user) {
+       let games = await gameData.getAll();
+       res.render('extras/dashboardMain', {game: game, error: "You are not logged in!"});
+     } else {
+       response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
+     }
      //console.log(request.session.user.reviews)
      //console.log(request.session.user.favoritedGames)
-     response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
+
    }
   catch(e){
    console.log(e);
@@ -27,6 +33,21 @@ router.get("/edit", async(request, response) => {
     response.status(404).render('extras/error')
     //response.render('extras/profile', {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
   }
+});
+
+router.get("/:id", async(request, response) => {
+  if (!request.session.user) {
+    let user = await userData.get(request.params.id);
+    response.render('extras/profile',  {gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.reviews, status: false});
+  } else {
+    if (request.params.id == request.session.user._id) {
+      response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
+    } else {
+      let user = await userData.get(request.params.id);
+      response.render('extras/otherProfile',  {gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.reviews, status: true});
+    }
+  }
+
 });
 
 router.post("/favorite", async(request, response) => {

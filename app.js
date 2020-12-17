@@ -67,9 +67,6 @@ app.use('/profile', (req, res, next) => {
   } else {
     console.log('(Non-Authenticated User)')
   }
-  if (!req.session.user) {
-    res.render('extras/dashboardMain', {error: "You are not logged in!"});
-  }
   next();
 
 });
