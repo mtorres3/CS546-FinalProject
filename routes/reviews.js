@@ -95,9 +95,7 @@ router.post("/like", async(request, response) => {
 
 router.post("/comment", async(request, response) => {
     try{
-        //console.log(request.body)
         let newComment = await commentData.create(xss(request.session.user._id), xss(request.body.newComment), xss(request.body.reviewId))
-        //console.log(newComment);
         let review = await reviewData.get(request.body.reviewId);
         response.render('extras/reviewSingle', {review: review, status: true});
       }
@@ -114,18 +112,12 @@ router.post("/comment", async(request, response) => {
 router.get("/:id", async(request, response) => {
   try{
     if (!request.session.user) {
-      //console.log(request.params.id);
       let reviewSingle = await reviewData.get(request.params.id);
-      //console.log(reviewSingle);
       response.render('extras/reviewSingle', {review: reviewSingle, status: false});
     } else {
       let user = await userData.get(request.session.user._id);
-      //console.log(user.likedPost);
       request.session.user.likedPost = user.likedPost
-      //console.log(request.session.user.likedPost)
       let likes = request.session.user.likedPost;
-      //console.log(likes[0]);
-      //console.log(likes[0].toString() === request.params.id.toString())
       for(i=0; i < likes.length; i++) {
         if (likes[i].toString() == request.params.id.toString()) {
           let reviewSingle = await reviewData.get(request.params.id);
@@ -135,11 +127,7 @@ router.get("/:id", async(request, response) => {
        }
       }
 
-      //console.log(request.params.id);
-      //console.log(false);
       let reviewSingle = await reviewData.get(request.params.id);
-
-      //console.log(reviewSingle);
       response.render('extras/reviewSingle', {review: reviewSingle, status: true, likeStatus: false});
     }
   }
