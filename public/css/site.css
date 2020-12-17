@@ -234,7 +234,7 @@ body {
   text-decoration: none;
   border-radius: 0.5em;
   padding: 0.5em;
-  background-color: #909092;
+  background-color: #767679;
 }
 
 #result{
@@ -242,7 +242,7 @@ body {
   margin-right: 0.5em;
   border-radius: 0.25em;
   padding: 0.5em;
-  background-color: #909092;
+  background-color: #767679;
 }
 
 
@@ -384,7 +384,7 @@ dt{
 #favButton{
   display: inline;
   color: white;
-  background-color: #909092;
+  background-color: #767679;
   border-style: none;
   border-radius: 0.5em;
   font-size: 12px;
