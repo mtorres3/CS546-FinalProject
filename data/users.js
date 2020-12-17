@@ -192,7 +192,7 @@ async function postCreated(userId, set){
   let posts = user.userPosts;
   //console.log(posts)
   posts.push(set);
-  //console.log(posts);
+  console.log(posts);
   let newProfile = {
     userPosts: posts,
   };
@@ -203,6 +203,12 @@ async function postCreated(userId, set){
 
 
 async function searchUsers(searchTerm){
+
+  if (!searchTerm) throw 'A term has not been provided';
+  if (typeof searchTerm !== 'string') throw 'The term must be a string';
+  if (!searchTerm.trim()) throw 'The term is an empty string';
+  searchTerm.trim();
+
   var matchArray = [];
   let userArray = await getAll();
   let currentUser;
@@ -257,32 +263,4 @@ async function postUnliked(userId, postId) {
       throw 'Update failed';
 }
 
-async function search(searchTerm){
-  //get array of all users
-  //check to see if any of the users match the search term
-
-  let result = [];
-  let userArray = await getAll();
-  //console.log(userArray);
-
-  let currentUser = {};
-  for (i=0; i<=userArray.length; i++){
-    //console.log(result);
-    currentUser = userArray[i];
-    //console.log(currentUser);
-    //console.log(searchTerm.toLowerCase());
-    //console.log(currentUser.userName.toLowerCase());
-    if(searchTerm.toLowerCase() == currentUser.userName.toLowerCase()){
-      //console.log('==========================================')
-      result.push(currentUser);
-      //console.log(result);
-      return result;
-    }
-  }
-  //console.log(result);
-  return resultArray;
-}
-
-
-
-module.exports = {remove, get, getByUser, getAll, create, favoritedGame, unfavoritedGame, rename, postCreated, search,searchUsers, postLiked, postUnliked};
+module.exports = {remove, get, getByUser, getAll, create, favoritedGame, unfavoritedGame, rename, postCreated, searchUsers, postLiked, postUnliked};

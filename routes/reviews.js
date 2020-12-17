@@ -46,7 +46,7 @@ router.post("/review", async(request, response) => {
     //console.log(newReview);
     //console.log(request.session.user._id);
     //console.log(newReview._id)
-    let insertReview = await userData.postCreated(xss(request.session.user._id), xss(newReview));
+    let insertReview = await userData.postCreated(xss(request.session.user._id), newReview);
     let user = await userData.get(request.session.user._id);
     //console.log(user.userPosts);
     request.session.user.reviews = user.userPosts
