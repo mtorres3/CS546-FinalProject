@@ -15,8 +15,14 @@
   <br>
   <div class='profileInfo'>
   <dt>Favorite Games:</dt>
-  <dd>{{favoritedGames}}</dd>
- 
+  {{#each favoritedGames}}
+  <dd></dd>
+  <dd>
+    <a href='/games/{{this._id}}' class='reviewLinks'>
+      <p>{{this.name}}</p>
+    </a>
+  </dd>
+  {{/each}}
   </div>
   <br>
   <div class='profileInfo'>

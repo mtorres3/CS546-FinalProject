@@ -117,9 +117,23 @@ router.get("/:id", async(request, response) => {
     } else {
       let user = await userData.get(request.session.user._id);
       let game = await gameData.get(request.params.id)
-      //response.render('extras/reviewForm');
-      //response.render('extras/game', game);
-      response.render('extras/game', {game: game, status: true})
+      request.session.user.favoritedGames = user.favoritedGames
+      console.log(request.session.user.favoritedGames)
+      let favorites = request.session.user.favoritedGames;
+      console.log(favorites)
+      for(i=0; i < favorites.length; i++) {
+        if (favorites[i]._id.toString() == request.params.id.toString()) {
+          console.log(true);
+          response.render('extras/game', {game: game, status: true, favoriteStatus: true});
+          return true
+       }
+      }
+
+      //console.log(request.params.id);
+      console.log(false);
+
+      //console.log(reviewSingle);
+      response.render('extras/game', {game: game, status: true, favoriteStatus: false});
     }
   }
   catch(e){

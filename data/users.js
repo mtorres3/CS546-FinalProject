@@ -177,11 +177,12 @@ async function rename(id, newProfileName, newProfileBio){
 }
 
 
-async function favoritedGame(gameId, userId){
-
+async function favoritedGame(game, userId){
+  const userCollection = await users();
   let user = await get(userId);
   let favoritedGames = user.favoritedGames
-  favoritedGames.push()
+  favoritedGames.push(game)
+  console.log(favoritedGames)
   const newFavorite = {
     favoritedGames: favoritedGames
   };
@@ -191,7 +192,31 @@ async function favoritedGame(gameId, userId){
   /*let user = get(userId);
   user.favoritedGames.push(gameId);*/
 
-  return true;
+  return favoritedGames;
+}
+
+async function unfavoritedGame(game, userId) {
+  const userCollection = await users();
+  let user = await get(userId);
+  let favoritedGames = user.favoritedGames
+  for(i=0; i < favoritedGames.length; i++) {
+    if (favoritedGames[i]._id.toString() === game._id.toString()) {
+      favoritedGames.splice(i, 1);
+      console.log(i)
+      console.log(favoritedGames);
+    }
+  }
+  console.log(favoritedGames)
+  const newFavorite = {
+    favoritedGames: favoritedGames
+  };
+  const update = await userCollection.updateOne({ _id: user._id},{$set: newFavorite});
+  if(update.modifiedCount === 0) throw 'Could not update'
+
+  /*let user = get(userId);
+  user.favoritedGames.push(gameId);*/
+
+  return favoritedGames;
 }
 
 async function postCreated(userId, set){
@@ -256,14 +281,14 @@ async function postUnliked(userId, postId) {
       posts.splice(i, 1);
       console.log(i)
       console.log(posts);
-      let newProfile = {
-        likedPost: posts,
-      };
-      const update = await userCollection.updateOne({ _id: user._id},{$set: newProfile});
-      if (!update.matchedCount && !update.modifiedCount)
-          throw 'Update failed';
     }
   }
+  let newProfile = {
+    likedPost: posts,
+  };
+  const update = await userCollection.updateOne({ _id: user._id},{$set: newProfile});
+  if (!update.matchedCount && !update.modifiedCount)
+      throw 'Update failed';
 }
 
 async function search(searchTerm){
@@ -312,4 +337,4 @@ async function getByKeyword(searchTerm){
 }
 */
 
-module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search,searchUsers, postLiked, postUnliked};
+module.exports = {remove, get, getByUser, getAll, create, favoritedGame, unfavoritedGame, rename, postCreated, search,searchUsers, postLiked, postUnliked};
