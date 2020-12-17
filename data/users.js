@@ -55,8 +55,9 @@ async function create(userName, password, gamingUser, userBio) {
     gamingUser.trim();
     userBio.trim();
 
-  let userPosts = [];
-  let favoritedGames = [];
+  let likes = [];
+  let posts= [];
+  let favorites = [];
   var hashPW = await bcrypt.hash(password, 10);
   console.log(hashPW);
 
@@ -67,8 +68,9 @@ async function create(userName, password, gamingUser, userBio) {
     password: hashPW,
     gamingUser: gamingUser,
     userBio: userBio,
-    favoritedGames: favoritedGames,
-    userPosts: userPosts
+    favoritedGames: favorites,
+    userPosts: posts,
+    likedPost: likes
     };
 
   	const userCollection = await users();
@@ -208,6 +210,7 @@ async function postCreated(userId, set){
   const userCollection = await users();
   let user = await get(userId);
   let posts = user.userPosts;
+  console.log(posts)
   posts.push(set);
   console.log(posts);
   let newProfile = {
@@ -217,6 +220,7 @@ async function postCreated(userId, set){
   if (!update.matchedCount && !update.modifiedCount)
       throw 'Update failed';
 }
+
 
 async function searchUsers(searchTerm){
   var matchArray = [];
@@ -234,6 +238,44 @@ async function searchUsers(searchTerm){
 }
 
 
+async function postLiked(userId, postId) {
+  const userCollection = await users();
+  let user = await get(userId);
+  console.log(user)
+  let posts = user.likedPost;
+  console.log(posts)
+  posts.push(postId);
+  console.log(posts);
+  let newProfile = {
+    likedPost: posts,
+  };
+  const update = await userCollection.updateOne({ _id: user._id},{$set: newProfile});
+  if (!update.matchedCount && !update.modifiedCount)
+      throw 'Update failed';
+
+}
+
+
+async function postUnliked(userId, postId) {
+  const userCollection = await users();
+  let user = await get(userId);
+  console.log(user.likedPost[0].toString() === postId.toString())
+  let posts = user.likedPost;
+  console.log(postId)
+  for(i=0; i < posts.length; i++) {
+    if (posts[i].toString() === postId.toString()) {
+      posts.splice(i, 1);
+      console.log(i)
+      console.log(posts);
+      let newProfile = {
+        likedPost: posts,
+      };
+      const update = await userCollection.updateOne({ _id: user._id},{$set: newProfile});
+      if (!update.matchedCount && !update.modifiedCount)
+          throw 'Update failed';
+    }
+  }
+}
 
 async function search(searchTerm){
   //get array of all users
@@ -280,4 +322,8 @@ async function getByKeyword(searchTerm){
   return searchResults;
 }
 */
+<<<<<<< Updated upstream
 module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search,searchUsers};
+=======
+module.exports = {remove, get, getByUser, getAll, create, favoritedGame, rename, postCreated, search, postLiked, postUnliked};
+>>>>>>> Stashed changes

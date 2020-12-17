@@ -1,5 +1,5 @@
 <main>
-  <div id='reviewSingle'>
+  <div id='reviewSingle' data-user= {{review.user}} data-review= {{review._id}}>
     <h1>{{review.user}}</h1>
     <h2>{{review.gameName}}</h2>
     <hr>
@@ -10,8 +10,21 @@
     <br>
     <p>Date Posted: {{review.datePublished}}</p>
     <!-- Single review content goes here -->
-
-
+    {{#if status}}
+    {{#if likeStatus}}
+    <div>
+       <span><a class="like-Unlike" data-review= {{review._id}} href="">Unlike</a></span>
+      <p id= 'result'>{{review.likes}}</p>
+    </div>
+    {{else}}
+    <div>
+       <span><a class="like-Unlike" data-review= {{review._id}} href="">Like</a></span>
+      <p id = "result">{{review.likes}}</p>
+    </div>
+    {{/if}}
+    {{else}}
+    <div></div>
+    {{/if}}
     <div id='commentDiv'>
       <h1>Comments</h1>
       <hr>

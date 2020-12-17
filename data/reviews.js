@@ -27,7 +27,7 @@ async function create(title, gameName, user, postContent) {
     user.trim();
     gameName.trim();
     postContent.trim();
-
+    let numLikes = 0;
     let datePublished = new Date();
 /*
   if (!Array.isArray(genre)) throw 'genre must be provided as an array';
@@ -53,8 +53,7 @@ async function create(title, gameName, user, postContent) {
     user: user,
     postContent: postContent,
     datePublished: datePublished,
-    likes: 0,
-    dislikes: 0,
+    likes: numLikes,
     comments: commentsArray
     };
 
@@ -77,12 +76,12 @@ async function getAll(){
 }
 
 async function get(id){
-
+  /*
   if (!id) throw 'id has not been provided';
-  if (typeof id !== 'string') throw 'id must be a string';
+  if (typeof id !== 'string') throw 'i must be a string';
   if (!id.trim()) throw 'id is an empty string';
   id.trim();
-
+  */
   const reviewCollection = await reviews();
 
   const reviewId = await reviewCollection.findOne({ _id: ObjectId(id)});
@@ -111,27 +110,29 @@ async function remove(id){
 }
 
 async function clickedLike(postId){
-
-  if (!postId) throw 'id has not been provided';
-  if (typeof postId !== 'string') throw 'id must be a string';
-  if (!postId.trim()) throw 'id is an empty string';
-  postId.trim();
-
-    let likedPost = get(postId);
-    likedPost.likes++;
-    return true;
+    const reviewCollection = await reviews();
+    let likedPost = await get(postId);
+    console.log(likedPost);
+    let newLikes = likedPost.likes + 1;
+    console.log(newLikes);
+    let newProfile = {
+      likes: newLikes,
+    };
+    const update = await reviewCollection.updateOne({ _id: postId},{$set: newProfile});
+    if (!update.matchedCount && !update.modifiedCount)
+        throw 'Update failed';
 }
-
-async function clickedDislike(postId){
-
-  if (!postId) throw 'id has not been provided';
-  if (typeof postId !== 'string') throw 'id must be a string';
-  if (!postId.trim()) throw 'id is an empty string';
-  postId.trim();
-
-    let dislikedPost = get(postId);
-    dislikedPost.dislikes++;
-    return true;
+async function clickedUnlike(postId){
+    const reviewCollection = await reviews();
+    let likedPost = await get(postId);
+    let newLikes = likedPost.likes- 1;
+    console.log(newLikes);
+    let newProfile = {
+      likes: newLikes,
+    };
+    const update = await reviewCollection.updateOne({ _id: postId},{$set: newProfile});
+    if (!update.matchedCount && !update.modifiedCount)
+        throw 'Update failed';
 }
 
 async function commentCreated(postId, set){
@@ -182,4 +183,4 @@ async function sortUser(){
   return topThree;
 }
 
-module.exports = {remove, get, getAll, create, clickedLike, clickedDislike, commentCreated, sortLikes, sortDate, sortUser};
+module.exports = {remove, get, getAll, create, clickedLike, clickedUnlike, commentCreated, sortLikes, sortDate, sortUser};
