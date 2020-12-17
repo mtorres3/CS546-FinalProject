@@ -51,8 +51,14 @@ router.post("/review", async(request, response) => {
     response.redirect('/reviews');
   }
   catch(e){
+    //console.log(e);
+    //response.status(404).render('extras/error')
+
     console.log(e);
-    response.status(404).render('extras/error')
+        var msg1 = "Please fill all of the fields in order to post a review."
+        console.log(msg1);
+        //let review = await reviewData.get(request.body.reviewId);
+        response.render('extras/reviewForm', { status: true, msg: msg1});
   }
 });
 

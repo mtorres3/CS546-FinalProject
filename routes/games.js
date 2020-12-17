@@ -69,27 +69,36 @@ router.get("/trending", async(request, response) => {
 });
 */
 router.post('/login', async(request,response) => {
-  console.log(request.body)
-  const { username, password } = request.body;
-  let user = await userData.getByUser(username);
-  if (user) {
-      let match = await bcrypt.compare(password, user.password);
-      if (match) {
-        request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts, likedPost: user.likedPost}
-        var msg = "login succesful!"
-        console.log(msg)
-        console.log(request.session.user);
-        response.redirect('/profile')
-        console.log('redirected');
-      } else {
-        var error2 = "Incorrect password!";
-        console.log(error2)
-        //res.render('user/login', {error: error2});
-      }
-  } else {
-    var error1 = "Username does not exist!";
-    console.log(error3)
-    //res.render('user/login', {error: error1});
+  try {
+    console.log(request.body)
+    const { username, password } = request.body;
+    let user = await userData.getByUser(username);
+    if (user) {
+        let match = await bcrypt.compare(password, user.password);
+        if (match) {
+          request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts, likedPost: user.likedPost}
+          var msg = "login successful!"
+          console.log(msg)
+          console.log(request.session.user);
+          response.redirect('/profile')
+          console.log('redirected');
+        } else {
+          var error2 = "Incorrect password!";
+          console.log(error2)
+          //res.render('user/login', {error: error2});
+        }
+    } else {
+      var error1 = "Username does not exist!";
+      console.log(error3)
+      //res.render('user/login', {error: error1});
+    }
+  }
+  catch(e) {
+    var msg1 = "Please input all of the fields to login."
+        console.log(msg1);
+        //let review = await reviewData.get(request.body.reviewId);
+        //idk what to put here to redirect back to login
+        response.render('extras/error');
   }
 });
 

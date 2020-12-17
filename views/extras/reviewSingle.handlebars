@@ -1,6 +1,4 @@
 <main>
-  <p>{{error}}</p>
-  <p>{{msg}}</p>
   <div id='reviewSingle' data-user= {{review.user}} data-review= {{review._id}}>
     <h1>{{review.user}}</h1>
     <h2>{{review.gameName}}</h2>
@@ -28,6 +26,8 @@
     </div>
     {{/if}}
     <div id='commentDiv'>
+      <p>{{error}}</p>
+      <p class='error'>{{msg}}</p>
       <h1>Comments</h1>
       <hr>
       <form id='commentForm' action='/reviews/comment' method="POST">
