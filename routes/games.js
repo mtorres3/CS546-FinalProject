@@ -66,9 +66,7 @@ router.get("/:id", async(request, response) => {
       let user = await userData.get(request.session.user._id);
       let game = await gameData.get(request.params.id)
       request.session.user.favoritedGames = user.favoritedGames
-      //console.log(request.session.user.favoritedGames)
       let favorites = request.session.user.favoritedGames;
-      //console.log(favorites)
       for(i=0; i < favorites.length; i++) {
         if (favorites[i]._id.toString() == request.params.id.toString()) {
           //console.log(true);
@@ -77,10 +75,7 @@ router.get("/:id", async(request, response) => {
        }
       }
 
-      //console.log(request.params.id);
-      //console.log(false);
-
-      //console.log(reviewSingle);
+  
       response.render('extras/game', {game: game, status: true, favoriteStatus: false});
     }
   }
@@ -94,7 +89,6 @@ router.post('/search', async(request, response) => {
   try{
     if (!request.session.user) {
       let searchResultsGames = await gameData.search(xss(request.body.search));
-      //console.log(searchResultsGames);
       let searchResultsUsers = await userData.searchUsers(xss(request.body.search));
       let searchResultsPlatforms = await gameData.searchPlatform(xss(request.body.search));
       if(searchResultsGames.length === 0 && searchResultsUsers.length === 0 && searchResultsPlatforms.length === 0){
@@ -110,7 +104,6 @@ router.post('/search', async(request, response) => {
       }
     } else {
       let searchResultsGames = await gameData.search(xss(request.body.search));
-      //console.log(searchResultsGames);
       let searchResultsUsers = await userData.searchUsers(xss(request.body.search));
       let searchResultsPlatforms = await gameData.searchPlatform(xss(request.body.search));
       if(searchResultsGames.length === 0 && searchResultsUsers.length === 0 && searchResultsPlatforms.length === 0){
@@ -126,7 +119,7 @@ router.post('/search', async(request, response) => {
       }
     }
 
-    //console.log(request.body.search);
+   
 
   }
   catch(e){
