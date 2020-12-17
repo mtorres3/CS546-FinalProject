@@ -37,7 +37,6 @@ async function create(userId, commentContent, reviewId) {
     //console.log(reviewName);
     reviewName.comments.push(newComment);
     const update = await reviewsCollection.updateOne({ _id: ObjectId(reviewId)},{$set: reviewName});
-    //reviewName.comments.push(newComment);
     //console.log(reviewName);
 
   	const commentCollection = await comments();
@@ -45,7 +44,6 @@ async function create(userId, commentContent, reviewId) {
 
     const x = insertInfo.insertedId.toString();
     //console.log("the type of x is: " + typeof x);
-    //reviewsData.commentCreated(commentId, postId)
     return await get(x);
 }
 

@@ -103,26 +103,20 @@ async function remove(id){
 }
 
 async function search(searchTerm){
-  //get array of all games
-  //check to see if any of the games include a certain word
 
   let result = [];
   let gamesArray = await getAll();
   //console.log(gamesArray);
 
-  let genreArray = [];
   let currentGame = {};
 
   for (i=0; i<gamesArray.length; i++){
     currentGame = gamesArray[i];
     //console.log(currentGame);
     for(s=0; s<currentGame.genre.length;s++){
-      //genreArray = currentGame.genre
-      //console.log('====================================================');
       //console.log(searchTerm.toLowerCase());
       //console.log(currentGame.genre[s].toLowerCase());
       if(searchTerm.toLowerCase() == currentGame.genre[s].toLowerCase()){
-        //console.log('====================================================');
         result.push(currentGame);
         //console.log(result);
         break;
@@ -137,26 +131,20 @@ async function search(searchTerm){
 }
 
 async function searchPlatform(searchTerm){
-  //get array of all games
-  //check to see if any of the games include a certain word
 
   let resultArray = [];
   let gamesArray = await getAll();
   //console.log(gamesArray);
 
-  //let genreArray = [];
   let currentGame = {};
 
   for (c=0; c<gamesArray.length; c++){
     currentGame = gamesArray[c];
     //console.log(currentGame);
     for(d=0; d<currentGame.platforms.length;d++){
-      //genreArray = currentGame.genre
-      //console.log('====================================================');
       //console.log(searchTerm.toLowerCase());
       //console.log(currentGame.genre[s].toLowerCase());
       if(searchTerm.toLowerCase() == currentGame.platforms[d].toLowerCase()){
-        //console.log('====================================================');
         resultArray.push(currentGame);
         //console.log(result);
         break;
