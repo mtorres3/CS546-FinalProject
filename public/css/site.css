@@ -89,6 +89,7 @@ body {
 #reviewFormTitle{
   font-size: 20px;
   background-color: #C4C4C4;
+  border-style: none;
   border-radius: 1em;
 }
 
@@ -198,6 +199,7 @@ body {
   font-size: 20px;
   background-color: #D8DAD8;
   border-radius: 1em;
+  border-style: none;
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -207,6 +209,7 @@ body {
   color: #494A4A;
   background-color: #C4C4C4;
   border-radius: 1.5em;
+  border-style: none;
   font-size: 12px;
   padding: 0.5em;
 }
@@ -259,6 +262,7 @@ body {
   color: #494A4A;
   background-color: #C4C4C4;
   border-radius: 2em;
+  border-style: none;
   font-size: 16px;
   padding: 0.5em;
 }
@@ -277,18 +281,21 @@ dt{
   font-size: 20px;
   background-color: #C4C4C4;
   border-radius: 1em;
+  border-style: none;
 }
 
 #displayName{
   font-size: 20px;
   background-color: #C4C4C4;
   border-radius: 1em;
+  border-style: none;
 }
 
 #profileSubmit{
   color: #494A4A;
   background-color: #C4C4C4;
   border-radius: 2em;
+  border-style: none;
   font-size: 16px;
   padding: 1em;
   margin-top: 1em;
@@ -362,9 +369,9 @@ dt{
 #favButton{
   display: inline;
   color: white;
-  background-color: #494A4A;
-  border-color: black;
-  border-radius: 1em;
+  background-color: #909092;
+  border-style: none;
+  border-radius: 0.5em;
   font-size: 12px;
   margin: align-left;
   padding: 0.5em 1em;
@@ -386,12 +393,15 @@ dt{
   font-size: 20px;
   background-color: #C4C4C4;
   border-radius: 1em;
+  border-style: none;
 }
 
 #password{
   font-size: 20px;
   background-color: #C4C4C4;
   border-radius: 1em;
+  border-style: none;
+  margin-top: 1em;
 }
 
 #loginSubmit{
@@ -399,6 +409,7 @@ dt{
   color: #494A4A;
   background-color: #C4C4C4;
   border-radius: 1em;
+  border-style: none;
   font-size: 16px;
   padding: 0.5em;
 }
