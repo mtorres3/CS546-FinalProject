@@ -1,6 +1,4 @@
 <main>
-  <p>{{error}}</p>
-  <p>{{msg}}</p>
   <div id='reviewSingle' data-user= {{review.user}} data-review= {{review._id}}>
     <h1>{{review.user}}</h1>
     <h2>{{review.gameName}}</h2>
@@ -35,6 +33,8 @@
         <input type='text' id='reviewID' name='reviewId' value='{{review._id}}' hidden/>
         <button type='submit' id='commentSubmit'>Post</button>
       </form>
+      <p>{{error}}</p>
+      <p class='error'>{{msg}}</p>
       <hr>
       {{#each review.comments}}
       <p>{{this.commentUsername.gamingUser}}: {{this.commentContent}}</p>

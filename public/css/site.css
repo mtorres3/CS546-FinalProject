@@ -225,6 +225,10 @@ body {
   padding: 0.5em;
 }
 
+.error{
+  color: red;
+}
+
 .like-Unlike{
   color: white;
   text-decoration: none;
