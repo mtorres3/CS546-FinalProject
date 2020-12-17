@@ -18,6 +18,7 @@ router.get("/", async(request, response) => {
     }
   }
   catch(e){
+    console.log(e)
     response.status(404).render('extras/error')
   }
 });

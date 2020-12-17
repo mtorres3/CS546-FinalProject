@@ -69,6 +69,7 @@ router.get("/trending", async(request, response) => {
 });
 */
 router.post('/login', async(request,response) => {
+<<<<<<< HEAD
   try {
     console.log(request.body)
     const { username, password } = request.body;
@@ -99,6 +100,29 @@ router.post('/login', async(request,response) => {
         //let review = await reviewData.get(request.body.reviewId);
         //idk what to put here to redirect back to login
         response.render('extras/error');
+=======
+  //console.log(request.body)
+  const { username, password } = request.body;
+  let user = await userData.getByUser(username);
+  if (user) {
+      let match = await bcrypt.compare(password, user.password);
+      if (match) {
+        request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts, likedPost: user.likedPost}
+        var msg = "login succesful!"
+        console.log(msg)
+        //console.log(request.session.user);
+        response.redirect('/profile')
+        console.log('redirected');
+      } else {
+        var error2 = "Incorrect password!";
+        console.log(error2)
+        //res.render('user/login', {error: error2});
+      }
+  } else {
+    var error1 = "Username does not exist!";
+    console.log(error3)
+    //res.render('user/login', {error: error1});
+>>>>>>> 4ec899d0c072b7d93820d762a7562d9398ad0c68
   }
 });
 
@@ -127,19 +151,19 @@ router.get("/:id", async(request, response) => {
       let user = await userData.get(request.session.user._id);
       let game = await gameData.get(request.params.id)
       request.session.user.favoritedGames = user.favoritedGames
-      console.log(request.session.user.favoritedGames)
+      //console.log(request.session.user.favoritedGames)
       let favorites = request.session.user.favoritedGames;
-      console.log(favorites)
+      //console.log(favorites)
       for(i=0; i < favorites.length; i++) {
         if (favorites[i]._id.toString() == request.params.id.toString()) {
-          console.log(true);
+          //console.log(true);
           response.render('extras/game', {game: game, status: true, favoriteStatus: true});
           return true
        }
       }
 
       //console.log(request.params.id);
-      console.log(false);
+      //console.log(false);
 
       //console.log(reviewSingle);
       response.render('extras/game', {game: game, status: true, favoriteStatus: false});
@@ -166,6 +190,7 @@ router.post('/search', async(request, response) => {
     })
   }
   catch(e){
+    console.log(e);
     response.status(404).render('extras/error')
   }
 });

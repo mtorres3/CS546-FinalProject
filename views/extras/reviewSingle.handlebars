@@ -35,6 +35,8 @@
         <input type='text' id='reviewID' name='reviewId' value='{{review._id}}' hidden/>
         <button type='submit' id='commentSubmit'>Post</button>
       </form>
+      <p>{{error}}</p>
+      <p class='error'>{{msg}}</p>
       <hr>
       {{#each review.comments}}
       <p>{{this.commentUsername.gamingUser}}: {{this.commentContent}}</p>

@@ -112,9 +112,9 @@ async function remove(id){
 async function clickedLike(postId){
     const reviewCollection = await reviews();
     let likedPost = await get(postId);
-    console.log(likedPost);
+    //console.log(likedPost);
     let newLikes = likedPost.likes + 1;
-    console.log(newLikes);
+    //console.log(newLikes);
     let newProfile = {
       likes: newLikes,
     };
@@ -126,7 +126,7 @@ async function clickedUnlike(postId){
     const reviewCollection = await reviews();
     let likedPost = await get(postId);
     let newLikes = likedPost.likes- 1;
-    console.log(newLikes);
+    //console.log(newLikes);
     let newProfile = {
       likes: newLikes,
     };
@@ -141,7 +141,7 @@ async function commentCreated(postId, set){
   let review = await get(postId);
   let comments = review.commentsArray;
   posts.push(set);
-  console.log(comments);
+  //console.log(comments);
   let newReview = {
     comments: comments,
   };
@@ -156,7 +156,7 @@ async function sortLikes(){
   let postsArray = await getAll();
   //console.log(postsArray);
   let sortedArray = postsArray.sort((a,b)=> b.likes-a.likes);
-  console.log(sortedArray);
+  //console.log(sortedArray);
   let topThree = await reviewCollection.find({}).sort((a,b)=> a.likes-b.likes).limit(3).toArray();
   //console.log(topThree);
   return sortedArray;
