@@ -59,8 +59,9 @@ router.post('/editForm', async(request, response) => {
     console.log(rename);
     request.session.user.gamingUser = rename.gamingUser;
     request.session.user.bio = rename.userBio;
+    //console.log(rename.userPosts)
     //response.redirect('/profile');
-    response.render('extras/profile', {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.userPosts, status: true})
+    response.render('extras/profile', {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: rename.userPosts, status: true})
   }
   catch(e){
     response.status(404).render('extras/error')
