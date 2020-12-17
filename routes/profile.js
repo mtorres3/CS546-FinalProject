@@ -37,13 +37,13 @@ router.get("/edit", async(request, response) => {
 router.get("/:id", async(request, response) => {
   if (!request.session.user) {
     let user = await userData.get(request.params.id);
-    response.render('extras/profile',  {gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.reviews, status: false});
+    response.render('extras/profile',  {gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts, status: false});
   } else {
     if (request.params.id == request.session.user._id) {
       response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
     } else {
       let user = await userData.get(request.params.id);
-      response.render('extras/otherProfile',  {gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.reviews, status: true});
+      response.render('extras/otherProfile',  {gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts, status: true});
     }
   }
 
