@@ -96,7 +96,10 @@ router.post("/comment", async(request, response) => {
       }
       catch(e){
         console.log(e);
-        response.status(404).render('extras/error')
+        var msg1 = "Please write a comment in order to post."
+        console.log(msg1);
+        let review = await reviewData.get(request.body.reviewId);
+        response.render('extras/reviewSingle', {review: review, status: true, msg: msg1});
       }
 
 });
