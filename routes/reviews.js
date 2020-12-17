@@ -128,7 +128,7 @@ router.get("/:id", async(request, response) => {
       //console.log(request.params.id);
       console.log(false);
       let reviewSingle = await reviewData.get(request.params.id);
-      let comments = await commentData.get
+      
       //console.log(reviewSingle);
       response.render('extras/reviewSingle', {review: reviewSingle, status: true, likeStatus: false});
     }

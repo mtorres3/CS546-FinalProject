@@ -8,6 +8,8 @@
   <div>
   <form action='/profile/favorite' method='POST'>
     <button type='submit' id='favButton'>Unfavorite</button>
+    <input type='text' id='favStatus' name='favStatus' value='{{favoriteStatus}}' hidden/>
+    <input type='text' id='gameId' name='gameId' value='{{game._id}}' hidden/>
   </form>
 </div> {{else}}
 <form action='/profile/favorite' method='POST'>
