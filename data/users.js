@@ -182,7 +182,7 @@ async function favoritedGame(game, userId){
   let user = await get(userId);
   let favoritedGames = user.favoritedGames
   favoritedGames.push(game)
-  console.log(favoritedGames)
+  //console.log(favoritedGames)
   const newFavorite = {
     favoritedGames: favoritedGames
   };
@@ -202,11 +202,11 @@ async function unfavoritedGame(game, userId) {
   for(i=0; i < favoritedGames.length; i++) {
     if (favoritedGames[i]._id.toString() === game._id.toString()) {
       favoritedGames.splice(i, 1);
-      console.log(i)
-      console.log(favoritedGames);
+      //console.log(i)
+      //console.log(favoritedGames);
     }
   }
-  console.log(favoritedGames)
+  //console.log(favoritedGames)
   const newFavorite = {
     favoritedGames: favoritedGames
   };
@@ -224,9 +224,9 @@ async function postCreated(userId, set){
   const userCollection = await users();
   let user = await get(userId);
   let posts = user.userPosts;
-  console.log(posts)
+  //console.log(posts)
   posts.push(set);
-  console.log(posts);
+  //console.log(posts);
   let newProfile = {
     userPosts: posts,
   };
@@ -247,7 +247,7 @@ async function searchUsers(searchTerm){
     }
   }
 
-  console.log(matchArray);
+  //console.log(matchArray);
   return matchArray;
 }
 
@@ -255,11 +255,11 @@ async function searchUsers(searchTerm){
 async function postLiked(userId, postId) {
   const userCollection = await users();
   let user = await get(userId);
-  console.log(user)
+  //console.log(user)
   let posts = user.likedPost;
-  console.log(posts)
+  //console.log(posts)
   posts.push(postId);
-  console.log(posts);
+  //console.log(posts);
   let newProfile = {
     likedPost: posts,
   };
@@ -273,14 +273,14 @@ async function postLiked(userId, postId) {
 async function postUnliked(userId, postId) {
   const userCollection = await users();
   let user = await get(userId);
-  console.log(user.likedPost[0].toString() === postId.toString())
+  //console.log(user.likedPost[0].toString() === postId.toString())
   let posts = user.likedPost;
-  console.log(postId)
+  //console.log(postId)
   for(i=0; i < posts.length; i++) {
     if (posts[i].toString() === postId.toString()) {
       posts.splice(i, 1);
-      console.log(i)
-      console.log(posts);
+      //console.log(i)
+      //console.log(posts);
     }
   }
   let newProfile = {

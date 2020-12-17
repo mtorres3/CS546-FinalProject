@@ -195,7 +195,7 @@ async function searchPlatform(searchTerm){
       }
     }
   }
-  console.log(resultArray);
+  //console.log(resultArray);
   return resultArray;
 }
 

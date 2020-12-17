@@ -69,7 +69,7 @@ router.get("/trending", async(request, response) => {
 });
 */
 router.post('/login', async(request,response) => {
-  console.log(request.body)
+  //console.log(request.body)
   const { username, password } = request.body;
   let user = await userData.getByUser(username);
   if (user) {
@@ -78,7 +78,7 @@ router.post('/login', async(request,response) => {
         request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts, likedPost: user.likedPost}
         var msg = "login succesful!"
         console.log(msg)
-        console.log(request.session.user);
+        //console.log(request.session.user);
         response.redirect('/profile')
         console.log('redirected');
       } else {
@@ -118,19 +118,19 @@ router.get("/:id", async(request, response) => {
       let user = await userData.get(request.session.user._id);
       let game = await gameData.get(request.params.id)
       request.session.user.favoritedGames = user.favoritedGames
-      console.log(request.session.user.favoritedGames)
+      //console.log(request.session.user.favoritedGames)
       let favorites = request.session.user.favoritedGames;
-      console.log(favorites)
+      //console.log(favorites)
       for(i=0; i < favorites.length; i++) {
         if (favorites[i]._id.toString() == request.params.id.toString()) {
-          console.log(true);
+          //console.log(true);
           response.render('extras/game', {game: game, status: true, favoriteStatus: true});
           return true
        }
       }
 
       //console.log(request.params.id);
-      console.log(false);
+      //console.log(false);
 
       //console.log(reviewSingle);
       response.render('extras/game', {game: game, status: true, favoriteStatus: false});
@@ -157,6 +157,7 @@ router.post('/search', async(request, response) => {
     })
   }
   catch(e){
+    console.log(e);
     response.status(404).render('extras/error')
   }
 });
