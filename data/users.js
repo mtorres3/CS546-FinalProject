@@ -5,35 +5,6 @@ const games = require("./games");
 const bcrypt = require('bcryptjs');
 
 async function create(userName, password, gamingUser, userBio) {
-  //If params are not provided at all, the method should throw.
-	/*if (!title || !plot || !rating || !runtime || !genre || !cast || !info) {
-        throw "You must provide all of the parameters (title, plot, rating, runtime, genre, cast, info) for your movie";
-  }
-  //If title, plot, rating, runtime and genre are not strings, the method should throw.
-	if (typeof title !== 'string' || typeof plot !== 'string' || typeof rating !== 'string' || typeof runtime !== 'string' || typeof genre !== 'string') {
-        throw "The parameters (title, plot, rating, runtime and genre) must be strings";
-  }
-  //If cast is not an array and if it does not have at least one element in it that is a valid string, or are empty strings the method should throw
-  if (!Array.isArray(cast)) {
-    throw "The cast parameter is not a valid array";
-  }
-  //If info is not an object, the method should throw.
-  if (typeof info !== "object") {
-    throw "The info parameter is not of type object"
-  }
-  //If director is not a valid string, throw.
-  if (typeof info.director !== 'string' || info.director === undefined) {
-    throw "The director parameter is not a valid string"
-  }
-  //If yearReleased in not a 4 digit number or if it is not provided, throw.
-  if (typeof info.yearReleased !== 'number' || info.yearReleased.toString().length !== 4 || info.yearReleased === undefined) {
-    throw "The year released parameter is not a valid number"
-  }
-  const today = new Date()
-  //If yearReleased is < 1930 or > current year + 5 years, the method should throw.
-  if (info.yearReleased < 1930 || info.yearReleased > today.getFullYear()+5) {
-    throw "The year released parameter is not a number between 1930 and curr year + 5"
-  }*/
 
   if (!userName) throw 'A username has not been provided';
   if (!password) throw 'A password has not been provided';
@@ -317,24 +288,5 @@ async function search(searchTerm){
   return resultArray;
 }
 
-/*
-//Potentially works
-async function getByKeyword(searchTerm){
-
-  if(!searchTerm || typeof searchTerm != 'string' || searchTerm.trim() == "") throw 'Invalid search term';
-  //const shows = await getSearch(searchTerm);
-
-  searchResults = [];
-
-  for(i = 0; i < shows.length; i++){
-    let showInfo = {
-      name: shows[i].show.name,
-      id: shows[i].show.id
-    }
-    searchResults.push(showInfo);
-  }
-  return searchResults;
-}
-*/
 
 module.exports = {remove, get, getByUser, getAll, create, favoritedGame, unfavoritedGame, rename, postCreated, search,searchUsers, postLiked, postUnliked};

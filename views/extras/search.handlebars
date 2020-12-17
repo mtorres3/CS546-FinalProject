@@ -5,20 +5,21 @@
   <br>
   <div class='reviewLinks'>
   {{#each resultsUsers}}
-  <a href='/profile/{{this._id}}' class='reviewLinks'>
+    <a href='/profile/{{this._id}}' class='reviewLinks'>
         <h2>{{this.userName}}</h2>
     </a>
   {{/each}}
   {{#each resultsGames}}
-    <a href='/games/{{this._id}}' class='reviewLinks'>
+      <a href='/games/{{this._id}}' class='reviewLinks'>
         <h2>{{this.name}}</h2>
       </a>
   {{/each}}
   {{#each resultsPlatforms}}
-    <a href='/games/{{this._id}}' class='reviewLinks'>
+      <a href='/games/{{this._id}}' class='reviewLinks'>
         <h2>{{this.name}}</h2>
       </a>
   {{/each}}
+    <p>{{error}}</p>
   </div>
 </div>
 </main>

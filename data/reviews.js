@@ -29,23 +29,7 @@ async function create(title, gameName, user, postContent) {
     postContent.trim();
     let numLikes = 0;
     let datePublished = new Date();
-/*
-  if (!Array.isArray(genre)) throw 'genre must be provided as an array';
-  if (!genre.length>0) throw 'genre has no inputs in it'
-    for (i=0; i<genre.length;i++){
-      if (!genre[i].trim()) throw 'one of the elements in genre is an empty string';
-      if (typeof genre[i] !== 'string') throw 'one of the elements in genre is not a string';
-      genre[i].trim();
-    }
 
-  if (!Array.isArray(platforms)) throw 'platforms must be provided as an array';
-  if (!platforms.length>0) throw 'platforms has no inputs in it'
-    for (i=0; i<platforms.length;i++){
-      if (!platforms[i].trim()) throw 'one of the elements in platforms is an empty string';
-      if (typeof platforms[i] !== 'string') throw 'one of the elements in platforms is not a string';
-      platforms[i].trim();
-    }
-*/
   	const newReview = {
    // _id: _id,
     title: title,

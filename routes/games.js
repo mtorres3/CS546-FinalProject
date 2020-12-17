@@ -99,12 +99,16 @@ router.post('/search', async(request, response) => {
     //console.log(searchResultsGames);
     let searchResultsUsers = await userData.searchUsers(xss(request.body.search));
     let searchResultsPlatforms = await gameData.searchPlatform(xss(request.body.search));
-
-    response.render('extras/search', {
-      resultsGames: searchResultsGames,
-      resultsUsers: searchResultsUsers,
-      resultsPlatforms: searchResultsPlatforms
-    })
+    if(searchResultsGames.length === 0 && searchResultsUsers.length === 0 && searchResultsPlatforms.length === 0){
+      response.render('extras/search', {error: 'No search results'})
+    }
+    else{
+      response.render('extras/search', {
+        resultsGames: searchResultsGames,
+        resultsUsers: searchResultsUsers,
+        resultsPlatforms: searchResultsPlatforms
+      })
+    }
   }
   catch(e){
     console.log(e);
