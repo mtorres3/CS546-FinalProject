@@ -5,14 +5,15 @@ const userData = data.users;
 const gameData = data.games;
 const reviewData = data.reviews;
 const bcrypt = require('bcryptjs');
+const xss = require('xss');
 
 router.post('/login', async(request,response) => {
   try {
     console.log(request.body)
     const { username, password } = request.body;
-    let user = await userData.getByUser(username);
+    let user = await userData.getByUser(xss(username));
     if (user) {
-        let match = await bcrypt.compare(password, user.password);
+        let match = await bcrypt.compare(xss(password), user.password);
         if (match) {
           request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts, likedPost: user.likedPost}
           var msg = "login successful!"
@@ -37,28 +38,6 @@ router.post('/login', async(request,response) => {
         //let review = await reviewData.get(request.body.reviewId);
         //idk what to put here to redirect back to login
         response.render('extras/error');
-  }
-  //console.log(request.body)
-  const { username, password } = request.body;
-  let user = await userData.getByUser(username);
-  if (user) {
-      let match = await bcrypt.compare(password, user.password);
-      if (match) {
-        request.session.user = {username: user.userName, _id: user._id, gamingUser: user.gamingUser, bio: user.userBio, favoritedGames: user.favoritedGames, reviews: user.userPosts, likedPost: user.likedPost}
-        var msg = "login succesful!"
-        console.log(msg)
-        //console.log(request.session.user);
-        response.redirect('/profile')
-        console.log('redirected');
-      } else {
-        var error2 = "Incorrect password!";
-        console.log(error2)
-        //res.render('user/login', {error: error2});
-      }
-  } else {
-    var error1 = "Username does not exist!";
-    console.log(error3)
-    //res.render('user/login', {error: error1});
   }
 });
 
@@ -114,10 +93,10 @@ router.get("/:id", async(request, response) => {
 router.post('/search', async(request, response) => {
   try{
     //console.log(request.body.search);
-    let searchResultsGames = await gameData.search(request.body.search);
+    let searchResultsGames = await gameData.search(xss(request.body.search));
     //console.log(searchResultsGames);
-    let searchResultsUsers = await userData.searchUsers(request.body.search);
-    let searchResultsPlatforms = await gameData.searchPlatform(request.body.search);
+    let searchResultsUsers = await userData.searchUsers(xss(request.body.search));
+    let searchResultsPlatforms = await gameData.searchPlatform(xss(request.body.search));
 
     response.render('extras/search', {
       resultsGames: searchResultsGames,
