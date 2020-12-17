@@ -5,69 +5,7 @@ const userData = data.users;
 const gameData = data.games;
 const reviewData = data.reviews;
 const bcrypt = require('bcryptjs');
-/*
-router.get("/", async(request, response) => {
-  try{
-    if (!request.session.user) {
-      let games = await gameData.getAll()
-      response.render('extras/dashboardMain', {game: games, status:false});
-    } else {
-      let games = await gameData.getAll()
-      response.render('extras/dashboardMain', {game: games, status:true});
-    }
-  }
-  catch(e){
-    console.log(e)
-    response.status(404).render('extras/error')
-  }
-});
-*/
-/*
-router.get("/profile", async(request, response) => {
-  try{
-    console.log(request.session.user.reviews)
-    response.render('extras/profile',  {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: request.session.user.reviews, status: true});
-  }
-  catch(e){
-    console.log(e);
-    response.status(404).render('extras/error')
-  }
-});
-*/
-/*
-router.get("/reviews", async(request, response) => {
-  try{
-    if (!request.session.user) {
-      let reviews = await reviewData.getAll();
-      response.render('extras/reviewAll', {review: reviews, status: false});
-    } else {
-      let reviews = await reviewData.getAll();
-      response.render('extras/reviewAll', {review: reviews, status: true});
-    }
-  }
-  catch(e){
-    response.status(404).render('extras/error')
-  }
-});
-*/
-/*
-router.get("/trending", async(request, response) => {
-  try{
-    if (!request.session.user) {
-      let topThree = await reviewData.sortLikes();
-      //console.log(topThree);
-      response.render('extras/trending', {top: topThree, status:false});
-    } else {
-      let topThree = await reviewData.sortLikes();
-      //console.log(topThree);
-      response.render('extras/trending', {top: topThree, status: true});
-    }
-  }
-  catch(e){
-    response.status(404).render('extras/error')
-  }
-});
-*/
+
 router.post('/login', async(request,response) => {
   try {
     console.log(request.body)

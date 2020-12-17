@@ -4,6 +4,7 @@ const data = require('../data');
 const gameData = data.games;
 const userData = data.users;
 const bcrypt = require('bcryptjs');
+const xss = require('xss');
 
 router.get("/", async(request, response) => {
    try{
@@ -56,13 +57,13 @@ router.post("/favorite", async(request, response) => {
 router.post('/editForm', async(request, response) => {
   try{
     //console.log(request.body);
-    let rename = await userData.rename(request.session.user._id, request.body.displayName, request.body.profileBio)
+    let rename = await userData.rename(xss(request.session.user._id), xss(request.body.displayName), xss(request.body.profileBio))
     //console.log(rename);
     request.session.user.gamingUser = rename.gamingUser;
     request.session.user.bio = rename.userBio;
     //console.log(rename.userPosts)
     //response.redirect('/profile');
-    response.render('extras/profile', {gamingUser: request.session.user.gamingUser, bio: request.session.user.bio, favoritedGames: request.session.user.favoritedGames, reviews: rename.userPosts, status: true})
+    response.render('extras/profile', {gamingUser: xss(request.session.user.gamingUser), bio: xss(request.session.user.bio), favoritedGames: xss(request.session.user.favoritedGames), reviews: xss(rename.userPosts), status: true})
   }
   catch(e){
     console.log(e);

@@ -4,7 +4,7 @@ const data = require('../data');
 const reviewData = data.reviews;
 const commentData = data.comments;
 const userData= data.users;
-
+const xss = require('xss');
 
 
 router.get("/", async(request, response) => {
@@ -42,11 +42,11 @@ router.post("/review", async(request, response) => {
   try{
     //console.log(request.body)
     //console.log(request.session.user.gamingUser)
-    let newReview = await reviewData.create(request.body.reviewFormTitle, request.body.gameReviewed, request.session.user.gamingUser, request.body.reviewFormReview)
+    let newReview = await reviewData.create(xss(request.body.reviewFormTitle), xss(request.body.gameReviewed), xss(request.session.user.gamingUser), xss(request.body.reviewFormReview))
     //console.log(newReview);
     //console.log(request.session.user._id);
     //console.log(newReview._id)
-    let insertReview = await userData.postCreated(request.session.user._id, newReview);
+    let insertReview = await userData.postCreated(xss(request.session.user._id), xss(newReview));
     let user = await userData.get(request.session.user._id);
     //console.log(user.userPosts);
     request.session.user.reviews = user.userPosts
@@ -98,7 +98,7 @@ router.post("/like", async(request, response) => {
 router.post("/comment", async(request, response) => {
     try{
         //console.log(request.body)
-        let newComment = await commentData.create(request.session.user._id, request.body.newComment, request.body.reviewId)
+        let newComment = await commentData.create(xss(request.session.user._id), xss(request.body.newComment), xss(request.body.reviewId))
         //console.log(newComment);
         let review = await reviewData.get(request.body.reviewId);
         response.render('extras/reviewSingle', {review: review, status: true});
@@ -150,28 +150,6 @@ router.get("/:id", async(request, response) => {
     response.status(404).render('extras/error')
   }
 });
-/*
-router.get('/sort', async(request, response) => {
-  try{
-    console.log(request.body);
-
-    if(request.body.dateFilter === true && request.body.userFilter === false){
-      let reviews = await reviewData.sortDate();
-    }
-    else if(request.body.dateFilter === false && request.body.userFilter === true){
-      let reviews = await reviewData.sortUser();
-    }
-    else{
-      let reviews = await reviewData.getAll();
-    }
-
-    //response.render('extras/reviewAll', {review: reviews});
-  }
-  catch(e){
-    response.status(404).render('extras/error')
-  }
-})
-*/
 
 
 module.exports = router;
