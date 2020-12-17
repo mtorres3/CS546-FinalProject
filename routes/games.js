@@ -37,7 +37,6 @@ router.post('/login', async(request,response) => {
   catch(e) {
         var msg1 = "Incorrect username or password"
         console.log(msg1);
-        //let review = await reviewData.get(request.body.reviewId);
         let games = await gameData.getAll()
         response.render('extras/dashboardMain', {game: games, error: msg1});
   }
@@ -61,8 +60,7 @@ router.get("/:id", async(request, response) => {
   try{
     if (!request.session.user) {
       let game = await gameData.get(request.params.id)
-      //response.render('extras/reviewForm');
-      //response.render('extras/game', game);
+
       response.render('extras/game', {game: game, status: false})
     } else {
       let user = await userData.get(request.session.user._id);
