@@ -26,29 +26,31 @@
 <hr>
 <br>
 <dl>
-  <div class='GameInfo'>
-
-
+<dt></dt>
+  <dd>
   <img alt='{{game.name}}' src='{{game.artwork}}' class='gameArt'></img>
-  <br>
-  <br>
+  </dd>
+
   <dt>Genre:</dt>
+  <dd>
   <ul>
   {{#each game.genre}}
   <li>{{this}}</li>
   {{/each}}
   </ul>
-  <br>
+  </dd>
+
   <dt>Platforms:</dt>
+  <dd>
   <ul>
   {{#each game.platforms}}
   <li>{{this}}</li>
   {{/each}}
   </ul>
-  <br>
+  </dd>
+
   <dt>Description:</dt>
   <dd>{{{game.description}}}</dd>
-  </div>
 
 </dl>
 </div>
